@@ -1,34 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<!--
+    “Navigation drawer with Fragments Part 2 - youtube.”
+    [Online]. Available: https://www.youtube.com/watch?v=zYVEMCiDcmY.
+    [Accessed: 11-Mar-2022].
+-->
+<androidx.drawerlayout.widget.DrawerLayout
+    android:id="@+id/drawerView"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    tools:openDrawer="start"
+    android:layoutDirection="rtl">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/actionbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:backgroundTint="@color/teal_200"
-        tools:ignore="MissingConstraints">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:title="StreamlineLife"/>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/homePage"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="55dp"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="0dp" />
+        android:orientation="vertical"
+        android:layoutDirection="ltr">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- App Bar -->
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/teal_200"
+            tools:ignore="MissingConstraints"
+            >
+            <!-- material in tool bar -->
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/titleInAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:title="Streamline Life"
+                app:titleMarginStart="175dp"
+                app:titleMarginEnd="0dp"
+                app:navigationIcon="@drawable/app_navigation_button"
+                android:layoutDirection="rtl">
+            </com.google.android.material.appbar.MaterialToolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <!--  layout 1  -->
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragment_container_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/navigation_graph" />
+
+    </LinearLayout>
+
+    <!--  navigation view  -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationbar"
+        android:layout_marginTop="56dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:layoutDirection="ltr"
+        app:menu="@menu/draw_navigation_menu"/>
+</androidx.drawerlayout.widget.DrawerLayout>

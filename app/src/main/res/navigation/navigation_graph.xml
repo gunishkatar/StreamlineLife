@@ -11,4 +11,9 @@
         android:name="com.example.streamlinelife.HomePage"
         android:label="fragment_home_page"
         tools:layout="@layout/fragment_home_page" />
+    <fragment
+        android:id="@+id/calenderPage"
+        android:name="com.example.streamlinelife.CalenderPage"
+        android:label="fragment_create_page"
+        tools:layout="@layout/fragment_calender_view" />
 </navigation>

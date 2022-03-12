@@ -7,4 +7,13 @@
     <string name="all">All</string>
     <string name="completed">Completed</string>
     <string name="groups">Groups</string>
+    <string name="home">Home</string>
+    <string name="create">Create</string>
+    <string name="all_reminder">All Reminder</string>
+    <string name="completes">Completes</string>
+    <string name="deadlines">Deadlines</string>
+    <string name="calender_view">Calender View</string>
+    <string name="setting">Setting</string>
+    <string name="navigation_open">Navigation open</string>
+    <string name="navigation_close">Navigation close</string>
 </resources>
