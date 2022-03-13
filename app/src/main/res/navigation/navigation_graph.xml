@@ -10,10 +10,19 @@
         android:id="@+id/homePage"
         android:name="com.example.streamlinelife.HomePage"
         android:label="fragment_home_page"
-        tools:layout="@layout/fragment_home_page" />
+        tools:layout="@layout/fragment_home_page" >
+        <action
+            android:id="@+id/action_homePage_to_allReminderPage"
+            app:destination="@id/allReminderPage" />
+    </fragment>
     <fragment
         android:id="@+id/calenderPage"
         android:name="com.example.streamlinelife.CalenderPage"
         android:label="fragment_create_page"
         tools:layout="@layout/fragment_calender_view" />
+    <fragment
+        android:id="@+id/allReminderPage"
+        android:name="com.example.streamlinelife.AllReminderPage"
+        android:label="fragment_all_reminder_page"
+        tools:layout="@layout/fragment_all_reminder_page" />
 </navigation>

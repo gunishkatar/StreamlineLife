@@ -14,11 +14,13 @@
         <entry key="app/src/main/res/drawable/navigation_home_page.xml" value="0.30666666666666664" />
         <entry key="app/src/main/res/layout-v24/activity_main.xml" value="0.14361702127659576" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.27247451343836887" />
-        <entry key="app/src/main/res/layout/fragment_calender_view.xml" value="0.1358695652173913" />
+        <entry key="app/src/main/res/layout/fragment_all_reminder_page.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_calender_view.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_create_page.xml" value="0.14361702127659576" />
         <entry key="app/src/main/res/layout/fragment_home_page.xml" value="0.25" />
         <entry key="app/src/main/res/layout/navigation_layout.xml" value="0.14361702127659576" />
         <entry key="app/src/main/res/menu/draw_navigation_menu.xml" value="0.2907692307692308" />
+        <entry key="app/src/main/res/menu/sortbydropdown.xml" value="0.27037037037037037" />
       </map>
     </option>
   </component>
