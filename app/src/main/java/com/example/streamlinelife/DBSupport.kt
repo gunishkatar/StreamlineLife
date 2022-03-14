@@ -1,8 +1,23 @@
 package com.example.streamlinelife
 
+import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+
+
+//References
+
+/*
+*
+* https://www.thegadget360.com/post/sqlite-database-tutorial-insert-delete-update-and-view-data-from-sqlite-db-in-android-studio
+*
+* https://www.geeksforgeeks.org/android-sqlite-database-in-kotlin/
+*
+*
+* */
+
+
 
 class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
@@ -14,25 +29,27 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
 
         // Reminder table constants
         private const val REMINDER_TABLE = "Reminders"
-        private const val ID_COL = "id";
-        private const val TITLE_COL = "title";
-        private const val DESCRIPTION_COL = "description";
-        private const val DATETIME_COL = "datetime";
-        private const val LOCATION_COL = "location";
-        private const val IMPORTANCE_COL = "importance";
-        private const val LIST_COL = "list_number";
+        private const val ID_COL = "id"
+        private const val TITLE_COL = "title"
+        private const val DESCRIPTION_COL = "description"
+        private const val DATETIME_COL = "datetime"
+        private const val LOCATION_COL = "location"
+        private const val IMPORTANCE_COL = "importance"
+        private const val REPEAT_COL = "repeat"
+        private const val GROUP_COL = "list_number"
         private const val createRemindersTable = "CREATE TABLE $REMINDER_TABLE (" +
                 "$ID_COL INTEGER PRIMARY KEY," +
                 "$TITLE_COL TEXT," +
                 "$DESCRIPTION_COL TEXT," +
-                "$DATETIME_COL DATETIME," +
+                "$DATETIME_COL TEXT," +
                 "$LOCATION_COL TEXT," +
                 "$IMPORTANCE_COL INTEGER," +
-                "$LIST_COL TEXT)"
+                "$REPEAT_COL INTEGER," +
+                "$GROUP_COL TEXT)"
 
         // Group table constant
         private const val GROUP_TABLE = "Groups"
-        private const val NAME_COL = "name";
+        private const val NAME_COL = "name"
         private const val createGroupsTable = "CREATE TABLE ${GROUP_TABLE}_TABLE (" +
                 "$ID_COL INTEGER PRIMARY KEY," +
                 "$NAME_COL TEXT)"
@@ -40,12 +57,56 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
     }
 
     override fun onCreate(db: SQLiteDatabase) {
-        db.execSQL(createRemindersTable);
+        db.execSQL(createRemindersTable)
         db.execSQL(createGroupsTable)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVer: Int, newVer: Int) {
         TODO("Not yet implemented")
     }
+
+    fun addReminder(title: String, desc: String, datetime: String, loc: String, imp: Int, repeat: Boolean, group: String): Boolean{
+        val data = ContentValues()
+
+        data.put(TITLE_COL, title)
+        data.put(DESCRIPTION_COL, desc)
+        data.put(DATETIME_COL, datetime)
+        data.put(LOCATION_COL, loc)
+        data.put(IMPORTANCE_COL, imp)
+        data.put(REPEAT_COL, repeat)
+        data.put(GROUP_COL, group)
+
+        val db = this.writableDatabase
+
+        var result = db.insert(REMINDER_TABLE, null, data)
+
+        db.close()
+
+        if (result == -1.toLong()){
+            return false
+        }
+
+        return true
+    }
+
+    fun addGroup(name: String): Boolean{
+        val data = ContentValues()
+
+        data.put(NAME_COL, name)
+
+        val db = this.writableDatabase
+
+        var result = db.insert(GROUP_TABLE, null, data)
+
+        db.close()
+
+        if (result == -1.toLong()){
+            return false
+        }
+
+        return true
+    }
+
+
 
 }
