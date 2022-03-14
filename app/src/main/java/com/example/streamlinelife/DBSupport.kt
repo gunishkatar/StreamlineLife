@@ -37,6 +37,7 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
         private const val IMPORTANCE_COL = "importance"
         private const val REPEAT_COL = "repeat"
         private const val GROUP_COL = "list_number"
+        private const val COMPLETED_COL = "completed"
         private const val createRemindersTable = "CREATE TABLE $REMINDER_TABLE (" +
                 "$ID_COL INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "$TITLE_COL TEXT," +
@@ -45,7 +46,8 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
                 "$LOCATION_COL TEXT," +
                 "$IMPORTANCE_COL INTEGER," +
                 "$REPEAT_COL INTEGER," +
-                "$GROUP_COL TEXT)"
+                "$GROUP_COL TEXT," +
+                "$COMPLETED_COL INTEGER)"
 
         // Group table constant
         private const val GROUP_TABLE = "Groups"
@@ -53,7 +55,7 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
         private const val NUMBER_OF_REMINDERS = "numberofreminders"
         private const val createGroupsTable = "CREATE TABLE ${GROUP_TABLE}_TABLE (" +
                 "$ID_COL INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "$NAME_COL TEXT" +
+                "$NAME_COL TEXT," +
                 "$NUMBER_OF_REMINDERS INTEGER)"
 
     }
@@ -72,7 +74,7 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
 //        super.onDestroy()
 //    }
 
-    fun addReminder(title: String, desc: String, datetime: String, loc: String, imp: Int, repeat: Boolean, group: String): Boolean{
+    fun addReminder(title: String, desc: String, datetime: String, loc: String, imp: Int, repeat: Int, group: String, completed: Int): Boolean{
         val data = ContentValues()
 
         data.put(TITLE_COL, title)
@@ -82,6 +84,7 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
         data.put(IMPORTANCE_COL, imp)
         data.put(REPEAT_COL, repeat)
         data.put(GROUP_COL, group)
+        data.put(COMPLETED_COL, completed)
 
         val db = this.writableDatabase
 
@@ -120,13 +123,15 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
         val db = this.writableDatabase
         val cursor = db.query(REMINDER_TABLE, null,null,null,null,null,null,null)
 
-        val itemIds = mutableListOf<Long>()
-        with(cursor) {
-            while (moveToNext()) {
-                val itemId = getLong(getColumnIndexOrThrow(ID_COL))
-                itemIds.add(itemId)
-            }
-        }
+        // Following commented code needs to be corrected
+
+//        val itemIds = mutableListOf<Long>()
+//        with(cursor) {
+//            while (moveToNext()) {
+//                val itemId = getLong(getColumnIndexOrThrow(ID_COL))
+//                itemIds.add(itemId)
+//            }
+//        }
         cursor.close()
     }
 
@@ -166,6 +171,41 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
         return true
 
     }
+
+    fun getAllCompletedReminders(){
+        val db = this.writableDatabase
+
+        val selection = "${COMPLETED_COL} = ?"
+        val selectionValue = arrayOf("1")
+
+        val cursor = db.query(REMINDER_TABLE, null,selection,selectionValue,null,null,null,null)
+
+        // Code for parsing all the rows will go here
+
+    }
+
+    fun getAllGroups(){
+        val db = this.writableDatabase
+
+        val cursor = db.query(GROUP_TABLE, null,null,null,null,null,null,null)
+
+        // Code for parsing all the rows will go here
+
+    }
+
+    fun getRemindersForAParticularDate(date: String){
+        val db = this.writableDatabase
+
+        val selection = "${DATETIME_COL} = ?"
+        val selectionValue = arrayOf("%" + date + "%")
+
+        val cursor = db.query(REMINDER_TABLE, null,selection,selectionValue,null,null,null,null)
+
+        // Code for parsing all the rows will go here
+
+    }
+
+
 
 
 
