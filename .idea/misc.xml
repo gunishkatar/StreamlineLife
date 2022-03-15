@@ -4,6 +4,18 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.30564102564102563" />
+        <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/drawable/bg_gradient.xml" value="0.1" />
+        <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/drawable/ic_baseline_chevron_left_24.xml" value="0.1" />
+        <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/drawable/ic_spalsh_fg_background.xml" value="0.1" />
+        <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/drawable/splash_background.xml" value="0.1" />
+        <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/drawable/splash_fg.xml" value="0.1" />
+        <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/layout/activity_main.xml" value="0.13134057971014493" />
+        <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/layout/activity_splash_screen.xml" value="0.1796875" />
+        <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/layout/dropdown_item.xml" value="0.1640625" />
+        <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/layout/fragment_create_reminder.xml" value="0.1640625" />
+        <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/layout/fragment_home_page.xml" value="0.13134057971014493" />
+        <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/menu/draw_navigation_menu.xml" value="0.1640625" />
+        <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/menu/reminder_importance_menu.xml" value="0.1640625" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.17708333333333334" />
         <entry key="app/src/main/res/drawable/addgroups.xml" value="0.17708333333333334" />
         <entry key="app/src/main/res/drawable/app_navigation_button.xml" value="0.30666666666666664" />
