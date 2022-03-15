@@ -16,4 +16,9 @@
         android:name="com.example.streamlinelife.CalenderPage"
         android:label="fragment_create_page"
         tools:layout="@layout/fragment_calender_view" />
+    <fragment
+        android:id="@+id/completedPage"
+        android:name="com.example.streamlinelife.CompletedPage"
+        android:label="fragment_create_page"
+        tools:layout="@layout/fragment_completed_page" />
 </navigation>
