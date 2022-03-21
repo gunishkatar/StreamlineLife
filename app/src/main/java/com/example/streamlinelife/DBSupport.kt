@@ -60,8 +60,7 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
         private const val NAME_COL = "name"
         private const val NUMBER_OF_REMINDERS = "numberofreminders"
         private const val createGroupsTable = "CREATE TABLE ${GROUP_TABLE}_TABLE (" +
-                "$ID_COL INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "$NAME_COL TEXT," +
+                "$NAME_COL TEXT PRIMARY KEY," +
                 "$NUMBER_OF_REMINDERS INTEGER)"
 
     }
@@ -225,10 +224,9 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
 
     }
 
-    fun getAllGroups(): Map<String,ArrayList<String>>{
+    fun getAllGroups(): Map<String,String>{
 
-        val allGroups = mutableMapOf<String,ArrayList<String>>()
-        var row = arrayListOf<String>()
+        val allGroups = mutableMapOf<String,String>()
 
         val db = readableDatabase
 
@@ -236,15 +234,30 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
 
         if (cursor != null){
             while (cursor.moveToNext()){
-                row = arrayListOf<String>()
-                val id = cursor.getString(cursor.getColumnIndexOrThrow(ID_COL))
                 val name = cursor.getString(cursor.getColumnIndexOrThrow(NAME_COL))
                 val numberofReminders = cursor.getString(cursor.getColumnIndexOrThrow(NUMBER_OF_REMINDERS))
-                row.add(name)
-                row.add(numberofReminders)
-                allGroups[id] = row
+                allGroups[name] = numberofReminders
             }
         }
+
+//        val allGroups = mutableMapOf<String,ArrayList<String>>()
+//        var row = arrayListOf<String>()
+//
+//        val db = readableDatabase
+//
+//        val cursor = db.query(GROUP_TABLE, null,null,null,null,null,null,null)
+//
+//        if (cursor != null){
+//            while (cursor.moveToNext()){
+//                row = arrayListOf<String>()
+//                val id = cursor.getString(cursor.getColumnIndexOrThrow(ID_COL))
+//                val name = cursor.getString(cursor.getColumnIndexOrThrow(NAME_COL))
+//                val numberofReminders = cursor.getString(cursor.getColumnIndexOrThrow(NUMBER_OF_REMINDERS))
+//                row.add(name)
+//                row.add(numberofReminders)
+//                allGroups[id] = row
+//            }
+//        }
 
         cursor.close()
         db.close()
@@ -294,9 +307,12 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
 
     }
 
-    ///////////Below mentioned functions yet to be implemented///////////////////////////////////////////////////////////////////////////////////////////
+    fun updateNumberofRemindersInGroup(name: String): Boolean{
 
-    fun updateNumberofRemindersInGroup(name: String, number_of_reminders: Int): Boolean{
+        var number_of_reminders: Int = getNumberofRemindersInGroup(name)
+
+        number_of_reminders = number_of_reminders + 1
+
         val db = this.writableDatabase
 
         val valueToUpdate = ContentValues().apply {
@@ -316,8 +332,7 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
 
     }
 
-
-
+    ///////////Below mentioned functions yet to be implemented///////////////////////////////////////////////////////////////////////////////////////////
 
 
 
