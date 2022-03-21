@@ -42,7 +42,6 @@ class CompletedPage : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val completedListViewUI: ListView = view.findViewById(R.id.completedListView)
 
 
 
