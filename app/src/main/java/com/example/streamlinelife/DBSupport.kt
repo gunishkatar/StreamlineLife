@@ -252,6 +252,48 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
 
     }
 
+    fun getRemindersForAParticularDate(date: String): Map<String,ArrayList<String>>{
+
+        val allReminders = mutableMapOf<String,ArrayList<String>>()
+        var row = arrayListOf<String>()
+
+        val db = readableDatabase
+
+        val selection = "${DATETIME_COL} = ?"
+        val selectionValue = arrayOf("%" + date + "%")
+
+        val cursor = db.query(REMINDER_TABLE, null,selection,selectionValue,null,null,null,null)
+
+        if (cursor != null){
+            while (cursor.moveToNext()){
+                row = arrayListOf<String>()
+                val id = cursor.getString(cursor.getColumnIndexOrThrow(ID_COL))
+                val title = cursor.getString(cursor.getColumnIndexOrThrow(TITLE_COL))
+                val desc = cursor.getString(cursor.getColumnIndexOrThrow(DESCRIPTION_COL))
+                val datetime = cursor.getString(cursor.getColumnIndexOrThrow(DATETIME_COL))
+                val location = cursor.getString(cursor.getColumnIndexOrThrow(LOCATION_COL))
+                val importance = cursor.getString(cursor.getColumnIndexOrThrow(IMPORTANCE_COL))
+                val repeat = cursor.getString(cursor.getColumnIndexOrThrow(REPEAT_COL))
+                val group = cursor.getString(cursor.getColumnIndexOrThrow(GROUP_COL))
+                val completed = cursor.getString(cursor.getColumnIndexOrThrow(COMPLETED_COL))
+                row.add(title)
+                row.add(desc)
+                row.add(datetime)
+                row.add(location)
+                row.add(importance)
+                row.add(repeat)
+                row.add(group)
+                row.add(completed)
+                allReminders[id] = row
+            }
+        }
+
+        cursor.close()
+        db.close()
+        return allReminders
+
+    }
+
     ///////////Below mentioned functions yet to be implemented///////////////////////////////////////////////////////////////////////////////////////////
 
     fun updateNumberofRemindersInGroup(name: String, number_of_reminders: Int): Boolean{
@@ -274,17 +316,7 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
 
     }
 
-    fun getRemindersForAParticularDate(date: String){
-        val db = this.writableDatabase
 
-        val selection = "${DATETIME_COL} = ?"
-        val selectionValue = arrayOf("%" + date + "%")
-
-        val cursor = db.query(REMINDER_TABLE, null,selection,selectionValue,null,null,null,null)
-
-        // Code for parsing all the rows will go here
-
-    }
 
 
 
