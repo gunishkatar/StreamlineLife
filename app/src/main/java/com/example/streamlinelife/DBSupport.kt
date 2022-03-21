@@ -324,7 +324,7 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
 
         val count = db.update(GROUP_TABLE, valueToUpdate,selection,selectionValue)
 
-        if(count > 1){
+        if(count == 0){
             return false
         }
 
@@ -332,8 +332,101 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
 
     }
 
-    ///////////Below mentioned functions yet to be implemented///////////////////////////////////////////////////////////////////////////////////////////
+    fun getAllRemindersofParticularGroup(groupName: String): Map<String,ArrayList<String>>{
 
+        val allReminders = mutableMapOf<String,ArrayList<String>>()
+        var row = arrayListOf<String>()
+
+        val db = readableDatabase
+
+        val selection = "${GROUP_COL} = ?"
+        val selectionValue = arrayOf(groupName)
+
+        val cursor = db.query(REMINDER_TABLE, null,selection,selectionValue,null,null,null,null)
+
+        if (cursor != null){
+            while (cursor.moveToNext()){
+                row = arrayListOf<String>()
+                val id = cursor.getString(cursor.getColumnIndexOrThrow(ID_COL))
+                val title = cursor.getString(cursor.getColumnIndexOrThrow(TITLE_COL))
+                val desc = cursor.getString(cursor.getColumnIndexOrThrow(DESCRIPTION_COL))
+                val datetime = cursor.getString(cursor.getColumnIndexOrThrow(DATETIME_COL))
+                val location = cursor.getString(cursor.getColumnIndexOrThrow(LOCATION_COL))
+                val importance = cursor.getString(cursor.getColumnIndexOrThrow(IMPORTANCE_COL))
+                val repeat = cursor.getString(cursor.getColumnIndexOrThrow(REPEAT_COL))
+                val group = cursor.getString(cursor.getColumnIndexOrThrow(GROUP_COL))
+                val completed = cursor.getString(cursor.getColumnIndexOrThrow(COMPLETED_COL))
+                row.add(title)
+                row.add(desc)
+                row.add(datetime)
+                row.add(location)
+                row.add(importance)
+                row.add(repeat)
+                row.add(group)
+                row.add(completed)
+                allReminders[id] = row
+            }
+        }
+
+        cursor.close()
+        db.close()
+        return allReminders
+
+    }
+
+    fun updateGroupName(oldGroupName: String, newGroupName: String): Boolean{
+
+        val db = this.writableDatabase
+
+        val valueToUpdate = ContentValues().apply {
+            put(NAME_COL, newGroupName)
+        }
+
+        val selection = "${NAME_COL} = ?"
+        val selectionValue = arrayOf(oldGroupName)
+
+        val count = db.update(GROUP_TABLE, valueToUpdate,selection,selectionValue)
+
+        if(count == 0){
+            return false
+        }
+
+        return true
+    }
+
+    fun deleteGroup(groupName: String): Boolean{
+
+        val db = this.writableDatabase
+
+        val selection = "${NAME_COL} = ?"
+        val selectionArgs = arrayOf(groupName)
+
+        val deletedRow = db.delete(GROUP_TABLE, selection, selectionArgs)
+
+        if(deletedRow == 0){
+            return false
+        }
+
+        return true
+    }
+
+    fun deleteCompletedReminders(): Boolean{
+
+        val db = this.writableDatabase
+
+        val selection = "${COMPLETED_COL} = ?"
+        val selectionArgs = arrayOf("1")
+
+        val deletedRow = db.delete(REMINDER_TABLE, selection, selectionArgs)
+
+        if(deletedRow == 0){
+            return false
+        }
+
+        return true
+    }
+
+    ///////////Below mentioned functions yet to be implemented///////////////////////////////////////////////////////////////////////////////////////////
 
 
 
