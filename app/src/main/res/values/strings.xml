@@ -1,4 +1,4 @@
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
+<resources>
     <string name="app_name">StreamlineLife</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -30,7 +30,7 @@
     <string name="Priorities">Priorities</string>
     <string name="DueDate">Due Date</string>
     <string name="CreatedDate">Created Date</string>
-        
+
     <string name="Selected_item_In_sort"> Selected Item: </string>
     <string-array name="sortbyspinner">
         <item> title Ascending </item>
@@ -42,4 +42,8 @@
         <item> Created Date Oldest</item>
         <item> Created Date Newest</item>
     </string-array>
+
+    <string name="sort_by">sort by</string>
+    <string name="add_reminder">add reminder</string>
+    <string name="delete">delete</string>
 </resources>
