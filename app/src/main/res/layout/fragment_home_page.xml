@@ -12,9 +12,8 @@
         android:layout_width="380dp"
         android:layout_height="30dp"
         android:layout_marginTop="23dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="15dp"
         android:iconifiedByDefault="false"
-        android:background="#4D03DAC5"
         android:queryHint="Search for Reminder or Group"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -116,6 +115,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="275dp"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"/>
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="7dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
