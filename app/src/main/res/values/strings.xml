@@ -16,4 +16,8 @@
     <string name="setting">Setting</string>
     <string name="navigation_open">Navigation open</string>
     <string name="navigation_close">Navigation close</string>
+    <string name="sort_by">sort by</string>
+    <string name="deadlines">Deadlines</string>
+    <string name="add_reminder">add reminder</string>
+    <string name="delete">delete</string>
 </resources>
