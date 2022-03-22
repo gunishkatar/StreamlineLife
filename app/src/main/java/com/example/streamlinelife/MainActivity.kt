@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 Toast.makeText(this, "Create Reminder Page", Toast.LENGTH_SHORT).show()
             }
             item.itemId.equals(R.id.showallreminder) -> {
-//                supportFragmentManager.beginTransaction().replace(R.id.fragment_container_view, CreatePage()).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container_view, AllReminderPage()).commit()
                 Toast.makeText(this, "All Reminder Page", Toast.LENGTH_SHORT).show()
             }
             item.itemId.equals(R.id.complete) -> {

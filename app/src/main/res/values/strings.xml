@@ -39,4 +39,34 @@
         <item>1 Hr</item>
         <item>2 Hr</item>
     </string-array>
+    <string name="Reminders">Reminders</string>
+    <string name="reminder_image">Reminder Image</string>
+    <string name="Ascending">Ascending</string>
+    <string name="Descending">Descending</string>
+    <string name="Low">Low</string>
+    <string name="high">High</string>
+    <string name="Earliest">Earliest</string>
+    <string name="Lastest">Lastest</string>
+    <string name="Oldest">Oldest</string>
+    <string name="Newest">Newest</string>
+    <string name="title">Title</string>
+    <string name="Priorities">Priorities</string>
+    <string name="DueDate">Due Date</string>
+    <string name="CreatedDate">Created Date</string>
+
+    <string name="Selected_item_In_sort"> Selected Item: </string>
+    <string-array name="sortbyspinner">
+        <item> title Ascending </item>
+        <item> title Descending </item>
+        <item> priorities Low</item>
+        <item> priorities high</item>
+        <item> Due Date Earliest</item>
+        <item> Due Date Lastest</item>
+        <item> Created Date Oldest</item>
+        <item> Created Date Newest</item>
+    </string-array>
+
+    <string name="sort_by">sort by</string>
+    <string name="add_reminder">add reminder</string>
+    <string name="delete">delete</string>
 </resources>

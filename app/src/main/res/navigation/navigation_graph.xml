@@ -24,5 +24,10 @@
     <fragment
         android:id="@+id/calenderPage"
         android:name="com.example.streamlinelife.CalenderPage"
-        android:label="fragment_create_page"/>
+        android:label="fragment_create_page"  tools:layout="@layout/fragment_calender_view"/>
+        <fragment
+        android:id="@+id/allReminderPage"
+        android:name="com.example.streamlinelife.AllReminderPage"
+        android:label="fragment_all_reminder_page"
+        tools:layout="@layout/fragment_all_reminder_page" />
 </navigation>
