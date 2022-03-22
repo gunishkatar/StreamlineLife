@@ -27,10 +27,6 @@
         <entry key="..\:/Users/ellen/Desktop/project/StreamlineLife/app/src/main/res/layout/fragment_completed_page.xml" value="0.264" />
         <entry key="..\:/Users/ellen/Desktop/project/StreamlineLife/app/src/main/res/layout/fragment_deadline_page.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/ellen/Desktop/project/StreamlineLife/app/src/main/res/layout/fragment_home_page.xml" value="0.1793478260869565" />
-        <entry key="..\:/Users/ellen/Desktop/project/StreamlineLife/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/ellen/Desktop/project/StreamlineLife/app/src/main/res/layout/fragment_calender_view.xml" value="0.1793478260869565" />
-        <entry key="..\:/Users/ellen/Desktop/project/StreamlineLife/app/src/main/res/layout/fragment_completed_page.xml" value="0.264" />
-        <entry key="..\:/Users/ellen/Desktop/project/StreamlineLife/app/src/main/res/layout/fragment_home_page.xml" value="0.1793478260869565" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.17708333333333334" />
         <entry key="app/src/main/res/drawable/addgroups.xml" value="0.17708333333333334" />
         <entry key="app/src/main/res/drawable/app_navigation_button.xml" value="0.30666666666666664" />
@@ -44,7 +40,7 @@
         <entry key="app/src/main/res/layout/fragment_all_reminder_page.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_calender_view.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_create_page.xml" value="0.14361702127659576" />
-        <entry key="app/src/main/res/layout/fragment_deadline_page.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_deadline_page.xml" value="0.14361702127659576" />
         <entry key="app/src/main/res/layout/fragment_home_page.xml" value="0.25" />
         <entry key="app/src/main/res/layout/navigation_layout.xml" value="0.14361702127659576" />
         <entry key="app/src/main/res/menu/draw_navigation_menu.xml" value="0.2907692307692308" />

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
     app:startDestination="@id/homePage">
 
@@ -13,6 +13,7 @@
             android:id="@+id/action_homePage_to_createReminderFragment"
             app:destination="@id/createReminderFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/createReminderFragment"
         android:name="com.example.streamlinelife.CreateReminderFragment"
@@ -21,6 +22,7 @@
             android:id="@+id/action_createReminderFragment_to_homePage"
             app:destination="@id/homePage" />
     </fragment>
+
     <fragment
         android:id="@+id/calenderPage"
         android:name="com.example.streamlinelife.CalenderPage"

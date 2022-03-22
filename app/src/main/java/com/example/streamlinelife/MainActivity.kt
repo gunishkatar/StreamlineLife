@@ -29,11 +29,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //add fragment as a home page
-//        supportFragmentManager.commit {
-//            setReorderingAllowed(true)
-//            add<HomePage>(R.id.fragment_container_view)
-//        }
 
         val toolbar: Toolbar = findViewById(R.id.titleInAppBar)
         drawerlayout = findViewById(R.id.drawerView)
@@ -58,7 +53,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 Toast.makeText(this, "Home Page", Toast.LENGTH_SHORT).show()
             }
             item.itemId.equals(R.id.create) -> {
-//                supportFragmentManager.beginTransaction().replace(R.id.fragment_container_view, CreatePage()).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container_view, CreateReminderFragment()).commit()
                 Toast.makeText(this, "Create Reminder Page", Toast.LENGTH_SHORT).show()
             }
             item.itemId.equals(R.id.showallreminder) -> {

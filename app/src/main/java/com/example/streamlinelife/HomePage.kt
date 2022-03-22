@@ -42,7 +42,7 @@ class HomePage : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<Button>(R.id.createReminder).setOnClickListener {
+        view.findViewById<Button>(R.id.createReminderInHomePage).setOnClickListener {
             findNavController().navigate(R.id.action_homePage_to_createReminderFragment)
         }
     }

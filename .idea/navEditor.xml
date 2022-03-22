@@ -8,18 +8,6 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
-                  <entry key="allReminderPage">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="-297" />
-                            <option name="y" value="-1851" />
-                          </Point>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
                   <entry key="calenderPage">
                     <value>
                       <LayoutPositions>
@@ -27,6 +15,18 @@
                           <Point>
                             <option name="x" value="-489" />
                             <option name="y" value="-1489" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="completedPage">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-289" />
+                            <option name="y" value="-1500" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -41,17 +41,14 @@
                             <option name="y" value="-1852" />
                           </Point>
                         </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
-                  <entry key="completedPage">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="-316" />
-                            <option name="y" value="-1729" />
-                          </Point>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_createReminderFragment_to_homePage">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -64,6 +61,15 @@
                             <option name="x" value="-556" />
                             <option name="y" value="-1815" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_homePage_to_createReminderFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
