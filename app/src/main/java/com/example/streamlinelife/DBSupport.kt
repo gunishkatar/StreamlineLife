@@ -426,7 +426,200 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
         return true
     }
 
-    ///////////Below mentioned functions yet to be implemented///////////////////////////////////////////////////////////////////////////////////////////
+
+    
+
+    fun updateReminderTitle(oldTitle: String, newTitle: String): Boolean{
+
+        val db = this.writableDatabase
+
+        val valueToUpdate = ContentValues().apply {
+            put(TITLE_COL, newTitle)
+        }
+
+        val selection = "${TITLE_COL} = ?"
+        val selectionValue = arrayOf(oldTitle)
+
+        val count = db.update(REMINDER_TABLE, valueToUpdate,selection,selectionValue)
+
+        if(count == 0){
+            return false
+        }
+
+        return true
+    }
+
+    fun updateReminderDesc(title: String, oldDesc: String, newDesc: String): Boolean{
+
+        val db = this.writableDatabase
+
+        val valueToUpdate = ContentValues().apply {
+            put(DESCRIPTION_COL, newDesc)
+        }
+
+        val selection = "${TITLE_COL} = ? AND ${DESCRIPTION_COL} = ?"
+        val selectionValue = arrayOf(title,oldDesc)
+
+        val count = db.update(REMINDER_TABLE, valueToUpdate,selection,selectionValue)
+
+        if(count == 0){
+            return false
+        }
+
+        return true
+    }
+
+    fun updateReminderLocation(title: String, desc: String, oldLoc: String, newLoc: String): Boolean{
+
+        val db = this.writableDatabase
+
+        val valueToUpdate = ContentValues().apply {
+            put(LOCATION_COL, newLoc)
+        }
+
+        val selection = "${TITLE_COL} = ? AND ${LOCATION_COL} = ? AND ${DESCRIPTION_COL} = ?"
+        val selectionValue = arrayOf(title,oldLoc,desc)
+
+        val count = db.update(REMINDER_TABLE, valueToUpdate,selection,selectionValue)
+
+        if(count == 0){
+            return false
+        }
+
+        return true
+    }
+
+    fun updateReminderDateTime(title: String, desc: String, oldDatatime: String, newDatatime: String): Boolean{
+
+        val db = this.writableDatabase
+
+        val valueToUpdate = ContentValues().apply {
+            put(DATETIME_COL, newDatatime)
+        }
+
+        val selection = "${TITLE_COL} = ? AND ${DATETIME_COL} = ? AND ${DESCRIPTION_COL} = ?"
+        val selectionValue = arrayOf(title,oldDatatime,desc)
+
+        val count = db.update(REMINDER_TABLE, valueToUpdate,selection,selectionValue)
+
+        if(count == 0){
+            return false
+        }
+
+        return true
+    }
+
+    fun updateReminderImportance(title: String, desc: String, oldImp: Int, newImp: Int): Boolean{
+
+        val db = this.writableDatabase
+
+        val valueToUpdate = ContentValues().apply {
+            put(IMPORTANCE_COL, newImp)
+        }
+
+        val selection = "${TITLE_COL} = ? AND ${DESCRIPTION_COL} = ? AND ${IMPORTANCE_COL} = ?"
+        val selectionValue = arrayOf(title, desc, oldImp.toString())
+
+        val count = db.update(REMINDER_TABLE, valueToUpdate,selection,selectionValue)
+
+        if(count == 0){
+            return false
+        }
+
+        return true
+    }
+
+    fun updateReminderRepeat(title: String, desc: String, oldRep: Int, newRep: Int): Boolean{
+
+        val db = this.writableDatabase
+
+        val valueToUpdate = ContentValues().apply {
+            put(REPEAT_COL, newRep)
+        }
+
+        val selection = "${TITLE_COL} = ? AND ${DESCRIPTION_COL} = ? AND ${REPEAT_COL} = ?"
+        val selectionValue = arrayOf(title,desc,oldRep.toString())
+
+        val count = db.update(REMINDER_TABLE, valueToUpdate,selection,selectionValue)
+
+        if(count == 0){
+            return false
+        }
+
+        return true
+    }
+
+    fun updateReminderGroup(title: String, desc: String, oldGroup: String, newGroup: String): Boolean{
+
+        val db = this.writableDatabase
+
+        val valueToUpdate = ContentValues().apply {
+            put(GROUP_COL, newGroup)
+        }
+
+        val selection = "${TITLE_COL} = ? AND ${DESCRIPTION_COL} = ? AND ${GROUP_COL} = ?"
+        val selectionValue = arrayOf(title,desc,oldGroup)
+
+        val count = db.update(REMINDER_TABLE, valueToUpdate,selection,selectionValue)
+
+        if(count == 0){
+            return false
+        }
+
+        return true
+    }
+
+    fun updateReminderCompleted(title: String, desc: String, oldCompleted: Int, newCompleted: Int): Boolean{
+
+        val db = this.writableDatabase
+
+        val valueToUpdate = ContentValues().apply {
+            put(COMPLETED_COL, newCompleted)
+        }
+
+        val selection = "${TITLE_COL} = ? AND ${DESCRIPTION_COL} = ? AND ${COMPLETED_COL} = ?"
+        val selectionValue = arrayOf(title,desc,oldCompleted.toString())
+
+        val count = db.update(REMINDER_TABLE, valueToUpdate,selection,selectionValue)
+
+        if(count == 0){
+            return false
+        }
+
+        return true
+    }
+
+    fun deleteReminder(title: String, desc: String, datetime: String, loc: String, imp: Int, repeat: Int, group: String, completed: Int): Boolean{
+
+        val db = this.writableDatabase
+
+        val selection = "${TITLE_COL} = ? AND ${DESCRIPTION_COL} = ? AND ${DATETIME_COL} = ? AND ${LOCATION_COL} = ? AND ${IMPORTANCE_COL} = ? AND ${REPEAT_COL} = ? AND ${GROUP_COL} = ? AND ${COMPLETED_COL} = ?"
+        val selectionArgs = arrayOf(title, desc, datetime, loc, imp.toString(), repeat.toString(), group, completed.toString())
+
+        val deletedRow = db.delete(REMINDER_TABLE, selection, selectionArgs)
+
+        if(deletedRow == 0){
+            return false
+        }
+
+        return true
+    }
+
+    fun deleteAllRemindersofParticularGroup(groupName: String): Boolean{
+
+        val db = this.writableDatabase
+
+        val selection = "${GROUP_COL} = ?"
+        val selectionArgs = arrayOf(groupName)
+
+        val deletedRow = db.delete(REMINDER_TABLE, selection, selectionArgs)
+
+        if(deletedRow == 0){
+            return false
+        }
+
+        return true
+    }
 
 
 
