@@ -40,6 +40,7 @@
         <entry key="app/src/main/res/layout/fragment_all_reminder_page.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_calender_view.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_create_page.xml" value="0.14361702127659576" />
+        <entry key="app/src/main/res/layout/fragment_deadline_page.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_home_page.xml" value="0.25" />
         <entry key="app/src/main/res/layout/navigation_layout.xml" value="0.14361702127659576" />
         <entry key="app/src/main/res/menu/draw_navigation_menu.xml" value="0.2907692307692308" />

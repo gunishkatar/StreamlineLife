@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 Toast.makeText(this, "Completed Reminder Page", Toast.LENGTH_SHORT).show()
             }
             item.itemId.equals(R.id.deadline) -> {
-//                supportFragmentManager.beginTransaction().replace(R.id.fragment_container_view, CreatePage()).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container_view, DeadlinePage()).commit()
                 Toast.makeText(this, "Deadline Reminder Page", Toast.LENGTH_SHORT).show()
             }
             item.itemId.equals(R.id.calenderview) -> {
