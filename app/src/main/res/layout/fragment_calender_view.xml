@@ -7,7 +7,7 @@
     tools:context=".CalenderPage">
 
     <CalendarView
-        android:id="@+id/calender"
+        android:id="@+id/calenderInCalenderView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="23dp"
@@ -27,6 +27,7 @@
         tools:ignore="MissingConstraints" />
 
     <ListView
+        android:id="@+id/showallreminderInCalenderView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="405dp"

@@ -58,7 +58,7 @@ class AllReminderPage : Fragment() {
 
         //for the sort function
         //taken from the https://www.geeksforgeeks.org/spinner-in-kotlin/
-        val sortbyspinner: Spinner = view.findViewById(R.id.sortbyspinnerid)
+        val sortbyspinner: Spinner = view.findViewById(R.id.sortbyspinneridInAllReminderPage)
         ArrayAdapter.createFromResource(requireContext(),R.array.sortbyspinner,android.R.layout.simple_spinner_item)
             .also {
             adapter -> adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)

@@ -24,7 +24,6 @@ import java.util.ArrayList
 * */
 
 
-
 class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object DatabaseCompanion {

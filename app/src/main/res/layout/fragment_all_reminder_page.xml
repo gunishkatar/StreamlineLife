@@ -35,7 +35,7 @@
         android:layout_marginStart="230dp" />
 
     <Spinner
-        android:id="@+id/sortbyspinnerid"
+        android:id="@+id/sortbyspinneridInAllReminderPage"
         android:layout_width="190dp"
         android:layout_height="30dp"
         android:layout_marginTop="215dp"
@@ -43,6 +43,7 @@
         android:background="@color/teal_200"/>
 
     <ListView
+        android:id="@+id/showallreminderInAllReminderPage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="265dp"
