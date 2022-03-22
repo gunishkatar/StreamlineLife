@@ -44,13 +44,25 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="completedPage">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-316" />
+                            <option name="y" value="-1729" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="homePage">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-492" />
-                            <option name="y" value="-1846" />
+                            <option name="x" value="-556" />
+                            <option name="y" value="-1815" />
                           </Point>
                         </option>
                       </LayoutPositions>
