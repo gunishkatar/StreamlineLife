@@ -25,6 +25,7 @@
     <string name="high">High</string>
     <string name="low">Low</string>
     <string name="medium">Medium</string>
+    <string name="remind_me">Reminde me every</string>
     <string-array name="reminder_importance">
         <item>High</item>
         <item>Low</item>

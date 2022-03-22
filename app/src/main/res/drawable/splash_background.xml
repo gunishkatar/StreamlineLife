@@ -3,7 +3,8 @@
     <item
         android:drawable="@drawable/bg_gradient"/>
 <!--    <item>-->
-<!--        <bitmap android:gravity="center"-->
-<!--            android:src="@drawable/ic_spalsh_fg_background"/>-->
+<!--        <bitmap-->
+<!--            android:mipMap="@mipmap/ic_spalsh_fg"-->
+<!--            android:gravity="center"/>-->
 <!--    </item>-->
 </layer-list>

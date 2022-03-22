@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.*
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.DatePicker
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.fragment.findNavController
@@ -44,7 +46,7 @@ class CreateReminderFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val reminderImportance = resources.getStringArray(R.array.reminder_importance)
         val arrayAdapter = ArrayAdapter(view.context, R.layout.dropdown_item, reminderImportance)
-        val autocompleteTV = view.findViewById<AutoCompleteTextView>(R.id.autoCompleteTextView)
+        val autocompleteTV = view.findViewById<AutoCompleteTextView>(R.id.reminderPriority)
         autocompleteTV.setAdapter(arrayAdapter)
 
         val reminderOccurrence = resources.getStringArray(R.array.reminder_occurrence)
@@ -52,6 +54,14 @@ class CreateReminderFragment : Fragment() {
         val autocompleteRO = view.findViewById<AutoCompleteTextView>(R.id.autoCompleteTextViewRO)
         autocompleteRO.setAdapter(arrayAdapterForOccurrence)
         val toolBar = view.findViewById<Toolbar>(R.id.topAppBarCreateReminderFragment)
+
+        val reminderTitleInputField = view.findViewById<TextView>(R.id.reminderTitleInputField)
+        val reminderDescriptionInputField = view.findViewById<TextView>(R.id.reminderDescriptionInputField)
+        val reminderDateInputField = view.findViewById<DatePicker>(R.id.reminderDateInputField)
+        val locationInputField = view.findViewById<TextView>(R.id.locationInputField)
+        val reminderPriority = view.findViewById<AutoCompleteTextView>(R.id.reminderPriority)
+        val reminderOccurrenceInput = view.findViewById<AutoCompleteTextView>(R.id.autoCompleteTextViewRO)
+
         toolBar.setNavigationOnClickListener {
             findNavController().navigate(R.id.action_createReminderFragment_to_homePage)
         }
