@@ -30,10 +30,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //add fragment as a home page
-        supportFragmentManager.commit {
-            setReorderingAllowed(true)
-            add<HomePage>(R.id.fragment_container_view)
-        }
+//        supportFragmentManager.commit {
+//            setReorderingAllowed(true)
+//            add<HomePage>(R.id.fragment_container_view)
+//        }
 
         val toolbar: Toolbar = findViewById(R.id.titleInAppBar)
         drawerlayout = findViewById(R.id.drawerView)

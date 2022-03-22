@@ -2,25 +2,30 @@
 <navigation
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
     app:startDestination="@id/homePage">
 
     <fragment
         android:id="@+id/homePage"
         android:name="com.example.streamlinelife.HomePage"
-        android:label="fragment_home_page"
-        tools:layout="@layout/fragment_home_page" >
+        android:label="fragment_home_page">
         <action
-            android:id="@+id/action_homePage_to_allReminderPage"
-            app:destination="@id/allReminderPage" />
+            android:id="@+id/action_homePage_to_createReminderFragment"
+            app:destination="@id/createReminderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createReminderFragment"
+        android:name="com.example.streamlinelife.CreateReminderFragment"
+        android:label="fragment_create_reminder">
+        <action
+            android:id="@+id/action_createReminderFragment_to_homePage"
+            app:destination="@id/homePage" />
     </fragment>
     <fragment
         android:id="@+id/calenderPage"
         android:name="com.example.streamlinelife.CalenderPage"
-        android:label="fragment_create_page"
-        tools:layout="@layout/fragment_calender_view" />
-    <fragment
+        android:label="fragment_create_page"  tools:layout="@layout/fragment_calender_view"/>
+        <fragment
         android:id="@+id/allReminderPage"
         android:name="com.example.streamlinelife.AllReminderPage"
         android:label="fragment_all_reminder_page"
