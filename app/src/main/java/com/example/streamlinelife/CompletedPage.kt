@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.ListView
+import android.widget.AutoCompleteTextView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,12 +41,14 @@ class CompletedPage : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-
-
+        //  “Exposed drop-down menu in Android,” GeeksforGeeks, 23-Jun-2021.
+        //  [Online]. Available: https://www.geeksforgeeks.org/exposed-drop-down-menu-in-android/.
+        //  [Accessed: 23-Mar-2022].
+        val sortby = resources.getStringArray(R.array.sortby)
+        val arrayAdapter = ArrayAdapter(requireContext(),R.layout.dropdown_item,sortby)
+        val autocompleteSortBy = view.findViewById<AutoCompleteTextView>(R.id.sortbytextviewInCompletedPage)
+        autocompleteSortBy.setAdapter(arrayAdapter)
     }
-
 
     companion object {
         /**

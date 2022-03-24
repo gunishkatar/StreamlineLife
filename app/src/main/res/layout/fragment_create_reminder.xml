@@ -116,7 +116,11 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-
+            <!--
+                “Exposed drop-down menu in Android,” GeeksforGeeks, 23-Jun-2021.
+                 [Online]. Available: https://www.geeksforgeeks.org/exposed-drop-down-menu-in-android/.
+                [Accessed: 23-Mar-2022].
+            -->
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"

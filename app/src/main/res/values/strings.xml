@@ -25,6 +25,7 @@
     <string name="low">Low</string>
     <string name="medium">Medium</string>
     <string name="remind_me">Reminde me every</string>
+
     <string-array name="reminder_importance">
         <item>High</item>
         <item>Low</item>
@@ -38,6 +39,7 @@
         <item>1 Hr</item>
         <item>2 Hr</item>
     </string-array>
+
     <string name="Reminders">Reminders</string>
     <string name="reminder_image">Reminder Image</string>
     <string name="Ascending">Ascending</string>
@@ -53,8 +55,7 @@
     <string name="DueDate">Due Date</string>
     <string name="CreatedDate">Created Date</string>
 
-    <string name="Selected_item_In_sort"> Selected Item: </string>
-    <string-array name="sortbyspinner">
+    <string-array name="sortby">
         <item> title Ascending </item>
         <item> title Descending </item>
         <item> priorities Low</item>
