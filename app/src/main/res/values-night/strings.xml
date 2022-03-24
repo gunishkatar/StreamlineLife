@@ -1,4 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">StreamlineLife</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="create_new_reminder">+ Create New Reminder +</string>
+    <string name="deadline">DeadLine</string>
+    <string name="all">All</string>
+    <string name="completed">Completed</string>
+    <string name="groups">Groups</string>
+    <string name="home">Home</string>
+    <string name="create">Create</string>
+    <string name="all_reminder">All Reminder</string>
+    <string name="completes">Completes</string>
+    <string name="deadlines">Deadlines</string>
+    <string name="calender_view">Calender View</string>
+    <string name="setting">Setting</string>
+    <string name="navigation_open">Navigation open</string>
+    <string name="navigation_close">Navigation close</string>
+    <string name="reminder_title_field_hint">Add Title</string>
+    <string name="create_reminder_fragment_title">Create Reminder</string>
     <string name="reminder_description_field_hint">Add Description</string>
+    <string name="reminder_date_time_field_hint">Add date and time</string>
+    <string name="reminder_location_field_hint">Add Location</string>
+    <string name="add_priority">Add Priority</string>
+    <string name="low">Low</string>
+    <string name="medium">Medium</string>
+    <string name="remind_me">Reminde me every</string>
+    <string-array name="reminder_importance">
+        <item>High</item>
+        <item>Low</item>
+        <item>Medium</item>
+    </string-array>
+    <string-array name="reminder_occurrence">
+        <item>5 Min</item>
+        <item>10 Min</item>
+        <item>15 Min</item>
+        <item>30 Min</item>
+        <item>1 Hr</item>
+        <item>2 Hr</item>
+    </string-array>
+    <string name="Reminders">Reminders</string>
+    <string name="reminder_image">Reminder Image</string>
+    <string name="Ascending">Ascending</string>
+    <string name="Descending">Descending</string>
+    <string name="Low">Low</string>
+    <string name="high">High</string>
+    <string name="Earliest">Earliest</string>
+    <string name="Lastest">Lastest</string>
+    <string name="Oldest">Oldest</string>
+    <string name="Newest">Newest</string>
+    <string name="title">Title</string>
+    <string name="Priorities">Priorities</string>
+    <string name="DueDate">Due Date</string>
+    <string name="CreatedDate">Created Date</string>
+
+    <string name="Selected_item_In_sort"> Selected Item: </string>
+    <string-array name="sortbyspinner">
+        <item> title Ascending </item>
+        <item> title Descending </item>
+        <item> priorities Low</item>
+        <item> priorities high</item>
+        <item> Due Date Earliest</item>
+        <item> Due Date Lastest</item>
+        <item> Created Date Oldest</item>
+        <item> Created Date Newest</item>
+    </string-array>
+
+    <string name="sort_by">sort by</string>
+    <string name="add_reminder">add reminder</string>
+    <string name="delete">delete</string>
+
 </resources>

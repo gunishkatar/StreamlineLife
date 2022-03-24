@@ -16,37 +16,42 @@
     </ImageView>
 
     <TextView
-        android:id="@+id/TextOnImageInAllReminderPage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="175dp"
-        android:layout_marginStart="5dp"
-        android:text="@string/all_reminder"
-        android:textSize="20sp"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
         android:id="@+id/CurrentDateInAllReminderPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/all_reminder"
         android:textSize="20sp"
-        android:layout_marginTop="175dp"
-        android:layout_marginStart="230dp" />
+        android:textAlignment="center"
+        android:layout_marginTop="175dp"/>
 
-    <Spinner
-        android:id="@+id/sortbyspinneridInAllReminderPage"
-        android:layout_width="190dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="215dp"
-        android:layout_marginStart="215dp"
-        android:background="@color/teal_200"/>
+    <!--
+        “Exposed drop-down menu in Android,” GeeksforGeeks, 23-Jun-2021.
+        [Online]. Available: https://www.geeksforgeeks.org/exposed-drop-down-menu-in-android/.
+        [Accessed: 23-Mar-2022].
+    -->
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:id="@+id/sortbydropdownInAllReminderPage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="205dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginEnd="20dp"
+        >
+        <AutoCompleteTextView
+            android:id="@+id/sortbytextview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:text="Sort By"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <ListView
         android:id="@+id/showallreminderInAllReminderPage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="265dp"
+        android:layout_marginTop="272dp"
         android:layout_marginBottom="7dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"/>

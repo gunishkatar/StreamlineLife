@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import java.util.ArrayList
 
-
 //References
 
 /*
@@ -22,7 +21,6 @@ import java.util.ArrayList
 *
 *
 * */
-
 
 class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
