@@ -40,8 +40,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         navigation_menu = findViewById(R.id.navigationbar)
         navigation_menu.setNavigationItemSelectedListener(this)
-
     }
+
 
     /**
      * Called when an item in the navigation menu is selected.
