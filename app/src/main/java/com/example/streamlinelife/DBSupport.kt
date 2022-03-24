@@ -40,6 +40,8 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
         private const val IMPORTANCE_COL = "importance"
         private const val REPEAT_COL = "repeat"
         private const val GROUP_COL = "list_number"
+        private const val REMIND_COL = "remind"
+        private const val DEADLINE_COL = "deadline"
         private const val COMPLETED_COL = "completed"
         private const val createRemindersTable = "CREATE TABLE $REMINDER_TABLE (" +
                 "$ID_COL INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -48,8 +50,10 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
                 "$DATETIME_COL TEXT," +
                 "$LOCATION_COL TEXT," +
                 "$IMPORTANCE_COL INTEGER," +
-                "$REPEAT_COL INTEGER," +
+                "$REPEAT_COL TEXT," +
                 "$GROUP_COL TEXT," +
+                "$REMIND_COL TEXT," +
+                "$DEADLINE_COL INTEGER," +
                 "$COMPLETED_COL INTEGER)"
 
         // Group table constant
@@ -76,7 +80,7 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
 //        super.onDestroy()
 //    }
 
-    fun addReminder(title: String, desc: String, datetime: String, loc: String, imp: Int, repeat: Int, group: String, completed: Int): Boolean{
+    fun addReminder(title: String, desc: String, datetime: String, loc: String, imp: Int, repeat: String, group: String, remind: String, deadline: Int, completed: Int): Boolean{
         val data = ContentValues()
 
         data.put(TITLE_COL, title)
@@ -86,6 +90,8 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
         data.put(IMPORTANCE_COL, imp)
         data.put(REPEAT_COL, repeat)
         data.put(GROUP_COL, group)
+        data.put(REMIND_COL, remind)
+        data.put(DEADLINE_COL, deadline)
         data.put(COMPLETED_COL, completed)
 
         val db = this.writableDatabase
@@ -139,6 +145,8 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
                 val importance = cursor.getString(cursor.getColumnIndexOrThrow(IMPORTANCE_COL))
                 val repeat = cursor.getString(cursor.getColumnIndexOrThrow(REPEAT_COL))
                 val group = cursor.getString(cursor.getColumnIndexOrThrow(GROUP_COL))
+                val remind = cursor.getString(cursor.getColumnIndexOrThrow(REMIND_COL))
+                val deadline = cursor.getString(cursor.getColumnIndexOrThrow(DEADLINE_COL))
                 val completed = cursor.getString(cursor.getColumnIndexOrThrow(COMPLETED_COL))
                 row.add(title)
                 row.add(desc)
@@ -147,6 +155,8 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
                 row.add(importance)
                 row.add(repeat)
                 row.add(group)
+                row.add(remind)
+                row.add(deadline)
                 row.add(completed)
                 allReminders[id] = row
             }
@@ -202,6 +212,8 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
                 val importance = cursor.getString(cursor.getColumnIndexOrThrow(IMPORTANCE_COL))
                 val repeat = cursor.getString(cursor.getColumnIndexOrThrow(REPEAT_COL))
                 val group = cursor.getString(cursor.getColumnIndexOrThrow(GROUP_COL))
+                val remind = cursor.getString(cursor.getColumnIndexOrThrow(REMIND_COL))
+                val deadline = cursor.getString(cursor.getColumnIndexOrThrow(DEADLINE_COL))
                 val completed = cursor.getString(cursor.getColumnIndexOrThrow(COMPLETED_COL))
                 row.add(title)
                 row.add(desc)
@@ -210,6 +222,8 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
                 row.add(importance)
                 row.add(repeat)
                 row.add(group)
+                row.add(remind)
+                row.add(deadline)
                 row.add(completed)
                 completedReminders[id] = row
             }
@@ -285,6 +299,8 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
                 val importance = cursor.getString(cursor.getColumnIndexOrThrow(IMPORTANCE_COL))
                 val repeat = cursor.getString(cursor.getColumnIndexOrThrow(REPEAT_COL))
                 val group = cursor.getString(cursor.getColumnIndexOrThrow(GROUP_COL))
+                val remind = cursor.getString(cursor.getColumnIndexOrThrow(REMIND_COL))
+                val deadline = cursor.getString(cursor.getColumnIndexOrThrow(DEADLINE_COL))
                 val completed = cursor.getString(cursor.getColumnIndexOrThrow(COMPLETED_COL))
                 row.add(title)
                 row.add(desc)
@@ -293,6 +309,8 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
                 row.add(importance)
                 row.add(repeat)
                 row.add(group)
+                row.add(remind)
+                row.add(deadline)
                 row.add(completed)
                 allReminders[id] = row
             }
@@ -352,6 +370,8 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
                 val importance = cursor.getString(cursor.getColumnIndexOrThrow(IMPORTANCE_COL))
                 val repeat = cursor.getString(cursor.getColumnIndexOrThrow(REPEAT_COL))
                 val group = cursor.getString(cursor.getColumnIndexOrThrow(GROUP_COL))
+                val remind = cursor.getString(cursor.getColumnIndexOrThrow(REMIND_COL))
+                val deadline = cursor.getString(cursor.getColumnIndexOrThrow(DEADLINE_COL))
                 val completed = cursor.getString(cursor.getColumnIndexOrThrow(COMPLETED_COL))
                 row.add(title)
                 row.add(desc)
@@ -360,6 +380,8 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
                 row.add(importance)
                 row.add(repeat)
                 row.add(group)
+                row.add(remind)
+                row.add(deadline)
                 row.add(completed)
                 allReminders[id] = row
             }
@@ -422,9 +444,6 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
 
         return true
     }
-
-
-    
 
     fun updateReminderTitle(oldTitle: String, newTitle: String): Boolean{
 
@@ -526,7 +545,7 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
         return true
     }
 
-    fun updateReminderRepeat(title: String, desc: String, oldRep: Int, newRep: Int): Boolean{
+    fun updateReminderRepeat(title: String, desc: String, oldRep: String, newRep: String): Boolean{
 
         val db = this.writableDatabase
 
@@ -535,7 +554,7 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
         }
 
         val selection = "${TITLE_COL} = ? AND ${DESCRIPTION_COL} = ? AND ${REPEAT_COL} = ?"
-        val selectionValue = arrayOf(title,desc,oldRep.toString())
+        val selectionValue = arrayOf(title,desc,oldRep)
 
         val count = db.update(REMINDER_TABLE, valueToUpdate,selection,selectionValue)
 
@@ -566,6 +585,46 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
         return true
     }
 
+    fun updateReminderRemind(title: String, desc: String, oldRemind: String, newRemind: String): Boolean{
+
+        val db = this.writableDatabase
+
+        val valueToUpdate = ContentValues().apply {
+            put(REMIND_COL, newRemind)
+        }
+
+        val selection = "${TITLE_COL} = ? AND ${DESCRIPTION_COL} = ? AND ${REMIND_COL} = ?"
+        val selectionValue = arrayOf(title,desc,oldRemind)
+
+        val count = db.update(REMINDER_TABLE, valueToUpdate,selection,selectionValue)
+
+        if(count == 0){
+            return false
+        }
+
+        return true
+    }
+
+    fun updateReminderDeadline(title: String, desc: String, oldDeadline: Int, newDeadline: Int): Boolean{
+
+        val db = this.writableDatabase
+
+        val valueToUpdate = ContentValues().apply {
+            put(DEADLINE_COL, newDeadline)
+        }
+
+        val selection = "${TITLE_COL} = ? AND ${DESCRIPTION_COL} = ? AND ${DEADLINE_COL} = ?"
+        val selectionValue = arrayOf(title,desc,oldDeadline.toString())
+
+        val count = db.update(REMINDER_TABLE, valueToUpdate,selection,selectionValue)
+
+        if(count == 0){
+            return false
+        }
+
+        return true
+    }
+
     fun updateReminderCompleted(title: String, desc: String, oldCompleted: Int, newCompleted: Int): Boolean{
 
         val db = this.writableDatabase
@@ -586,12 +645,12 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
         return true
     }
 
-    fun deleteReminder(title: String, desc: String, datetime: String, loc: String, imp: Int, repeat: Int, group: String, completed: Int): Boolean{
+    fun deleteReminder(title: String, desc: String, datetime: String, loc: String, imp: Int, repeat: String, group: String, completed: Int): Boolean{
 
         val db = this.writableDatabase
 
         val selection = "${TITLE_COL} = ? AND ${DESCRIPTION_COL} = ? AND ${DATETIME_COL} = ? AND ${LOCATION_COL} = ? AND ${IMPORTANCE_COL} = ? AND ${REPEAT_COL} = ? AND ${GROUP_COL} = ? AND ${COMPLETED_COL} = ?"
-        val selectionArgs = arrayOf(title, desc, datetime, loc, imp.toString(), repeat.toString(), group, completed.toString())
+        val selectionArgs = arrayOf(title, desc, datetime, loc, imp.toString(), repeat, group, completed.toString())
 
         val deletedRow = db.delete(REMINDER_TABLE, selection, selectionArgs)
 
