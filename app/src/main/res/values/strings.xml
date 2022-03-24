@@ -68,5 +68,8 @@
     <string name="sort_by">sort by</string>
     <string name="add_reminder">add reminder</string>
     <string name="delete">delete</string>
+    <string name="save_reminder">save</string>
+    <string name="cancel">cancel</string>
+    <string name="group_name_field_hint">Add name</string>
 
 </resources>

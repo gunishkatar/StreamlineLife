@@ -16,8 +16,10 @@
         <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/layout/activity_main.xml" value="0.13134057971014493" />
         <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/layout/activity_splash_screen.xml" value="0.1796875" />
         <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/layout/dropdown_item.xml" value="0.1640625" />
-        <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/layout/fragment_create_reminder.xml" value="0.1640625" />
-        <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/layout/fragment_home_page.xml" value="0.13134057971014493" />
+        <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/layout/fragment_all_reminder_page.xml" value="0.1453125" />
+        <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/layout/fragment_create_group.xml" value="0.1" />
+        <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/layout/fragment_create_reminder.xml" value="0.1" />
+        <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/layout/fragment_home_page.xml" value="0.1" />
         <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/menu/draw_navigation_menu.xml" value="0.1640625" />
         <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/menu/reminder_importance_menu.xml" value="0.1640625" />
         <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/mipmap-anydpi-v26/splash_fg.xml" value="0.188" />

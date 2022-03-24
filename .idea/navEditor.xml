@@ -32,6 +32,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="createGroupFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-804" />
+                            <option name="y" value="-1833" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="createReminderFragment">
                     <value>
                       <LayoutPositions>
@@ -58,8 +70,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-556" />
-                            <option name="y" value="-1815" />
+                            <option name="x" value="-536" />
+                            <option name="y" value="-1826" />
                           </Point>
                         </option>
                         <option name="myPositions">

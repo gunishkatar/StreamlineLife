@@ -13,6 +13,9 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.widget.Toolbar
+import com.maltaisn.icondialog.pack.IconPack
+import com.maltaisn.icondialog.pack.IconPackLoader
+import com.maltaisn.iconpack.defaultpack.createDefaultIconPack
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     /**
@@ -25,7 +28,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var drawerlayout: DrawerLayout
     private lateinit var actionbar: ActionBarDrawerToggle
     private lateinit var navigation_menu: NavigationView
-
+    var iconPack: IconPack? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -38,6 +41,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         navigation_menu = findViewById(R.id.navigationbar)
         navigation_menu.setNavigationItemSelectedListener(this)
+        loadIconPack()
+    }
+    private fun loadIconPack() {
+        // Create an icon pack loader with application context.
+        val loader = IconPackLoader(this)
+
+        // Create an icon pack and load all drawables.
+        val iconPack = createDefaultIconPack(loader)
+        iconPack.loadDrawables(loader.drawableLoader)
+
+        this.iconPack = iconPack
     }
 
     /**

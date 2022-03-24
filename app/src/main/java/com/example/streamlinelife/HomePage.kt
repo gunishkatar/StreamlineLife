@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,7 +42,10 @@ class HomePage : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        //addGroupInHomePage
+        view.findViewById<FloatingActionButton>(R.id.addGroupInHomePage).setOnClickListener {
+            findNavController().navigate(R.id.action_homePage_to_createGroupFragment)
+        }
         view.findViewById<Button>(R.id.createReminderInHomePage).setOnClickListener {
             findNavController().navigate(R.id.action_homePage_to_createReminderFragment)
         }
