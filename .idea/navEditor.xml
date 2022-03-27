@@ -13,9 +13,18 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-1128" />
-                            <option name="y" value="-1308" />
+                            <option name="x" value="-556" />
+                            <option name="y" value="-307" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_allReminderPage_to_createReminderFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -25,8 +34,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-1182" />
-                            <option name="y" value="-2267" />
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -46,8 +55,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-1622" />
-                            <option name="y" value="-2198" />
+                            <option name="x" value="-2144" />
+                            <option name="y" value="-3054" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -67,6 +76,32 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
+                            <entry key="action_completedPage_to_homePage">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="createGroupFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="632" />
+                            <option name="y" value="-984" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_createGroupFragment_to_homePage">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                           </map>
                         </option>
                       </LayoutPositions>
@@ -77,8 +112,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-1179" />
-                            <option name="y" value="-1848" />
+                            <option name="x" value="1009" />
+                            <option name="y" value="-1933" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -103,8 +138,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-1637" />
-                            <option name="y" value="-1345" />
+                            <option name="x" value="-2632" />
+                            <option name="y" value="-92" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -124,7 +159,24 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
+                            <entry key="action_deadlinePage_to_homePage">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="editPage">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-1018" />
+                            <option name="y" value="72" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -134,8 +186,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-1803" />
-                            <option name="y" value="-1779" />
+                            <option name="x" value="-3730" />
+                            <option name="y" value="-1995" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -146,6 +198,11 @@
                               </value>
                             </entry>
                             <entry key="action_homePage_to_completedPage">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_homePage_to_createGroupFragment">
                               <value>
                                 <LayoutPositions />
                               </value>

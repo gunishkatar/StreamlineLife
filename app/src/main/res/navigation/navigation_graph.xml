@@ -33,13 +33,11 @@
         <action
             android:id="@+id/action_createReminderFragment_to_homePage"
             app:destination="@id/homePage" />
+        <action
+            android:id="@+id/action_createReminderFragment_to_allReminderPage"
+            app:destination="@id/allReminderPage" />
     </fragment>
 
-    <fragment
-        android:id="@+id/calenderPage"
-        android:name="com.example.streamlinelife.CalenderPage"
-        android:label="fragment_create_page"
-        tools:layout="@layout/fragment_calender_view" />
     <fragment
         android:id="@+id/completedPage"
         android:name="com.example.streamlinelife.CompletedPage"
@@ -54,13 +52,20 @@
         <action
             android:id="@+id/action_completedPage_to_allReminderPage"
             app:destination="@id/allReminderPage" />
+        <action
+            android:id="@+id/action_completedPage_to_homePage"
+            app:destination="@id/homePage" />
     </fragment>
 
     <fragment
         android:id="@+id/allReminderPage"
         android:name="com.example.streamlinelife.AllReminderPage"
         android:label="fragment_all_reminder_page"
-        tools:layout="@layout/fragment_all_reminder_page" />
+        tools:layout="@layout/fragment_all_reminder_page" >
+        <action
+            android:id="@+id/action_allReminderPage_to_createReminderFragment"
+            app:destination="@id/createReminderFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/deadlinePage"
@@ -76,8 +81,11 @@
         <action
             android:id="@+id/action_deadlinePage_to_allReminderPage"
             app:destination="@id/allReminderPage" />
+        <action
+            android:id="@+id/action_deadlinePage_to_homePage"
+            app:destination="@id/homePage" />
     </fragment>
-        tools:layout="@layout/fragment_completed_page" />
+
     <fragment
         android:id="@+id/createGroupFragment"
         android:name="com.example.streamlinelife.CreateGroupFragment"
@@ -85,5 +93,24 @@
         <action
             android:id="@+id/action_createGroupFragment_to_homePage"
             app:destination="@id/homePage" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/calenderPage"
+        android:name="com.example.streamlinelife.CalenderPage"
+        android:label="CalenderPage"
+        tools:layout="@layout/fragment_calender_view" >
+        <action
+            android:id="@+id/action_calenderPage_to_createReminderFragment"
+            app:destination="@id/createReminderFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editPage"
+        android:name="com.example.streamlinelife.editReminder"
+        android:label="EditPage">
+        <action
+            android:id="@+id/action_editPage_to_allReminderPage"
+            app:destination="@id/allReminderPage" />
     </fragment>
 </navigation>

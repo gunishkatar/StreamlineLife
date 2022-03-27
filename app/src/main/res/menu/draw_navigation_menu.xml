@@ -11,7 +11,7 @@
     tools:showIn="navigation_view">
 
     <item
-        android:id="@+id/home"
+        android:id="@+id/homePage"
         android:icon="@drawable/navigation_home_page"
         android:title="@string/home"/>
     <item

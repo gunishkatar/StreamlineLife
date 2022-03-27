@@ -3,24 +3,155 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".SettingPage">
 
+    <!-- toggle button    -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:orientation="horizontal">
 
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="292dp"
+            android:gravity="left"
+            android:layoutDirection="ltr">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:layout_marginStart="10dp"
+                android:textSize="23sp"
+                android:padding="8dp"
+                android:text="@string/notification"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="45dp"
+                android:layout_marginStart="10dp"
+                android:text="@string/sound"
+                android:textSize="23sp"
+                android:padding="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="45dp"
+                android:layout_marginStart="10dp"
+                android:text="@string/dark_mode"
+                android:textSize="23sp"
+                android:padding="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="45dp"
+                android:layout_marginStart="10dp"
+                android:text="@string/hide_calender_view"
+                android:textSize="23sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="180dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginBottom="300dp"
+            android:layoutDirection="rtl">
+            <ToggleButton
+                android:id="@+id/notificationbuttonInSettingPage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:layout_marginStart="10dp" />
+
+            <ToggleButton
+                android:id="@+id/soundbuttonInSettingPage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="45dp"
+                android:layout_marginStart="10dp"/>
+
+            <ToggleButton
+                android:id="@+id/darkmodebuttonInSettingPage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="45dp"
+                android:layout_marginStart="10dp"/>
+
+            <ToggleButton
+                android:id="@+id/hidecalenderbuttonInSettingPage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="45dp"
+                android:layout_marginStart="10dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- feedback form    -->
+    <LinearLayout
+        android:id="@+id/formfeedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="365dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="10dp"
-            android:text="@string/notification"
-            android:textSize="23sp"/>
+            android:text="@string/feedback"
+            android:textSize="18sp"
+            android:padding="10dp"
+            android:textAlignment="center" />
 
-        <ToggleButton
-            android:layout_width="wrap_content"
+        <!--
+            “TextInputLayout &nbsp;: &nbsp; android developers,” Android Developers.
+            [Online]. Available: https://developer.android.com/reference/com/google/android/material/textfield/TextInputLayout.
+            [Accessed: 24-Mar-2022].
+
+            D. Lisovyi, “Textinputlayout styling,” Medium, 10-Mar-2020.
+            [Online]. Available: https://medium.com/omisoft/textinputlayout-styling-8b36a5e0d73c.
+            [Accessed: 24-Mar-2022].
+        -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/feedbackInTheSettingPage"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="140dp"
-            android:layout_marginTop="20dp" />
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/feedbackinputinthesettingpage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/feedback"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/submitFeedbackInthesettingpage"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/submit"/>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/homebuttonintheSettingPage"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="600dp"
+        android:layout_marginEnd="5dp"
+        android:text="@string/submit"/>
 </FrameLayout>

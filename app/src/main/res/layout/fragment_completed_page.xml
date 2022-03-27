@@ -5,22 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/completedPage"
     tools:context=".CompletedPage">
 
-    <SearchView
-        android:id="@+id/searchInCompletedPage"
-        android:layout_width="380dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="23dp"
-        android:layout_marginEnd="20dp"
-        android:iconifiedByDefault="false"
-        android:queryHint="Search for Reminder or Group"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
     <Button
-        android:id="@+id/completedReminderInCompletedPage"
+        android:id="@+id/deadlineReminderInCompletedPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -30,21 +19,21 @@
         android:text="@string/deadlines"
         app:layout_constraintEnd_toStartOf="@+id/allReminderInCompletedPage"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchInCompletedPage"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/allReminderInCompletedPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
         android:layout_marginStart="15dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="9dp"
         android:backgroundTint="@color/teal_200"
         android:text="@string/all"
         app:layout_constraintEnd_toStartOf="@+id/groupsReminderInCompletedPage"
-        app:layout_constraintStart_toEndOf="@id/completedReminderInCompletedPage"
-        app:layout_constraintTop_toBottomOf="@+id/searchInCompletedPage"
+        app:layout_constraintStart_toEndOf="@id/deadlineReminderInCompletedPage"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -58,7 +47,7 @@
         android:text="@string/groups"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/allReminderInCompletedPage"
-        app:layout_constraintTop_toBottomOf="@+id/searchInCompletedPage"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <!--
@@ -91,7 +80,7 @@
         android:id="@+id/showallreminderInCompletedPage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="150dp"
         android:layout_marginBottom="80dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
@@ -109,18 +98,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
         android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/showallreminderInCompletedPage"
-        tools:ignore="MissingConstraints" />
-    <Button
-        android:id="@+id/deleteReminderInCompletedPage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/teal_200"
-        android:text="@string/delete"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/showallreminderInCompletedPage"
         tools:ignore="MissingConstraints" />

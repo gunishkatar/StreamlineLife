@@ -2,118 +2,92 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/createReminderFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/createReminderFragment"
     tools:context=".CreateReminderFragment">
+    <!--
+        LukapLukap  30.5k6161 gold badges151151 silver badges240240 bronze badges and neworldneworld   7, “How to make the linearlayout in scrollview to fill the whole area,” Stack Overflow, 01-Dec-1960.
+        [Online]. Available: https://stackoverflow.com/questions/14837983/how-to-make-the-linearlayout-in-scrollview-to-fill-the-whole-area.
+        [Accessed: 24-Mar-2022].
+    -->
     <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_gravity="center_horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
+            <!--
+                “TextInputLayout &nbsp;: &nbsp; android developers,” Android Developers.
+                [Online]. Available: https://developer.android.com/reference/com/google/android/material/textfield/TextInputLayout.
+                [Accessed: 24-Mar-2022].
 
+                D. Lisovyi, “Textinputlayout styling,” Medium, 10-Mar-2020.
+                [Online]. Available: https://medium.com/omisoft/textinputlayout-styling-8b36a5e0d73c.
+                [AreminderPriorityInCreateReminderccessed: 24-Mar-2022].
+            -->
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/reminder_title"
+                android:id="@+id/reminder_titleInCreateReminder"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="80dp"
-                android:layout_marginEnd="16dp"
-                android:hint="@string/reminder_title_field_hint"
-                app:endIconMode="clear_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/appBarLayoutCreateReminder">
-
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp">
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/reminderTitleInputField"
+                    android:id="@+id/reminderTitleInputFieldInCreateReminder"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
+                    android:layout_height="wrap_content"
+                    android:hint="@string/reminder_title_field_hint"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/reminder_description"
+                android:id="@+id/reminder_descriptionInCreateReminder"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="63dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                android:hint="@string/reminder_description_field_hint"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/reminder_title"
-                app:layout_constraintVertical_bias="0.0">
-
+                android:layout_marginStart="16dp">
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/reminderDescriptionInputField"
+                    android:id="@+id/reminderDescriptionInputFieldInCreateReminder"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="start|top"
-                    android:inputType="textMultiLine" />
-
+                    android:hint="@string/reminder_description_field_hint"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/reminder_date"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="360dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                android:hint="@string/reminder_date_time_field_hint"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/reminder_description"
-                app:layout_constraintVertical_bias="0.019">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/reminderDateInputField"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/reminder_location"
+                android:id="@+id/reminder_dateInCreateReminder"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                android:hint="@string/reminder_location_field_hint"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/reminder_date"
-                app:layout_constraintVertical_bias="0.026">
-
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp">
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/locationInputField"
+                    android:id="@+id/reminderDateInputFieldInCreateReminder"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPostalAddress" />
+                    android:hint="@string/reminder_date_time_field_hint" />
+            </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/reminder_locationInCreateReminder"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="20dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/locationInputFieldInCreateReminder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/add_location" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!--
@@ -122,77 +96,114 @@
                 [Accessed: 23-Mar-2022].
             -->
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/reminder_importanceInCreateReminder"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:id="@+id/reminder_importance">
-
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp">
                 <AutoCompleteTextView
-                    android:id="@+id/reminderPriority"
+                    android:id="@+id/reminderPriorityInCreateReminder"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:inputType="none"
-                    android:text="@string/add_priority"
+                    android:hint="@string/add_priority" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <!--
+                Reference for dropdown menu
+                Exposed drop-down menu in Android,” GeeksforGeeks, 23-Jun-2021.
+                [Online]. Available: https://www.geeksforgeeks.org/exposed-drop-down-menu-in-android/
+                [Accessed: 24-Mar-2022].
+
+                ManikandanManikandan 1, “How to select multiple contact in autocompletetextview,” Stack Overflow, 01-Jun-1960.
+                [Online]. Available: https://stackoverflow.com/questions/11896844/how-to-select-multiple-contact-in-autocompletetextview.
+                [Accessed: 24-Mar-2022].
+            -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/reminder_repeat_DaysInCreateReminder"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp">
+                <MultiAutoCompleteTextView
+                    android:id="@+id/reminderRepeatDaysInCreateReminder"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:inputType="none"
+                    android:hint="@string/repeat_days" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/reminder_occurrenceInCreateReminder"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp">
+                <MultiAutoCompleteTextView
+                    android:id="@+id/autoCompleteTextViewInCreateReminder"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:inputType="none"
+                    android:hint="@string/remind_me"
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:id="@+id/reminder_Group_NameInCreateReminder"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:id="@+id/reminder_occurrence">
-
-                <AutoCompleteTextView
-                    android:id="@+id/autoCompleteTextViewRO"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:hint="@string/add_group_name">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/reminderGroupNameInCreateReminder"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:inputType="none"
-                    android:text="@string/remind_me"
-                    />
+                    android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
-                android:id="@+id/saveReminder"
+            <LinearLayout
+                android:id="@+id/addhomeButtonInCreateReminder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="10dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/teal_200"
-                android:text="@string/save_reminder"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/autoCompleteTextViewRO"
-                android:layout_toLeftOf="@+id/cancel_button"
-                tools:ignore="MissingConstraints" />
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp">
 
-            <Button
-                android:id="@+id/cancel_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="9dp"
-                android:backgroundTint="@color/teal_200"
-                android:text="@string/cancel"
-                android:layout_weight="1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/saveReminder"
-                app:layout_constraintTop_toBottomOf="@+id/autoCompleteTextViewRO"
-                android:layout_toRightOf="@+id/saveReminder"
-                tools:ignore="MissingConstraints" />
+                <Button
+                    android:id="@+id/cancel_buttonInCreateReminder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:backgroundTint="@color/teal_200"
+                    android:text="@string/home"
+                    android:layout_weight="1"
+                    tools:ignore="MissingConstraints" />
 
+                <Button
+                    android:id="@+id/saveReminderInCreateReminder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/teal_200"
+                    android:text="@string/create"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:ignore="MissingConstraints" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

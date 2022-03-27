@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">StreamlineLife</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -31,13 +31,24 @@
         <item>Low</item>
         <item>Medium</item>
     </string-array>
+
     <string-array name="reminder_occurrence">
-        <item>5 Min</item>
-        <item>10 Min</item>
-        <item>15 Min</item>
-        <item>30 Min</item>
-        <item>1 Hr</item>
-        <item>2 Hr</item>
+        <item>5 Mins</item>
+        <item>10 Mins</item>
+        <item>15 Mins</item>
+        <item>30 Mins</item>
+        <item>45 Mins</item>
+        <item>1 Hourr</item>
+    </string-array>
+
+    <string-array name="reminder_repeat">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thrusday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
     </string-array>
 
     <string name="Reminders">Reminders</string>
@@ -56,14 +67,13 @@
     <string name="CreatedDate">Created Date</string>
 
     <string-array name="sortby">
-        <item> title Ascending </item>
-        <item> title Descending </item>
-        <item> priorities Low</item>
-        <item> priorities high</item>
-        <item> Due Date Earliest</item>
-        <item> Due Date Lastest</item>
-        <item> Created Date Oldest</item>
-        <item> Created Date Newest</item>
+        <item>Title Ascending</item>
+        <item>Title Descending</item>
+        <item>Priorities Low</item>
+        <item>Priorities High</item>
+        <item>Due Date Earliest</item>
+        <item>Due Date Latest</item>
+        <item>Default</item>
     </string-array>
 
     <string name="sort_by">sort by</string>
@@ -72,5 +82,14 @@
     <string name="save_reminder">save</string>
     <string name="cancel">cancel</string>
     <string name="group_name_field_hint">Add name</string>
-
+    <string name="repeat_days">Repeat Days</string>
+    <string name="add_group_name">Add Group Name</string>
+    <string name="notification">Notification</string>
+    <string name="add_location">Add Location</string>
+    <string name="edit">Edit</string>
+    <string name="sound">Sound</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="hide_calender_view">Hide Calender View</string>
+    <string name="submit">Submit</string>
+    <string name="feedback">FeedBack\nMakes App More Nice</string>
 </resources>

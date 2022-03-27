@@ -3,14 +3,24 @@ package com.example.streamlinelife
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.os.Build
 import android.os.Bundle
 import android.text.InputType
-import android.view.*
-import android.widget.*
 import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
+import org.w3c.dom.Text
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.collections.ArrayList
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -19,23 +29,21 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [CreateReminderFragment.newInstance] factory method to
+ * Use the [editReminder.newInstance] factory method to
  * create an instance of this fragment.
  */
-class CreateReminderFragment : Fragment() {
+class editReminder : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
-    /**
-     * store date and time here
-     */
     lateinit var reminderDateInputField: TextView
     private var addTime = ""
+    private var deadlinenum = 0
+    private var completenum = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
@@ -46,13 +54,28 @@ class CreateReminderFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_create_reminder, container, false)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.title = "Create Reminders"
+        activity?.title = "Edit Reminders"
+
+        //buttons
+        val backbutton = view.findViewById<Button>(R.id.cancel_buttonInCreateReminder)
+        backbutton.text = "Back"
+        val updatebutton = view.findViewById<Button>(R.id.saveReminderInCreateReminder)
+        updatebutton.text = "Update"
+
+        /**
+         * getting key from the custom adapter
+         * bundle is taken from the given so that i can update the values with repect to the key
+         * “Pass data between destinations &nbsp;: &nbsp; android developers,” Android Developers. [Online]. Available: https://developer.android.com/guide/navigation/navigation-pass-data. [Accessed: 27-Mar-2022].
+         * */
+        val key = arguments?.getString("key")?.toInt()
 
         // reminder title
         val reminderTitleInputField = view.findViewById<TextView>(R.id.reminderTitleInputFieldInCreateReminder)
@@ -93,7 +116,39 @@ class CreateReminderFragment : Fragment() {
         multiAutocompleteOccurrence.setAdapter(arrayAdapterForOccurrence)
         multiAutocompleteOccurrence.setTokenizer(MultiAutoCompleteTextView.CommaTokenizer())
 
-        // Reference
+        // db for the edit page
+        val database = DBSupport(requireContext())
+        val getallReminderFromDatabase: Map<String,ArrayList<String>> = database.getAllReminders()
+        for ((pos,value) in getallReminderFromDatabase){
+            if (pos.toInt() == key){
+                when (value[4]) {
+                    "3" -> {
+                        value[4] = "High"
+                    }
+                    "2" -> {
+                        value[4] = "Medium"
+                    }
+                    "1" -> {
+                        value[4] = "Low"
+                    }
+                    else ->{
+                        value[4] = ""
+                    }
+                }
+                reminderTitleInputField.text = value[0]
+                reminderDescriptionInputField.text = value[1]
+                reminderDateInputField.text = value[2]
+                locationInputField.text = value[3]
+                // i just took "false" from the comments in the given link -->  https://github.com/material-components/material-components-android/issues/1007
+                autocompleteImportance.setText(value[4],false)
+                multiAutocompleteRepeatDays.setText(value[5])
+                groupName.text = value[6]
+                multiAutocompleteOccurrence.setText(value[7])
+                deadlinenum = value[8].toInt()
+                completenum = value[9].toInt()
+            }
+        }
+
         /**
          *
          * Reference for the Date and Time
@@ -115,7 +170,7 @@ class CreateReminderFragment : Fragment() {
             val datePickerDialog = DatePickerDialog(
                 requireContext(),
                 {
-                view, year, monthOfYear, dayOfMonth ->
+                        view, year, monthOfYear, dayOfMonth ->
                     val month = monthOfYear + 1 // month count given less one e.g. august then give month no 7
                     var dayStr = dayOfMonth.toString()
                     var monthStr = month.toString()
@@ -141,29 +196,28 @@ class CreateReminderFragment : Fragment() {
             timePickerDialog.show()
         }
 
-        // home button
-        view.findViewById<Button>(R.id.cancel_buttonInCreateReminder).setOnClickListener {
-            findNavController().navigate(R.id.action_createReminderFragment_to_homePage)
+        // button back and update
+        backbutton.setOnClickListener{
+            activity?.onBackPressed()
         }
-        // create button
-        view.findViewById<Button>(R.id.saveReminderInCreateReminder).setOnClickListener {
-            var savetitle = reminderTitleInputField.text.toString()
-            var savedescription = reminderDescriptionInputField.text.toString()
-            var saveDate_Time =  reminderDateInputField.text.toString()
-            var savelocation = locationInputField.text.toString()
-            var saveimportance = ""
+        updatebutton.setOnClickListener {
+            val updateValues = ArrayList<String>()
+            updateValues.add(0,reminderTitleInputField.text.toString())
+            updateValues.add(1,reminderDescriptionInputField.text.toString())
+            updateValues.add(2, reminderDateInputField.text.toString())
+            updateValues.add(3,locationInputField.text.toString())
             when (autocompleteImportance.text.toString()) {
                 "High" -> {
-                    saveimportance += "3"
+                    updateValues.add(4,"3")
                 }
                 "Medium" -> {
-                    saveimportance += "2"
+                    updateValues.add(4,"2")
                 }
                 "Low" -> {
-                    saveimportance += "1"
+                    updateValues.add(4,"1")
                 }
                 else ->{
-                    saveimportance += "0"
+                    updateValues.add(4,"0")
                 }
             }
             val inputsRepeatDays: List<String> =  multiAutocompleteRepeatDays.text.toString().split("\\s*,\\s*")
@@ -177,34 +231,94 @@ class CreateReminderFragment : Fragment() {
                 saveremindmeList += i
             }
 
+            updateValues.add(5, saverepeatDaysList)
+            updateValues.add(6, saveremindmeList)
+
             //change it later
             var savegroupName = groupName.text.toString()
+            updateValues.add(7, savegroupName)
 
-            if(savetitle.trim().length != 0){
-                val addreminder = DBSupport(requireContext())
-                if(savedescription.isEmpty()){
-                    savedescription = ""
+            if(reminderTitleInputField.text.toString().trim().length != 0){
+                if(updateValues[1].isEmpty()){
+                    updateValues[1] = ""
                 }
-                if(saveDate_Time.isEmpty()){
-                    saveDate_Time = ""
+                if(updateValues[2].isEmpty()){
+                    updateValues[2] = ""
                 }
-                if(savelocation.isEmpty()){
-                    savelocation = ""
-                }
-                if (saverepeatDaysList.isEmpty()){
-                    saverepeatDaysList = ""
-                }
-                if(savegroupName.isEmpty()){
-                    savegroupName = ""
-                }
-                if(saveremindmeList.isEmpty()){
-                    saveremindmeList = ""
-                }
-                addreminder.addReminder(savetitle,savedescription,saveDate_Time,savelocation,saveimportance.toInt(),saverepeatDaysList,savegroupName,saveremindmeList,0,0)
+                else{
+                    updateValues[2] = updateValues[2].replace(",","  ")
 
-                // taken from the lab
-                Snackbar.make(view,"Create Successfully Reminder", Snackbar.LENGTH_LONG).show()
-                findNavController().navigate(R.id.action_createReminderFragment_to_allReminderPage)
+                    // string date to Date
+                    val getdateFromString = updateValues[2].substring(0,updateValues[2].indexOf("  "))
+                    val date = LocalDate.parse(getdateFromString, DateTimeFormatter.ISO_DATE)
+
+                    //current date
+                    val currentDate = LocalDate.now().format(DateTimeFormatter.ISO_DATE)
+                    val currentDateFormated = LocalDate.parse(currentDate , DateTimeFormatter.ISO_DATE)
+
+                    // string time to time
+                    val gettimeFromString = updateValues[2].substring(updateValues[2].indexOf(",")+1,updateValues[2].length)
+                    val currentTime = LocalTime.now().format(DateTimeFormatter.ofPattern("hh:mm:ss"))
+
+                    if(deadlinenum == 1 && completenum == 0){
+                        if(date.isBefore(currentDateFormated)){
+                            deadlinenum = 1
+                        }
+                        else if (date.isEqual(currentDateFormated)){
+                            if (gettimeFromString.compareTo(currentTime) > 0){
+                                deadlinenum = 1
+                            }
+                        }
+                        else{
+                            deadlinenum = 0
+                        }
+                    }
+                    else if (deadlinenum == 0 && completenum == 1){
+                        if(date.isBefore(currentDateFormated)){
+                            completenum = 1
+                        }
+                        else if (date.isEqual(currentDateFormated)){
+                            if (gettimeFromString.compareTo(currentTime) > 0){
+                                completenum = 1
+                            }
+                        }
+                        else{
+                            completenum = 0
+                        }
+                    }
+                    else{
+                        completenum = 0
+                        deadlinenum = 0
+                    }
+                }
+                if(updateValues[3].isEmpty()){
+                    updateValues[3] = ""
+                }
+                if (updateValues[5].isEmpty()){
+                    updateValues[5] = ""
+                }
+                if(updateValues[6].isEmpty()){
+                    updateValues[6] = ""
+                }
+                if(updateValues[7].isEmpty()){
+                    updateValues[7] = ""
+                }
+
+                database.updateReminder(
+                    key!!,
+                    updateValues[0],
+                    updateValues[1],
+                    updateValues[2],
+                    updateValues[3],
+                    updateValues[4].toInt(),
+                    updateValues[5],
+                    updateValues[6],
+                    updateValues[7],
+                    deadlinenum,
+                    completenum
+                )
+                Snackbar.make(view,"Update Successfully Reminder $key", Snackbar.LENGTH_LONG).show()
+                findNavController().navigate(R.id.action_editPage_to_allReminderPage)
             }
             else{
                 // taken from the lab
@@ -259,12 +373,12 @@ class CreateReminderFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment CreateReminderFragment.
+         * @return A new instance of fragment editReminder.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            CreateReminderFragment().apply {
+            editReminder().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

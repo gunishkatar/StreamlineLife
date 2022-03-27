@@ -16,10 +16,8 @@
         <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/layout/activity_main.xml" value="0.13134057971014493" />
         <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/layout/activity_splash_screen.xml" value="0.1796875" />
         <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/layout/dropdown_item.xml" value="0.1640625" />
-        <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/layout/fragment_all_reminder_page.xml" value="0.1453125" />
-        <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/layout/fragment_create_group.xml" value="0.1" />
-        <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/layout/fragment_create_reminder.xml" value="0.1" />
-        <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/layout/fragment_home_page.xml" value="0.1" />
+        <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/layout/fragment_create_reminder.xml" value="0.1640625" />
+        <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/layout/fragment_home_page.xml" value="0.13134057971014493" />
         <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/menu/draw_navigation_menu.xml" value="0.1640625" />
         <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/menu/reminder_importance_menu.xml" value="0.1640625" />
         <entry key="..\:/Assignment_mobile_computing/StreamlineLife/app/src/main/res/mipmap-anydpi-v26/splash_fg.xml" value="0.188" />
@@ -32,27 +30,47 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.17708333333333334" />
         <entry key="app/src/main/res/drawable/addgroups.xml" value="0.17708333333333334" />
         <entry key="app/src/main/res/drawable/app_navigation_button.xml" value="0.30666666666666664" />
+        <entry key="app/src/main/res/drawable/bg_gradient.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.17708333333333334" />
+        <entry key="app/src/main/res/drawable/ic_baseline_chevron_left_24.xml" value="0.25462962962962965" />
         <entry key="app/src/main/res/drawable/ic_baseline_navigate_next_24.xml" value="0.30666666666666664" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.17708333333333334" />
+        <entry key="app/src/main/res/drawable/ic_spalsh_fg_background.xml" value="0.25462962962962965" />
+        <entry key="app/src/main/res/drawable/naviagtion_deadline_page.xml" value="0.25462962962962965" />
+        <entry key="app/src/main/res/drawable/navigation_all_page.xml" value="0.25462962962962965" />
+        <entry key="app/src/main/res/drawable/navigation_calendar_page.xml" value="0.25462962962962965" />
+        <entry key="app/src/main/res/drawable/navigation_complete_page.xml" value="0.25462962962962965" />
         <entry key="app/src/main/res/drawable/navigation_create_page.xml" value="0.30666666666666664" />
         <entry key="app/src/main/res/drawable/navigation_home_page.xml" value="0.30666666666666664" />
+        <entry key="app/src/main/res/drawable/navigation_setting_page.xml" value="0.25462962962962965" />
+        <entry key="app/src/main/res/drawable/splash_background.xml" value="0.17395833333333333" />
         <entry key="app/src/main/res/layout-v24/activity_main.xml" value="0.14361702127659576" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.27247451343836887" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.14361702127659576" />
         <entry key="app/src/main/res/layout/dropdown_item.xml" value="0.14361702127659576" />
         <entry key="app/src/main/res/layout/fragment_all_reminder_page.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_calender_view.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/fragment_completed_page.xml" value="0.14361702127659576" />
+        <entry key="app/src/main/res/layout/fragment_calender_view.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_completed_page.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_create_group.xml" value="0.14361702127659576" />
         <entry key="app/src/main/res/layout/fragment_create_page.xml" value="0.14361702127659576" />
-        <entry key="app/src/main/res/layout/fragment_create_reminder.xml" value="0.28174235403151066" />
+        <entry key="app/src/main/res/layout/fragment_create_reminder.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_deadline_page.xml" value="0.14361702127659576" />
+        <entry key="app/src/main/res/layout/fragment_edit_reminder.xml" value="0.10461956521739131" />
         <entry key="app/src/main/res/layout/fragment_home_page.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_setting_page.xml" value="0.14361702127659576" />
+        <entry key="app/src/main/res/layout/fragment_setting_page.xml" value="0.25" />
         <entry key="app/src/main/res/layout/navigation_layout.xml" value="0.14361702127659576" />
+        <entry key="app/src/main/res/layout/showreminderlistview.xml" value="0.375" />
         <entry key="app/src/main/res/layout/sortbydropdown.xml" value="0.10960144927536232" />
+        <entry key="app/src/main/res/layout/toolbar.xml" value="0.10960144927536232" />
         <entry key="app/src/main/res/menu/draw_navigation_menu.xml" value="0.2907692307692308" />
+        <entry key="app/src/main/res/menu/reminder_importance_menu.xml" value="0.134375" />
         <entry key="app/src/main/res/menu/sortbydropdown.xml" value="0.27037037037037037" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/app_logo.xml" value="0.25462962962962965" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/app_logo_round.xml" value="0.2328125" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/splash_fg.xml" value="0.190625" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/splash_fg_logo.xml" value="0.2328125" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/splash_fg_logo_round.xml" value="0.2328125" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/splash_fg_round.xml" value="0.190625" />
       </map>
     </option>
   </component>

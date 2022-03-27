@@ -1,12 +1,15 @@
 package com.example.streamlinelife
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.annotation.RequiresApi
+import androidx.navigation.fragment.findNavController
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -41,18 +44,29 @@ class AllReminderPage : Fragment() {
         return inflater.inflate(R.layout.fragment_all_reminder_page, container, false)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n", "SimpleDateFormat")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.title = "All Reminders"
+
+        //current date show
+        val simpleDateFormat = SimpleDateFormat("EEEE, MMMM dd, yyy").format(Date())
+        view.findViewById<TextView>(R.id.CurrentDateInAllReminderPage).text = simpleDateFormat
+
         //  “Exposed drop-down menu in Android,” GeeksforGeeks, 23-Jun-2021.
         //  [Online]. Available: https://www.geeksforgeeks.org/exposed-drop-down-menu-in-android/.
         //  [Accessed: 23-Mar-2022].
         val sortby = resources.getStringArray(R.array.sortby)
-        val arrayAdapter = ArrayAdapter(requireContext(),R.layout.dropdown_item,sortby)
+        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, sortby)
         val autocompleteSortBy = view.findViewById<AutoCompleteTextView>(R.id.sortbytextview)
         autocompleteSortBy.setAdapter(arrayAdapter)
 
+        showInListViewAndSort().getfromAutocompleteSortBy(requireView(), autocompleteSortBy, "AllReminderPage")
 
+        view.findViewById<Button>(R.id.addbuttonInAllReminderPage).setOnClickListener {
+            findNavController().navigate(R.id.action_allReminderPage_to_createReminderFragment)
+        }
     }
 
     companion object {

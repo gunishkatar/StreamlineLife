@@ -1,60 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".AllReminderPage">
 
     <ImageView
         android:id="@+id/imageInAllReminderPage"
-        android:layout_marginTop="23dp"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="65dp"
         android:contentDescription="@string/reminder_image"
-        android:src="#854BC2CD">
-    </ImageView>
+        android:src="#854BC2CD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/CurrentDateInAllReminderPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
         android:text="@string/all_reminder"
-        android:textSize="20sp"
         android:textAlignment="center"
-        android:layout_marginTop="175dp"/>
-
+        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
     <!--
         “Exposed drop-down menu in Android,” GeeksforGeeks, 23-Jun-2021.
         [Online]. Available: https://www.geeksforgeeks.org/exposed-drop-down-menu-in-android/.
         [Accessed: 23-Mar-2022].
     -->
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:id="@+id/sortbydropdownInAllReminderPage"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="205dp"
-        android:layout_marginStart="160dp"
-        android:layout_marginEnd="20dp"
-        >
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="10dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageInAllReminderPage"
+        tools:ignore="MissingConstraints">
+
         <AutoCompleteTextView
             android:id="@+id/sortbytextview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:inputType="none"
-            android:text="Sort By"
-            />
+            android:selectAllOnFocus="false"
+            android:text="@string/sort_by"
+            tools:ignore="LabelFor" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <ListView
         android:id="@+id/showallreminderInAllReminderPage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="272dp"
-        android:layout_marginBottom="7dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"/>
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toBottomOf="@+id/addbuttonInAllReminderPage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sortbydropdownInAllReminderPage" />
 
-
-</FrameLayout>
+    <Button
+        android:id="@+id/addbuttonInAllReminderPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:padding="10dp"
+        android:text="@string/add_reminder"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showallreminderInAllReminderPage"
+        tools:ignore="MissingConstraints" />
+</androidx.constraintlayout.widget.ConstraintLayout>
