@@ -200,10 +200,11 @@ class CreateReminderFragment : Fragment() {
                 if(saveremindmeList.isEmpty()){
                     saveremindmeList = ""
                 }
+
                 addreminder.addReminder(savetitle,savedescription,saveDate_Time,savelocation,saveimportance.toInt(),saverepeatDaysList,savegroupName,saveremindmeList,0,0)
 
                 // taken from the lab
-                Snackbar.make(view,"Create Successfully Reminder", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(view,"Create Reminder Successfully", Snackbar.LENGTH_LONG).show()
                 findNavController().navigate(R.id.action_createReminderFragment_to_allReminderPage)
             }
             else{

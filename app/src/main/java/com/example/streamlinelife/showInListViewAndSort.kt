@@ -186,9 +186,10 @@ class showInListViewAndSort {
         classname: String
     ): Map<String, java.util.ArrayList<String>> {
         for (i in entries) {
+            println(i.value[3])
+
             if (i.value[3].trim().isNotEmpty()){
                 i.value[3] = i.value[3].replace(",","  ")
-
                 // string date to Date
                 val getdateFromString = i.value[3].substring(0,i.value[3].indexOf("  "))
                 val date = LocalDate.parse(getdateFromString, DateTimeFormatter.ISO_DATE)

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/createReminderFragment"
     tools:context=".CreateReminderFragment">
     <!--
         LukapLukap  30.5k6161 gold badges151151 silver badges240240 bronze badges and neworldneworld   7, “How to make the linearlayout in scrollview to fill the whole area,” Stack Overflow, 01-Dec-1960.

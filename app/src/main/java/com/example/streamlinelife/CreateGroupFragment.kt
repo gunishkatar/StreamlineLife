@@ -1,19 +1,27 @@
 package com.example.streamlinelife
-import android.graphics.Color
-import android.graphics.drawable.Icon
+import android.annotation.SuppressLint
+import android.graphics.BitmapFactory
+import android.graphics.drawable.Drawable
+import android.os.Build
 import android.os.Bundle
-import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.textfield.TextInputEditText
+import androidx.navigation.fragment.findNavController
+import com.maltaisn.icondialog.IconDialog
+import com.maltaisn.icondialog.IconDialogSettings
+import com.maltaisn.icondialog.data.Icon
+import com.maltaisn.icondialog.pack.IconPack
+import com.maltaisn.icondialog.pack.IconPackLoader
+import com.maltaisn.iconpack.defaultpack.createDefaultIconPack
+import top.defaults.colorpicker.ColorPickerPopup
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,111 +33,118 @@ private const val ARG_PARAM2 = "param2"
  * Use the [CreateGroupFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class CreateGroupFragment : Fragment(){
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class CreateGroupFragment : Fragment(), IconDialog.Callback{
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    var iconPack: IconPack? = null
+    private lateinit var saveicon: Drawable
+    private lateinit var showIconuserselected: ImageView
 
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_create_group, container, false)
     }
+
+    /**
+     *
+     * “How to create a color picker tool in android using color wheel and slider?,” GeeksforGeeks, 22-Oct-2020.
+     * [Online]. Available: https://www.geeksforgeeks.org/how-to-create-a-color-picker-tool-in-android-using-color-wheel-and-slider/.
+     *  [Accessed: 27-Mar-2022].
+     *
+     *  Maltaisn, “Example application · MALTAISN/icondialoglib wiki,” GitHub. [Online]. Available: https://github.com/maltaisn/icondialoglib/wiki/Example-application. [Accessed: 27-Mar-2022].
+     *
+     *  Maltaisn, “Maltaisn/icondialoglib: Material icon picker dialog for Android,” GitHub. [Online]. Available: https://github.com/maltaisn/icondialoglib. [Accessed: 27-Mar-2022].
+     */
+    @SuppressLint("ResourceType", "UseCompatLoadingForDrawables")
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        var selectedGroupColor = 0;
-//        val ICON_DIALOG_TAG = "icon-dialog"
-//        val mPickColorButton = view.findViewById<Button>(R.id.pick_color_button);
-//        val mColorPreview = view.findViewById<View>(R.id.preview_selected_color);
-//        var mDefaultColor = 0;
-//        mPickColorButton.setOnClickListener { v ->
-//            ColorPickerPopup.Builder(view.context).initialColor(
-//                Color.RED
-//            )                .enableBrightness(
-//                    true
-//                )
-//                .enableAlpha(
-//                    true
-//                )
-//                .okTitle(
-//                    "Choose"
-//                )
-//                .cancelTitle(
-//                    "Cancel"
-//                )
-//                .showIndicator(
-//                    true
-//                )
-//                .showValue(
-//                    true
-//                )
-//                .build()
-//                .show(
-//                    v,
-//                    object : ColorPickerPopup.ColorPickerObserver() {
-//                        override fun onColorPicked(color: Int) {
-//                            mDefaultColor = color
-//                            selectedGroupColor = color
-//                            System.out.println(color)
-//                            mColorPreview.setBackgroundColor(mDefaultColor)
-//                        }
-//                    })
-//
-//            view.findViewById<Button>(R.id.cancel_button).setOnClickListener {
-//                findNavController().navigate(R.id.action_createGroupFragment_to_homePage)
-//            }
-//
-//            val db = DBSupport(view.context)
-//            val parentLayout: View = view.findViewById(R.id.createReminderFragment)
-//            val groupNameInputField = view.findViewById<TextView>(R.id.groupNameInputField)
-//            view.findViewById<Button>(R.id.saveGroup).setOnClickListener {
-//                if(groupNameInputField.toString()==null){
-//                    Snackbar.make(parentLayout, "Please add group name", Snackbar.LENGTH_LONG).show()
-//                }
-//                var createGroupSuccess = db.addGroup(groupNameInputField.toString(),0);
-//                if(createGroupSuccess){
-//                    Snackbar.make(parentLayout, "Group Created Successfully", Snackbar.LENGTH_LONG).show()
-//                    findNavController().navigate(R.id.action_createGroupFragment_to_homePage)
-//                }
-//            }
-//
-//            // code for icon input
-//            val groupIconInputField = view.findViewById<TextView>(R.id.groupIconInputField)
-//            groupIconInputField.setInputType(InputType.TYPE_NULL);
-//            groupIconInputField.setKeyListener(null);
-//            val fragmentManager = (activity as FragmentActivity).supportFragmentManager
-//            val iconDialog = fragmentManager.findFragmentByTag(ICON_DIALOG_TAG) as IconDialog?
-//                ?: IconDialog.newInstance(IconDialogSettings())
-//            view.findViewById<TextInputEditText>(R.id.groupIconInputField).setOnClickListener {
-//                iconDialog.show(fragmentManager, ICON_DIALOG_TAG)
-//            }
-//        }
+        //group title
+        val grptitle = view.findViewById<TextView>(R.id.grpNameInputInCreateGroup)
+
+        // for color
+        val pickcolor = view.findViewById<Button>(R.id.pickingcolor)
+        val viewofcolor = view.findViewById<View>(R.id.showcoloruserselected)
+
+        // buttons
+        val savebutton = view.findViewById<Button>(R.id.savegroupcolorIncreategroup)
+        val cancelbutton = view.findViewById<Button>(R.id.cancelButtonIncreategroup)
+
+        //set color
+        var defaultcolor = resources.getColor(R.color.GroupDefaultcolor)
+
+        pickcolor.setOnClickListener {
+            ColorPickerPopup.Builder(requireContext())
+                .initialColor(defaultcolor)
+                .enableBrightness(true)
+                .enableAlpha(true)
+                .okTitle("Choose Any Color")
+                .cancelTitle("Cancel").showIndicator(true)
+                .showValue(true)
+                .build()
+                .show(this.requireView(), object: ColorPickerPopup.ColorPickerObserver(){
+                    override fun onColorPicked(color: Int){
+                        defaultcolor = color
+                        viewofcolor.setBackgroundColor(defaultcolor)
+                    }
+                })
+        }
+
+        val loader = IconPackLoader(requireContext())
+        val iconPack = createDefaultIconPack(loader)
+        iconPack.loadDrawables(loader.drawableLoader)
+        this.iconPack = iconPack
+
+        val pickingicons = view.findViewById<Button>(R.id.pickingicons)
+
+        //getting the icon dialog
+        val iconDialog = activity?.supportFragmentManager?.findFragmentByTag("icon-dialog") as IconDialog?
+            ?: IconDialog.newInstance(IconDialogSettings())
+
+        pickingicons.setOnClickListener {
+            iconDialog.show(childFragmentManager,"icon-dialog")
+        }
+
+        // save button
+        savebutton.setOnClickListener {
+            if(grptitle.text.toString().trim().length != 0){
+                val addgrp = DBSupport(requireContext())
+                addgrp.addGroup(grptitle.text.toString(), 0, defaultcolor.toString(), saveicon.toString())
+                Snackbar.make(view,"Create Group Successfully", Snackbar.LENGTH_LONG).show()
+                findNavController().navigate(R.id.action_createGroupFragment_to_homePage)
+            }
+            else{
+                Snackbar.make(view,"Can't Store Group Without Title", Snackbar.LENGTH_LONG).show()
+            }
+        }
+        cancelbutton.setOnClickListener {
+            findNavController().navigate(R.id.action_createGroupFragment_to_homePage)
+        }
     }
-//    override val iconDialogIconPack: IconPack?
-//        get() {
-//            val mainActivity = MainActivity();
-//            return mainActivity.iconPack
-//        }
-//
-//    override fun onIconDialogIconsSelected(
-//        dialog: IconDialog,
-//        icons: List<com.maltaisn.icondialog.data.Icon>
-//    ) {
-////        view.findViewById<TextView>(R.id.groupIconInputField).text = icons.map { it.id }.toString()
-//        // Show a toast with the list of selected icon IDs.
-//        Toast.makeText(this.context, "Icons selected: ${icons.map { it.id }}", Toast.LENGTH_SHORT).show()
-//    }
+
+    /**
+     *
+     * Maltaisn, “Example application · MALTAISN/icondialoglib wiki,” GitHub. [Online]. Available: https://github.com/maltaisn/icondialoglib/wiki/Example-application. [Accessed: 27-Mar-2022].
+     *
+     * Maltaisn, “Maltaisn/icondialoglib: Material icon picker dialog for Android,” GitHub. [Online]. Available: https://github.com/maltaisn/icondialoglib. [Accessed: 27-Mar-2022].
+     *
+     * The icon pack to be displayed by the dialog.
+     * All icon drawables in the pack must have been loaded, or they won't be displayed.
+     *
+     * If `null` is returned, the icon dialog will periodically try to get the icon
+     * pack while showing a progress indicator, until it no longer returns `null`.
+     */
+    override val iconDialogIconPack: IconPack?
+        get() = iconPack
+
+    /**
+     * Called when icons are selected and user confirms the selection.
+     */
+    override fun onIconDialogIconsSelected(dialog: IconDialog, icons: List<Icon>) {
+        showIconuserselected = view!!.findViewById(R.id.showIconuserselected)
+        icons.map { saveicon = it.drawable!!.mutate() }
+        showIconuserselected.setImageDrawable(saveicon)
+    }
 
     companion object {
-
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.

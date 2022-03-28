@@ -1,142 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/createGroupFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".CreateReminderFragment">
 
-<!--    <com.google.android.material.appbar.AppBarLayout-->
-<!--        android:id="@+id/appBarLayoutCreateReminder"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent">-->
+    <!--
+      “How to create a color picker tool in android using color wheel and slider?,” GeeksforGeeks, 22-Oct-2020.
+      [Online]. Available: https://www.geeksforgeeks.org/how-to-create-a-color-picker-tool-in-android-using-color-wheel-and-slider/.
+      [Accessed: 27-Mar-2022].
+    -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="40dp"
+        tools:layout_editor_absoluteX="-1dp"
+        tools:layout_editor_absoluteY="351dp">
 
-<!--        <com.google.android.material.appbar.MaterialToolbar-->
-<!--            android:id="@+id/topAppBarCreateReminderFragment"-->
-<!--            style="@style/Widget.MaterialComponents.Toolbar.Primary"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="?attr/actionBarSize"-->
-<!--            app:title="@string/create_reminder_fragment_title" />-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/grpInCreateGroup"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            tools:ignore="MissingConstraints">
 
-<!--    </com.google.android.material.appbar.AppBarLayout>-->
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/grpNameInputInCreateGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/reminder_title_field_hint" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:orientation="vertical">-->
+        <Button
+            android:id="@+id/pickingcolor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/pick_color_gor_group" />
 
-<!--            <com.google.android.material.textfield.TextInputLayout-->
-<!--                android:id="@+id/group_name"-->
-<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="16dp"-->
-<!--                android:layout_marginTop="80dp"-->
-<!--                android:layout_marginEnd="16dp"-->
-<!--                android:hint="@string/group_name_field_hint"-->
-<!--                app:endIconMode="clear_text"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/appBarLayoutCreateReminder">-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/your_group_color_is"
+            android:textAlignment="center"
+            android:textSize="22sp" />
 
-<!--                <com.google.android.material.textfield.TextInputEditText-->
-<!--                    android:id="@+id/groupNameInputField"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content" />-->
+        <!--    show user what color they chose    -->
+        <View
+            android:id="@+id/showcoloruserselected"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@color/defaultcolorgroup" />
 
-<!--            </com.google.android.material.textfield.TextInputLayout>-->
+        <Button
+            android:id="@+id/pickingicons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/pick_icon_for_group" />
 
-<!--&lt;!&ndash; Reference : https://www.geeksforgeeks.org/how-to-create-a-color-picker-tool-in-android-using-color-wheel-and-slider/&ndash;&gt;-->
-<!--            &lt;!&ndash;Pick color Button&ndash;&gt;-->
-<!--            <Button-->
-<!--                android:id="@+id/pick_color_button"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:layout_marginTop="32dp"-->
-<!--                android:layout_marginStart="32dp"-->
-<!--                android:layout_marginEnd="32dp"-->
-<!--                android:text="Pick Color gor group" />-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/pick_icon_for_color"
+            android:textAlignment="center"
+            android:textSize="22sp" />
 
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:layout_marginTop="32dp"-->
-<!--                android:textSize="18sp"-->
-<!--                android:text="Your group color is:" />-->
+        <!--    show user what color they chose    -->
+        <ImageView
+            android:id="@+id/showIconuserselected"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp" />
 
-<!--            &lt;!&ndash;sample view to preview selected color by user&ndash;&gt;-->
-<!--            &lt;!&ndash;by default this has been set to darker gery&ndash;&gt;-->
-<!--            &lt;!&ndash;this can be overridden after user chose the-->
-<!--                color from color picker&ndash;&gt;-->
-<!--            &lt;!&ndash;which has been handled in the MainActivity.java&ndash;&gt;-->
-<!--            <View-->
-<!--                android:id="@+id/preview_selected_color"-->
-<!--                android:layout_width="48dp"-->
-<!--                android:layout_height="48dp"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:background="@android:color/darker_gray"-->
-<!--                android:layout_marginTop="8dp" />-->
+        <Button
+            android:id="@+id/savegroupcolorIncreategroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/create" />
 
-<!--&lt;!&ndash;            <com.google.android.material.textfield.TextInputLayout&ndash;&gt;-->
-<!--&lt;!&ndash;                android:id="@+id/group_icon"&ndash;&gt;-->
-<!--&lt;!&ndash;                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_width="match_parent"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_marginStart="16dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_marginTop="80dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_marginEnd="16dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:hint="@string/group_name_field_hint"&ndash;&gt;-->
-<!--&lt;!&ndash;                app:endIconMode="clear_text"&ndash;&gt;-->
-<!--&lt;!&ndash;                app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
-<!--&lt;!&ndash;                app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
-<!--&lt;!&ndash;                app:layout_constraintTop_toBottomOf="@+id/appBarLayoutCreateReminder">&ndash;&gt;-->
-
-<!--&lt;!&ndash;                <com.google.android.material.textfield.TextInputEditText&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:id="@+id/groupIconInputField"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:layout_height="wrap_content" />&ndash;&gt;-->
-
-<!--&lt;!&ndash;            </com.google.android.material.textfield.TextInputLayout>&ndash;&gt;-->
-
-<!--            <Button-->
-<!--                android:id="@+id/saveGroup"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="8dp"-->
-<!--                android:layout_marginTop="25dp"-->
-<!--                android:layout_marginEnd="10dp"-->
-<!--                android:layout_weight="1"-->
-<!--                android:backgroundTint="@color/teal_200"-->
-<!--                android:text="@string/save_reminder"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/autoCompleteTextViewRO"-->
-<!--                android:layout_toLeftOf="@+id/cancel_button"-->
-<!--                tools:ignore="MissingConstraints" />-->
-
-<!--            <Button-->
-<!--                android:id="@+id/cancel_button"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="25dp"-->
-<!--                android:layout_marginStart="15dp"-->
-<!--                android:layout_marginEnd="9dp"-->
-<!--                android:backgroundTint="@color/teal_200"-->
-<!--                android:text="@string/cancel"-->
-<!--                android:layout_weight="1"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="@+id/saveReminder"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/autoCompleteTextViewRO"-->
-<!--                android:layout_toRightOf="@+id/saveReminder"-->
-<!--                tools:ignore="MissingConstraints" />-->
-
-
-<!--        </LinearLayout>-->
+        <Button
+            android:id="@+id/cancelButtonIncreategroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/home" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

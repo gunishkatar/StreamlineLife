@@ -42,15 +42,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         navigation_menu.setNavigationItemSelectedListener(this)
 
-//        DBSupport(this).addReminder("workout","","2022-03-28,6:45:00","",3,"Friday, Wednesday, Tuesday","","15 Mins, 45 Mins,",0,0)
-//        DBSupport(this).addReminder("work","assignments",	"2022-03-27,6:20:00",	"",1,	"Thrusday, Tuesday, Tuesday,","","15 Mins,",0,	0)
-//        DBSupport(this).addReminder("work","assignments","2022-03-29,6:45:00","",1,"Tuesday, Friday, Saturday","","30 Mins, 30 Mins, 10 Mins,",0,0)
-//        DBSupport(this).addReminder("dance","with my friend","2022-03-31,7:10:00","",2,"Saturday, Wednesday,","","15 Mins,",0,0)
-//        DBSupport(this).addReminder("dinner","with family","2022-04-01,6:10:00","halifax",2,"Friday, Wednesday, Tuesday","","15 Mins, 45 Mins,",0,0)
-//        DBSupport(this).addReminder("workout","","2022-03-25,5:45:00","",3,"","","45 Mins",1,0)
-//        DBSupport(this).addReminder("study","","2022-03-10,6:45:00","",3,"","", "10 Mins, 45 Mins",0,1)
-//        DBSupport(this).addReminder("meeting","with co-worker","2022-03-26,9:59:50","",3,"","","15 Mins, 45 Mins",1,0)
-//        DBSupport(this).addReminder("interview","with COVE","2022-03-20,6:45:00","",3,"","", "10 Mins, 45 Mins",0,1)
+        //uncommet this to add dummy data
+        //once data is added then please comment this line other wise it will add data again and again in the sqlite :)
+//        dummyData()
+    }
+
+    private fun dummyData() {
+        //        DBSupport(this).addReminder("workout","","2022-03-28,6:45:00","",3,"Friday, Wednesday, Tuesday","","15 Mins, 45 Mins,",0,0)
+        //        DBSupport(this).addReminder("work","assignments",	"2022-03-27,6:20:00",	"",1,	"Thrusday, Tuesday, Tuesday,","","15 Mins,",0,	0)
+        //        DBSupport(this).addReminder("work","assignments","2022-03-29,6:45:00","",1,"Tuesday, Friday, Saturday","","30 Mins, 30 Mins, 10 Mins,",0,0)
+        //        DBSupport(this).addReminder("dance","with my friend","2022-03-31,7:10:00","",2,"Saturday, Wednesday,","","15 Mins,",0,0)
+        //        DBSupport(this).addReminder("dinner","with family","2022-04-01,6:10:00","halifax",2,"Friday, Wednesday, Tuesday","","15 Mins, 45 Mins,",0,0)
+        //        DBSupport(this).addReminder("workout","","2022-03-25,5:45:00","",3,"","","45 Mins",1,0)
+        //        DBSupport(this).addReminder("study","","2022-03-10,6:45:00","",3,"","", "10 Mins, 45 Mins",0,1)
+        //        DBSupport(this).addReminder("meeting","with co-worker","2022-03-26,9:59:50","",3,"","","15 Mins, 45 Mins",1,0)
+        //        DBSupport(this).addReminder("interview","with COVE","2022-03-20,6:45:00","",3,"","", "10 Mins, 45 Mins",0,1)
+        //
+        //        DBSupport(this).addGroup("travel", 0, "-3179163", "android.graphics.drawable.VectorDrawable@3df9e98")
+        //        DBSupport(this).addGroup("work", 0, "317913", "android.graphics.drawable.VectorDrawable@3df9e98")
     }
 
     /**

@@ -51,7 +51,7 @@
         <entry key="app/src/main/res/layout/fragment_all_reminder_page.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_calender_view.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_completed_page.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_create_group.xml" value="0.14361702127659576" />
+        <entry key="app/src/main/res/layout/fragment_create_group.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_create_page.xml" value="0.14361702127659576" />
         <entry key="app/src/main/res/layout/fragment_create_reminder.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_deadline_page.xml" value="0.14361702127659576" />
@@ -59,6 +59,7 @@
         <entry key="app/src/main/res/layout/fragment_home_page.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_setting_page.xml" value="0.25" />
         <entry key="app/src/main/res/layout/navigation_layout.xml" value="0.14361702127659576" />
+        <entry key="app/src/main/res/layout/showgroupswithlogocolorandcountreminders.xml" value="0.25" />
         <entry key="app/src/main/res/layout/showreminderlistview.xml" value="0.375" />
         <entry key="app/src/main/res/layout/sortbydropdown.xml" value="0.10960144927536232" />
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.10960144927536232" />

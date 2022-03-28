@@ -8,4 +8,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="tealgradient">#1A7F7C</color>
+    <color name="defaultcolorgroup">#CFA1A1</color>
 </resources>

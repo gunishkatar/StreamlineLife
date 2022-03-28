@@ -92,4 +92,11 @@
     <string name="hide_calender_view">Hide Calender View</string>
     <string name="submit">Submit</string>
     <string name="feedback">FeedBack\nMakes App More Nice</string>
+    <string name="pick_color_gor_group">Pick Color gor group</string>
+    <string name="your_group_color_is">Your group color is:</string>
+    <string name="pick_icon_for_group">Pick Icon for Group</string>
+    <string name="pick_icon_for_color">Pick Icon for Color</string>
+    <string name="back">back</string>
+
+    <item name="GroupDefaultcolor" type="color">#CFA1A1 </item>
 </resources>

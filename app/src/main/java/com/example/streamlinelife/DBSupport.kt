@@ -1,5 +1,6 @@
 package com.example.streamlinelife
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -56,15 +57,23 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
 
         // Group table constant
         private const val GROUP_TABLE = "Groups"
+        private const val GROUP_ID_COL = "id"
         private const val NAME_COL = "name"
         private const val NUMBER_OF_REMINDERS = "numberofreminders"
-        private const val createGroupsTable = "CREATE TABLE ${GROUP_TABLE}_TABLE (" +
-                "$NAME_COL TEXT PRIMARY KEY," +
-                "$NUMBER_OF_REMINDERS INTEGER)"
+        private const val COLOR_COL = "color"
+        private const val ICON_COL = "icon"
+
+        private const val createGroupsTable = "CREATE TABLE $GROUP_TABLE (" +
+                "$GROUP_ID_COL INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "$NAME_COL STRING," +
+                "$NUMBER_OF_REMINDERS INTEGER,"+
+                "$COLOR_COL STRING," +
+                "$ICON_COL STRING)"
 
     }
 
     // create two table --> reminders Table and Group Table
+    @SuppressLint("SQLiteString")
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(createRemindersTable)
         db.execSQL(createGroupsTable)
@@ -92,26 +101,6 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
         val db = this.writableDatabase
 
         var result = db.insert(REMINDER_TABLE, null, data)
-
-        db.close()
-
-        if (result == -1.toLong()){
-            return false
-        }
-
-        return true
-    }
-
-    // add group so that user can group there all reminder with respect to the group
-    fun addGroup(name: String, number_of_reminders: Int): Boolean{
-        val data = ContentValues()
-
-        data.put(NAME_COL, name)
-        data.put(NUMBER_OF_REMINDERS, number_of_reminders)
-
-        val db = this.writableDatabase
-
-        var result = db.insert(GROUP_TABLE, null, data)
 
         db.close()
 
@@ -164,6 +153,57 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
         return allReminders
     }
 
+    // add group so that user can group there all reminder with respect to the group
+    fun addGroup(name: String, number_of_reminders: Int, color: String, icon: String): Boolean{
+        val data = ContentValues()
+
+        data.put(NAME_COL, name)
+        data.put(NUMBER_OF_REMINDERS, number_of_reminders)
+        data.put(COLOR_COL, color)
+        data.put(ICON_COL, icon)
+
+        val db = this.writableDatabase
+
+        var result = db.insert(GROUP_TABLE, null, data)
+
+        db.close()
+
+        if (result == -1.toLong()){
+            return false
+        }
+
+        return true
+    }
+
+    // get all group
+    fun getAllGroups():  Map<String,ArrayList<String>>{
+        val allGroups = mutableMapOf<String,ArrayList<String>>()
+        var row = arrayListOf<String>()
+
+        val db = readableDatabase
+        val cursor = db.query(GROUP_TABLE, null,null,null,null,null,null,null)
+
+        if (cursor != null){
+            while (cursor.moveToNext()){
+                row = arrayListOf<String>()
+                val id = cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID_COL))
+                val name = cursor.getString(cursor.getColumnIndexOrThrow(NAME_COL))
+                val numbers = cursor.getString(cursor.getColumnIndexOrThrow(NUMBER_OF_REMINDERS))
+                val color = cursor.getString(cursor.getColumnIndexOrThrow(COLOR_COL))
+                val icon = cursor.getString(cursor.getColumnIndexOrThrow(ICON_COL))
+                row.add(name)
+                row.add(numbers)
+                row.add(color)
+                row.add(icon)
+                allGroups[id] = row
+            }
+        }
+
+        cursor.close()
+        db.close()
+        return allGroups
+    }
+
     // get all numbers of reminder present int he group
     fun getNumberofRemindersInGroup(name: String): Int{
         val db = readableDatabase
@@ -184,145 +224,7 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
         cursor.close()
         db.close()
         return numberOfReminders.toInt()
-
     }
-
-//    //get all complete
-//    fun getAllCompletedReminders(): Map<String,ArrayList<String>>{
-//
-//        val completedReminders = mutableMapOf<String,ArrayList<String>>()
-//        var row = arrayListOf<String>()
-//
-//        val db = readableDatabase
-//
-//        val selection = "${COMPLETED_COL} = ?"
-//        val selectionValue = arrayOf("1")
-//
-//        val cursor = db.query(REMINDER_TABLE, null,selection,selectionValue,null,null,null,null)
-//
-//        if (cursor != null){
-//            while (cursor.moveToNext()){
-//                row = arrayListOf<String>()
-//                val id = cursor.getString(cursor.getColumnIndexOrThrow(ID_COL))
-//                val title = cursor.getString(cursor.getColumnIndexOrThrow(TITLE_COL))
-//                val desc = cursor.getString(cursor.getColumnIndexOrThrow(DESCRIPTION_COL))
-//                val datetime = cursor.getString(cursor.getColumnIndexOrThrow(DATETIME_COL))
-//                val location = cursor.getString(cursor.getColumnIndexOrThrow(LOCATION_COL))
-//                val importance = cursor.getString(cursor.getColumnIndexOrThrow(IMPORTANCE_COL))
-//                val repeat = cursor.getString(cursor.getColumnIndexOrThrow(REPEAT_COL))
-//                val group = cursor.getString(cursor.getColumnIndexOrThrow(GROUP_COL))
-//                val remind = cursor.getString(cursor.getColumnIndexOrThrow(REMIND_COL))
-//                val deadline = cursor.getString(cursor.getColumnIndexOrThrow(DEADLINE_COL))
-//                val completed = cursor.getString(cursor.getColumnIndexOrThrow(COMPLETED_COL))
-//                row.add(title)
-//                row.add(desc)
-//                row.add(datetime)
-//                row.add(location)
-//                row.add(importance)
-//                row.add(repeat)
-//                row.add(group)
-//                row.add(remind)
-//                row.add(deadline)
-//                row.add(completed)
-//                completedReminders[id] = row
-//            }
-//        }
-//
-//        cursor.close()
-//        db.close()
-//        return completedReminders
-//
-//    }
-
-    // get all group
-    fun getAllGroups(): Map<String,String>{
-
-        val allGroups = mutableMapOf<String,String>()
-
-        val db = readableDatabase
-
-        val cursor = db.query(GROUP_TABLE, null,null,null,null,null,null,null)
-
-        if (cursor != null){
-            while (cursor.moveToNext()){
-                val name = cursor.getString(cursor.getColumnIndexOrThrow(NAME_COL))
-                val numberofReminders = cursor.getString(cursor.getColumnIndexOrThrow(NUMBER_OF_REMINDERS))
-                allGroups[name] = numberofReminders
-            }
-        }
-
-//        val allGroups = mutableMapOf<String,ArrayList<String>>()
-//        var row = arrayListOf<String>()
-//
-//        val db = readableDatabase
-//
-//        val cursor = db.query(GROUP_TABLE, null,null,null,null,null,null,null)
-//
-//        if (cursor != null){
-//            while (cursor.moveToNext()){
-//                row = arrayListOf<String>()
-//                val id = cursor.getString(cursor.getColumnIndexOrThrow(ID_COL))
-//                val name = cursor.getString(cursor.getColumnIndexOrThrow(NAME_COL))
-//                val numberofReminders = cursor.getString(cursor.getColumnIndexOrThrow(NUMBER_OF_REMINDERS))
-//                row.add(name)
-//                row.add(numberofReminders)
-//                allGroups[id] = row
-//            }
-//        }
-
-        cursor.close()
-        db.close()
-        return allGroups
-
-    }
-
-    // get reminder with the particular date
-//    fun getRemindersForAParticularDate(date: String): Map<String,ArrayList<String>>{
-//
-//        val allReminders = mutableMapOf<String,ArrayList<String>>()
-//        var row = arrayListOf<String>()
-//
-//        val db = readableDatabase
-//
-//        val selection = "${DATETIME_COL} = ?"
-//        val selectionValue = "%date%"
-//
-//        val cursor = db.query(REMINDER_TABLE, null,selection, arrayOf(selectionValue),null,null,null,null)
-//
-//        if (cursor != null){
-//            while (cursor.moveToNext()){
-//                row = arrayListOf<String>()
-//                val id = cursor.getString(cursor.getColumnIndexOrThrow(ID_COL))
-//                val title = cursor.getString(cursor.getColumnIndexOrThrow(TITLE_COL))
-//                val desc = cursor.getString(cursor.getColumnIndexOrThrow(DESCRIPTION_COL))
-//                val datetime = cursor.getString(cursor.getColumnIndexOrThrow(DATETIME_COL))
-//                val location = cursor.getString(cursor.getColumnIndexOrThrow(LOCATION_COL))
-//                val importance = cursor.getString(cursor.getColumnIndexOrThrow(IMPORTANCE_COL))
-//                val repeat = cursor.getString(cursor.getColumnIndexOrThrow(REPEAT_COL))
-//                val group = cursor.getString(cursor.getColumnIndexOrThrow(GROUP_COL))
-//                val remind = cursor.getString(cursor.getColumnIndexOrThrow(REMIND_COL))
-//                val deadline = cursor.getString(cursor.getColumnIndexOrThrow(DEADLINE_COL))
-//                val completed = cursor.getString(cursor.getColumnIndexOrThrow(COMPLETED_COL))
-//                row.add(title)
-//                row.add(desc)
-//                row.add(datetime)
-//                row.add(location)
-//                row.add(importance)
-//                row.add(repeat)
-//                row.add(group)
-//                row.add(remind)
-//                row.add(deadline)
-//                row.add(completed)
-//                allReminders[id] = row
-//            }
-//        }
-//
-//
-//        cursor.close()
-//        db.close()
-//        return allReminders
-//
-//    }
 
     fun updateNumberofRemindersInGroup(name: String): Boolean{
 
@@ -448,7 +350,7 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
     }
 
     // use in the edit page
-    fun updateReminder(id: Int, title: String, desc: String, loc: String, datetime: String, imp: Int, repeat: String, groupName: String, remind: String, deadline: Int, completed: Int): Boolean{
+    fun updateReminder(id: Int, title: String, desc: String, datetime: String, loc: String, imp: Int, repeat: String, remind: String, groupName: String, deadline: Int, completed: Int): Boolean{
 
         val db = this.writableDatabase
 

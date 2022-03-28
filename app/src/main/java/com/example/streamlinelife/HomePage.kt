@@ -1,16 +1,16 @@
 package com.example.streamlinelife
 
-import android.app.Activity
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.annotation.IdRes
-import androidx.navigation.Navigation
+import android.widget.ListView
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.util.ArrayList
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,9 +36,55 @@ class HomePage : Fragment() {
         return inflater.inflate(R.layout.fragment_home_page, container, false)
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.title = "Streamline Life"
+
+        //show groups from the db
+        val database = DBSupport(requireContext())
+        val getallGroupsFromDatabase: Map<String, ArrayList<String>> = database.getAllGroups()
+
+        val saveInArrayname: Array<String> = Array(getallGroupsFromDatabase.count()){""}
+        val saveInArraynumberofreminder: Array<String> = Array(getallGroupsFromDatabase.count()){""}
+        val saveInArraycolor: Array<String> = Array(getallGroupsFromDatabase.count()){""}
+        val saveInArraydrawbale: Array<String> = Array(getallGroupsFromDatabase.count()){""}
+
+        val saveIDs: Array<Int> = Array(getallGroupsFromDatabase.count()){0}
+
+        var index = 0
+        for ((key,value) in getallGroupsFromDatabase){
+            if (value[0].trim().isEmpty()){
+                value[0] = ""
+            }
+            if (value[1].trim().isEmpty()){
+                value[1] = ""
+            }
+            if (value[2].trim().isEmpty()){
+                value[2] = ""
+            }
+            if (value[3].trim().isEmpty()){
+                value[3] = ""
+            }
+
+            saveIDs[index] = key.toInt()
+            saveInArrayname[index] = value[0]
+            saveInArraynumberofreminder[index] = value[1]
+            saveInArraycolor[index] = value[2]
+            saveInArraydrawbale[index] = value[3]
+            index++
+        }
+
+        /**
+         * List view show all reminders
+         *
+         * web_page_person, “Kotlin Android Listview example,” TutorialKart, 21-Jan-2021. [Online]. Available: https://www.tutorialkart.com/kotlin-android/kotlin-android-listview-example/. [Accessed: 24-Mar-2022].
+         * S. Naveed, “Listing activity using ListView in Android studio - kotlin,” Handy Opinion, 22-May-2021. [Online]. Available: https://handyopinion.com/listing-activity-using-listview-in-android-studio-kotlin/. [Accessed: 25-Mar-2022].
+         *
+         * */
+        val listview = view.findViewById<ListView>(R.id.showallgroupsnameInHomePage)
+        val customadapter =  CustomAdapterGroups(view.context, saveInArrayname, saveInArraycolor, saveInArraydrawbale, saveIDs, saveInArraynumberofreminder)
+        listview.adapter = customadapter
 
         // navigation pages with respect to the button
         view.findViewById<Button>(R.id.createReminderInHomePage).setOnClickListener {
@@ -56,14 +102,7 @@ class HomePage : Fragment() {
         view.findViewById<FloatingActionButton>(R.id.addGroupInHomePage).setOnClickListener {
             findNavController().navigate(R.id.action_homePage_to_createGroupFragment)
         }
-
-        //show groups from the db
     }
-
-//    getFragmentNavControl(R.id.fragment_container_view)!!.navigate(R.id.action_homePage_to_createReminderFragment)
-//    fun Fragment.getFragmentNavControl(@IdRes id: Int) = activity?.let {
-//        return@let Navigation.findNavController(it, id)
-//    }
 
     companion object {
         /**

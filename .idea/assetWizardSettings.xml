@@ -317,7 +317,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk/icons/material/materialicons/delete/baseline_delete_24.xml" />
+                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk/icons/material/materialicons/navigate_next/baseline_navigate_next_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -328,7 +328,7 @@
                         <option name="values">
                           <map>
                             <entry key="color" value="000729" />
-                            <entry key="outputName" value="ic_baseline_delete_24" />
+                            <entry key="outputName" value="ic_baseline_navigate_next_24" />
                             <entry key="sourceFile" value="/D:\Assignment_mobile_computing\StreamlineLife" />
                           </map>
                         </option>

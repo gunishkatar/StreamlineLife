@@ -45,4 +45,13 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation 'androidx.core:core-splashscreen:1.0.0-alpha01'
     implementation "com.google.android.material:material:1.4.0"
+
+
+    // “How to create a color picker tool in android using color wheel and slider?,” GeeksforGeeks, 22-Oct-2020. [Online]. Available: https://www.geeksforgeeks.org/how-to-create-a-color-picker-tool-in-android-using-color-wheel-and-slider/. [Accessed: 27-Mar-2022].
+    implementation "com.github.duanhong169:colorpicker:1.1.6"
+
+    //Maltaisn, “Maltaisn/icondialoglib: Material icon picker dialog for Android,” GitHub. [Online]. Available: https://github.com/maltaisn/icondialoglib. [Accessed: 27-Mar-2022].
+    //Maltaisn, “Example application · MALTAISN/icondialoglib wiki,” GitHub. [Online]. Available: https://github.com/maltaisn/icondialoglib/wiki/Example-application. [Accessed: 27-Mar-2022].
+    implementation "com.maltaisn:icondialog:3.3.0"
+    implementation "com.maltaisn:iconpack-default:1.1.0"
 }
