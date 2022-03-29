@@ -4,11 +4,6 @@
     [Online]. Available: https://www.youtube.com/watch?v=zYVEMCiDcmY.
     [Accessed: 11-Mar-2022].
 -->
-<!--<ScrollView-->
-<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    android:layout_width="fill_parent"-->
-<!--    android:layout_height="fill_parent">-->
-<!--</ScrollView>-->
 <androidx.drawerlayout.widget.DrawerLayout
     android:id="@+id/drawerView"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -25,7 +20,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layoutDirection="ltr">
-
         <!-- App Bar -->
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
@@ -45,22 +39,25 @@
             </com.google.android.material.appbar.MaterialToolbar>
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.fragment.app.FragmentContainerView
+        <fragment
             android:id="@+id/fragment_container_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:name="androidx.navigation.fragment.NavHostFragment"
             app:defaultNavHost="true"
-            app:navGraph="@navigation/navigation_graph"/>
-
+            app:navGraph="@navigation/navigation_graph"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
     </LinearLayout>
 
     <!--  navigation view  -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationbar"
-        android:layout_marginTop="56dp"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
+        android:fitsSystemWindows="true"
         android:layout_gravity="start"
         android:layoutDirection="ltr"
         app:menu="@menu/draw_navigation_menu"/>

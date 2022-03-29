@@ -2,6 +2,11 @@ package com.example.streamlinelife
 
 import java.util.Comparator
 
+/**
+ *
+ * i am using this class to call all function in other pages
+ *
+ * */
 class sortFunction {
     class sortlistAscending: Comparator<Map.Entry<String, ArrayList<String>>> {
         override fun compare(

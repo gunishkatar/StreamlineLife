@@ -15,23 +15,23 @@
         android:icon="@drawable/navigation_home_page"
         android:title="@string/home"/>
     <item
-        android:id="@+id/create"
+        android:id="@+id/createReminderFragment"
         android:icon="@drawable/navigation_create_page"
         android:title="@string/create"/>
     <item
-        android:id="@+id/showallreminder"
+        android:id="@+id/allReminderPage"
         android:icon="@drawable/navigation_all_page"
         android:title="@string/all_reminder"/>
     <item
-        android:id="@+id/complete"
+        android:id="@+id/completedPage"
         android:icon="@drawable/navigation_complete_page"
         android:title="@string/completes"/>
     <item
-        android:id="@+id/deadline"
+        android:id="@+id/deadlinePage"
         android:icon="@drawable/naviagtion_deadline_page"
         android:title="@string/deadlines"/>
     <item
-        android:id="@+id/calenderview"
+        android:id="@+id/calenderPage"
         android:icon="@drawable/navigation_calendar_page"
         android:title="@string/calender_view"/>
     <item
@@ -39,7 +39,7 @@
         android:icon="@drawable/navigation_group_page"
         android:title="@string/groups"/>
     <item
-        android:id="@+id/Setting"
+        android:id="@+id/settingPage"
         android:icon="@drawable/navigation_setting_page"
         android:title="@string/setting"/>
 </menu>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,91 +9,93 @@
 
     <!-- toggle button    -->
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="10dp">
 
         <LinearLayout
+            android:id="@+id/textviewinsettingpage"
             android:layout_width="200dp"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="292dp"
             android:gravity="left"
-            android:layoutDirection="ltr">
+            android:layoutDirection="ltr"
+            android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="22dp"
-                android:layout_marginStart="10dp"
-                android:textSize="23sp"
                 android:padding="8dp"
-                android:text="@string/notification"/>
+                android:text="@string/notification"
+                android:textSize="23sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="45dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="45dp"
+                android:padding="8dp"
                 android:text="@string/sound"
-                android:textSize="23sp"
-                android:padding="8dp"/>
+                android:textSize="23sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="45dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="45dp"
+                android:padding="8dp"
                 android:text="@string/dark_mode"
-                android:textSize="23sp"
-                android:padding="8dp"/>
+                android:textSize="23sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="45dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="45dp"
                 android:text="@string/hide_calender_view"
-                android:textSize="23sp"/>
+                android:textSize="23sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="180dp"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:layout_marginBottom="300dp"
-            android:layoutDirection="rtl">
+            android:layoutDirection="rtl"
+            android:orientation="vertical">
+
             <ToggleButton
                 android:id="@+id/notificationbuttonInSettingPage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:layout_marginStart="10dp" />
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="22dp" />
 
             <ToggleButton
                 android:id="@+id/soundbuttonInSettingPage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="45dp"
-                android:layout_marginStart="10dp"/>
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="45dp" />
 
             <ToggleButton
                 android:id="@+id/darkmodebuttonInSettingPage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="45dp"
-                android:layout_marginStart="10dp"/>
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="45dp" />
 
             <ToggleButton
                 android:id="@+id/hidecalenderbuttonInSettingPage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="45dp"
-                android:layout_marginStart="10dp"/>
-
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="45dp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -101,16 +104,19 @@
         android:id="@+id/formfeedback"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="365dp"
+        android:layout_marginTop="390dp"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/feedback"
-            android:textSize="18sp"
             android:padding="10dp"
-            android:textAlignment="center" />
+            android:text="@string/feedback"
+            android:textAlignment="center"
+            android:textSize="18sp" />
 
         <!--
             “TextInputLayout &nbsp;: &nbsp; android developers,” Android Developers.
@@ -129,11 +135,12 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="16dp">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/feedbackinputinthesettingpage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/feedback"/>
+                android:hint="@string/feedback" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -143,15 +150,19 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="16dp"
-            android:text="@string/submit"/>
+            android:text="@string/submit" />
     </LinearLayout>
 
     <Button
         android:id="@+id/homebuttonintheSettingPage"
-        android:layout_width="400dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="600dp"
-        android:layout_marginEnd="5dp"
-        android:text="@string/submit"/>
-</FrameLayout>
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/home"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/formfeedback"
+        tools:ignore="MissingConstraints" />
+</androidx.constraintlayout.widget.ConstraintLayout>

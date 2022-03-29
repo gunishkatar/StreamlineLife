@@ -3,13 +3,20 @@ package com.example.streamlinelife
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.os.Build
 import android.os.Bundle
 import android.text.InputType
 import android.view.*
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
+import java.text.DecimalFormat
+import java.text.NumberFormat
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -23,24 +30,11 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class CreateReminderFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
     /**
      * store date and time here
      */
     lateinit var reminderDateInputField: TextView
     private var addTime = ""
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,10 +43,10 @@ class CreateReminderFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_create_reminder, container, false)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.title = "Create Reminders"
 
         // reminder title
         val reminderTitleInputField = view.findViewById<TextView>(R.id.reminderTitleInputFieldInCreateReminder)
@@ -201,11 +195,55 @@ class CreateReminderFragment : Fragment() {
                     saveremindmeList = ""
                 }
 
-                addreminder.addReminder(savetitle,savedescription,saveDate_Time,savelocation,saveimportance.toInt(),saverepeatDaysList,savegroupName,saveremindmeList,0,0)
+                if (saveDate_Time.trim().isNotEmpty()){
+                    val userdate = saveDate_Time.replace(",","/")
 
-                // taken from the lab
-                Snackbar.make(view,"Create Reminder Successfully", Snackbar.LENGTH_LONG).show()
-                findNavController().navigate(R.id.action_createReminderFragment_to_allReminderPage)
+                    // string date to Date
+                    val getdateFromString = userdate.substring(0,userdate.indexOf("/"))
+                    val date = LocalDate.parse(getdateFromString, DateTimeFormatter.ISO_DATE)
+
+                    //current Date
+                    val currentDate = LocalDate.now().format(DateTimeFormatter.ISO_DATE)
+                    val currentDateFormated = LocalDate.parse(currentDate , DateTimeFormatter.ISO_DATE)
+
+                    // string time to time
+                    val gettimeFromString = userdate.substring(userdate.indexOf("/") + 1, userdate.length)
+                    val convertinTime = LocalTime.parse(gettimeFromString,DateTimeFormatter.ISO_LOCAL_TIME)
+                    val currentTime = LocalTime.parse(LocalTime.now().toString(),DateTimeFormatter.ISO_LOCAL_TIME)
+
+                    if (date.isEqual(currentDateFormated)){
+                        if (saverepeatDaysList.trim().isNotEmpty()){
+                            addreminder.addReminder(savetitle,savedescription,saveDate_Time,savelocation,saveimportance.toInt(),saverepeatDaysList,savegroupName,saveremindmeList,0,0)
+                            // taken from the lab
+                            findNavController().navigate(R.id.action_createReminderFragment_to_allReminderPage)
+                            Snackbar.make(view,"Create Reminder Successfully", Snackbar.LENGTH_SHORT).show()
+                        }
+                        else{
+                            if(convertinTime.isAfter(currentTime)){
+                                addreminder.addReminder(savetitle,savedescription,saveDate_Time,savelocation,saveimportance.toInt(),saverepeatDaysList,savegroupName,saveremindmeList,0,0)
+                                // taken from the lab
+                                Snackbar.make(view,"Create Reminder Successfully", Snackbar.LENGTH_SHORT).show()
+                                findNavController().navigate(R.id.action_createReminderFragment_to_allReminderPage)
+                            }
+                            else{
+                                Snackbar.make(view,"Time cant be Past either add Repeat or Future Time", Snackbar.LENGTH_SHORT).show()
+                                findNavController().navigate(R.id.createReminderFragment)
+                            }
+                        }
+                    }
+                    else{
+                        addreminder.addReminder(savetitle,savedescription,saveDate_Time,savelocation,saveimportance.toInt(),saverepeatDaysList,savegroupName,saveremindmeList,0,0)
+                        // taken from the lab
+                        Snackbar.make(view,"Create Reminder Successfully", Snackbar.LENGTH_SHORT).show()
+                        findNavController().navigate(R.id.action_createReminderFragment_to_allReminderPage)
+                    }
+                }
+                else{
+                    addreminder.addReminder(savetitle,savedescription,saveDate_Time,savelocation,saveimportance.toInt(),saverepeatDaysList,savegroupName,saveremindmeList,0,0)
+                    // taken from the lab
+                    Snackbar.make(view,"Create Reminder Successfully", Snackbar.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_createReminderFragment_to_allReminderPage)
+                }
             }
             else{
                 // taken from the lab
@@ -220,34 +258,40 @@ class CreateReminderFragment : Fragment() {
      */
     private val timerpick: TimePickerDialog.OnTimeSetListener =
         TimePickerDialog.OnTimeSetListener { p0, hours, minutes ->
+
+        /**
+         * taken date and time format from the given link
+         * JUNSJUNS 7766 bronze badges, aminographyaminography 20.3k1313 gold badges6262 silver badges7070 bronze badges, Shalu T DShalu T D                    3, and Vishal PawarVishal Pawar                    4, “Android studio Kotlin - how to display 2 digit number in text?,” Stack Overflow, 01-May-1968. [Online]. Available: https://stackoverflow.com/questions/63010209/android-studio-kotlin-how-to-display-2-digit-number-in-text. [Accessed: 27-Mar-2022].
+         * */
+        var formattime: NumberFormat = DecimalFormat("00")
         val formatedTime: String =
             when {
                 hours == 0 ->{
                     if (minutes < 10){
-                        "${hours + 12}:0${minutes}:00"
+                        "${formattime.format(hours + 12)}:${formattime.format(minutes)}:00"
                     }
                     else{
-                        "${hours+12}:${minutes}:00"
+                        "${formattime.format(hours + 12)}:${formattime.format(minutes)}:00"
                     }
                 }
                 hours == 12 -> {
                     if (minutes < 10){
-                        "${hours}:0${minutes}:00"
+                        "${formattime.format(hours)}:${formattime.format(minutes)}:00"
                     }
                     else{
-                        "${hours}:${minutes}:00"
+                        "${formattime.format(hours + 12)}:${formattime.format(minutes)}:00"
                     }
                 }
                 hours > 12 ->{
                     if (minutes < 10){
-                        "${hours - 12}:0${minutes}:00"
+                        "${formattime.format(hours - 12)}:${formattime.format(minutes)}:00"
                     }
                     else{
-                        "${hours - 12}:${minutes}:00"
+                        "${formattime.format(hours - 12)}:${formattime.format(minutes)}:00"
                     }
                 }
                 else ->{
-                    "${hours}:${minutes}:00"
+                    "${formattime.format(hours)}:${formattime.format(minutes)}:00"
                 }
             }
         addTime = formatedTime

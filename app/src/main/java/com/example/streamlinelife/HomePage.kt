@@ -10,7 +10,7 @@ import android.widget.Button
 import android.widget.ListView
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import java.util.ArrayList
+import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,11 +23,6 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class HomePage : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,18 +34,16 @@ class HomePage : Fragment() {
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.title = "Streamline Life"
 
         //show groups from the db
         val database = DBSupport(requireContext())
         val getallGroupsFromDatabase: Map<String, ArrayList<String>> = database.getAllGroups()
 
+        val saveIDs: Array<Int> = Array(getallGroupsFromDatabase.count()){0}
         val saveInArrayname: Array<String> = Array(getallGroupsFromDatabase.count()){""}
         val saveInArraynumberofreminder: Array<String> = Array(getallGroupsFromDatabase.count()){""}
         val saveInArraycolor: Array<String> = Array(getallGroupsFromDatabase.count()){""}
         val saveInArraydrawbale: Array<String> = Array(getallGroupsFromDatabase.count()){""}
-
-        val saveIDs: Array<Int> = Array(getallGroupsFromDatabase.count()){0}
 
         var index = 0
         for ((key,value) in getallGroupsFromDatabase){

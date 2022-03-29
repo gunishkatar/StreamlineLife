@@ -5,7 +5,8 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import java.util.ArrayList
+import java.nio.charset.Charset
+import java.util.*
 
 
 /**
@@ -63,13 +64,14 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
         private const val COLOR_COL = "color"
         private const val ICON_COL = "icon"
 
+        // learn how to use blob
+        // R. Peterson, “SQLite data types with example: INT, text, numeric, real, blob,” Guru99, 12-Feb-2022. [Online]. Available: https://www.guru99.com/sqlite-data-types.html. [Accessed: 28-Mar-2022].
         private const val createGroupsTable = "CREATE TABLE $GROUP_TABLE (" +
                 "$GROUP_ID_COL INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "$NAME_COL STRING," +
                 "$NUMBER_OF_REMINDERS INTEGER,"+
                 "$COLOR_COL STRING," +
-                "$ICON_COL STRING)"
-
+                "$ICON_COL BLOB)"
     }
 
     // create two table --> reminders Table and Group Table
@@ -153,8 +155,8 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
         return allReminders
     }
 
-    // add group so that user can group there all reminder with respect to the group
-    fun addGroup(name: String, number_of_reminders: Int, color: String, icon: String): Boolean{
+    //R. Peterson, “SQLite data types with example: INT, text, numeric, real, blob,” Guru99, 12-Feb-2022. [Online]. Available: https://www.guru99.com/sqlite-data-types.html. [Accessed: 28-Mar-2022].
+    fun addGroup(name: String, number_of_reminders: Int, color: String, icon: ByteArray): Boolean{
         val data = ContentValues()
 
         data.put(NAME_COL, name)
@@ -190,7 +192,14 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
                 val name = cursor.getString(cursor.getColumnIndexOrThrow(NAME_COL))
                 val numbers = cursor.getString(cursor.getColumnIndexOrThrow(NUMBER_OF_REMINDERS))
                 val color = cursor.getString(cursor.getColumnIndexOrThrow(COLOR_COL))
-                val icon = cursor.getString(cursor.getColumnIndexOrThrow(ICON_COL))
+
+                // this is my logic where i am converting blob into a one string separated by commans
+                // so that i can get all the values of it
+                var store_blob = ""
+                for(i in cursor.getBlob(cursor.getColumnIndexOrThrow(ICON_COL))){
+                    store_blob += "$i,"
+                }
+                val icon = store_blob
                 row.add(name)
                 row.add(numbers)
                 row.add(color)

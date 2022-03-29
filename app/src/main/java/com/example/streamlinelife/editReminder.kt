@@ -33,22 +33,10 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class editReminder : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
     lateinit var reminderDateInputField: TextView
     private var addTime = ""
     private var deadlinenum = 0
     private var completenum = 0
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,7 +50,6 @@ class editReminder : Fragment() {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.title = "Edit Reminders"
 
         //buttons
         val backbutton = view.findViewById<Button>(R.id.cancel_buttonInCreateReminder)
@@ -171,14 +158,14 @@ class editReminder : Fragment() {
                 requireContext(),
                 {
                         view, year, monthOfYear, dayOfMonth ->
-                    val month = monthOfYear + 1 // month count given less one e.g. august then give month no 7
-                    var dayStr = dayOfMonth.toString()
-                    var monthStr = month.toString()
-                    if (dayStr.length == 1) dayStr = "0$dayStr"
-                    if (monthStr.length == 1) monthStr = "0$monthStr"
+                        val month = monthOfYear + 1 // month count given less one e.g. august then give month no 7
+                        var dayStr = dayOfMonth.toString()
+                        var monthStr = month.toString()
+                        if (dayStr.length == 1) dayStr = "0$dayStr"
+                        if (monthStr.length == 1) monthStr = "0$monthStr"
 
-                    // dd/mm/yyyy format set.
-                    reminderDateInputField.text = "$year-$monthStr-$dayStr,$addTime"
+                        // dd/mm/yyyy format set.
+                        reminderDateInputField.text = "$year-$monthStr-$dayStr,$addTime"
                 }, year, month, day
             )
 

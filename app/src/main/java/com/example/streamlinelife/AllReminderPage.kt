@@ -24,18 +24,6 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class AllReminderPage : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,7 +36,6 @@ class AllReminderPage : Fragment() {
     @SuppressLint("SetTextI18n", "SimpleDateFormat")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.title = "All Reminders"
 
         //current date show
         val simpleDateFormat = SimpleDateFormat("EEEE, MMMM dd, yyy").format(Date())
@@ -62,8 +49,10 @@ class AllReminderPage : Fragment() {
         val autocompleteSortBy = view.findViewById<AutoCompleteTextView>(R.id.sortbytextview)
         autocompleteSortBy.setAdapter(arrayAdapter)
 
+        // it will go in this class and go in the function getfromAutocompleteSortBy
         showInListViewAndSort().getfromAutocompleteSortBy(requireView(), autocompleteSortBy, "AllReminderPage")
 
+        //button to redirect user to create reminder
         view.findViewById<Button>(R.id.addbuttonInAllReminderPage).setOnClickListener {
             findNavController().navigate(R.id.action_allReminderPage_to_createReminderFragment)
         }

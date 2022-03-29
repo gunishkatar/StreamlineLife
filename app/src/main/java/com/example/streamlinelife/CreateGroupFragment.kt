@@ -1,9 +1,12 @@
 package com.example.streamlinelife
 import android.annotation.SuppressLint
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
 import android.os.Build
+import android.os.Build.VERSION_CODES.BASE
 import android.os.Bundle
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +14,8 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.core.graphics.drawable.toBitmap
+import androidx.core.graphics.drawable.toDrawable
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
@@ -22,6 +27,8 @@ import com.maltaisn.icondialog.pack.IconPack
 import com.maltaisn.icondialog.pack.IconPackLoader
 import com.maltaisn.iconpack.defaultpack.createDefaultIconPack
 import top.defaults.colorpicker.ColorPickerPopup
+import java.io.ByteArrayOutputStream
+import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,8 +43,10 @@ private const val ARG_PARAM2 = "param2"
 class CreateGroupFragment : Fragment(), IconDialog.Callback{
 
     var iconPack: IconPack? = null
+
     private lateinit var saveicon: Drawable
-    private lateinit var showIconuserselected: ImageView
+    private lateinit var savedrawble: Bitmap
+    private lateinit var imageicon: ByteArray
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -57,6 +66,7 @@ class CreateGroupFragment : Fragment(), IconDialog.Callback{
     @SuppressLint("ResourceType", "UseCompatLoadingForDrawables")
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         //group title
         val grptitle = view.findViewById<TextView>(R.id.grpNameInputInCreateGroup)
 
@@ -103,11 +113,33 @@ class CreateGroupFragment : Fragment(), IconDialog.Callback{
             iconDialog.show(childFragmentManager,"icon-dialog")
         }
 
+        /**
+         * take refernce to the given link to create a empty bitmap
+         * TechyDevs, “Answers for ‘Create empty bitmap android,’” create empty bitmap android. [Online]. Available: https://codeinu.net/language/whatever/c147722-create-empty-bitmap-android. [Accessed: 29-Mar-2022].
+         *
+         * */
+        savedrawble = Bitmap.createBitmap(24,24,Bitmap.Config.ARGB_8888)
+
         // save button
         savebutton.setOnClickListener {
             if(grptitle.text.toString().trim().length != 0){
                 val addgrp = DBSupport(requireContext())
-                addgrp.addGroup(grptitle.text.toString(), 0, defaultcolor.toString(), saveicon.toString())
+
+                if(!savedrawble.equals("")){
+                    /**
+                     * bitmap
+                     * Best  BestBest  Best 44522 gold badges88 silver badges1717 bronze badges, Muzammil HusnainMuzammil Husnain 1, and UltimateDevilUltimateDevil  2, “How to convert imageview to Bytearray in Kotlin,” Stack Overflow, 01-Aug-1965. [Online]. Available: https://stackoverflow.com/questions/46666308/how-to-convert-imageview-to-bytearray-in-kotlin. [Accessed: 28-Mar-2022].
+                     */
+                    val stream = ByteArrayOutputStream()
+                    savedrawble.compress(Bitmap.CompressFormat.PNG,90, stream)
+                    imageicon = stream.toByteArray()
+                }
+                else{
+                    println(Arrays.toString(imageicon))
+
+                }
+
+                addgrp.addGroup(grptitle.text.toString(), 0, defaultcolor.toString(), imageicon)
                 Snackbar.make(view,"Create Group Successfully", Snackbar.LENGTH_LONG).show()
                 findNavController().navigate(R.id.action_createGroupFragment_to_homePage)
             }
@@ -139,9 +171,19 @@ class CreateGroupFragment : Fragment(), IconDialog.Callback{
      * Called when icons are selected and user confirms the selection.
      */
     override fun onIconDialogIconsSelected(dialog: IconDialog, icons: List<Icon>) {
-        showIconuserselected = view!!.findViewById(R.id.showIconuserselected)
-        icons.map { saveicon = it.drawable!!.mutate() }
-        showIconuserselected.setImageDrawable(saveicon)
+        var width =  0
+        var height = 0
+        icons.map {
+            saveicon = it.drawable!!
+            width = it.width
+            height = it.height
+        }
+
+        //convert drawable to bitmap so that i can save this in byte array in database and get in other page
+        savedrawble = saveicon.toBitmap(width,height)
+
+        val showIconuserselected: ImageView = view!!.findViewById(R.id.showIconuserselected)
+        showIconuserselected.setImageBitmap(savedrawble)
     }
 
     companion object {

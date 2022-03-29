@@ -2,7 +2,6 @@ package com.example.streamlinelife
 
 import android.os.Build
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.annotation.RequiresApi
 import java.text.DecimalFormat
@@ -16,16 +15,17 @@ import kotlin.collections.ArrayList
 class showInListViewAndSort {
     /**
      *
-     * classing these class in the deadline and complete and all reminder pages
-     * so that i can get all the value from db and if the use want to sort they can
-     * this class will call and change the list
+     * calling this class in the deadline and complete and all reminder pages and calender view
+     * so that i can get all the value from db and if the user want to sort they can
+     * this class will call and update the list
      *
      * */
     private lateinit var sortentries: Map<String, ArrayList<String>>
+    private lateinit var database: DBSupport
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun getfromAutocompleteSortBy(view: View, autocompleteSortBy: AutoCompleteTextView, classname: String) {
-        val database = DBSupport(view.context)
+        database = DBSupport(view.context)
         val getallReminderFromDatabase: Map<String,ArrayList<String>> = database.getAllReminders()
 
         for((i,value) in getallReminderFromDatabase.entries){
@@ -136,14 +136,18 @@ class showInListViewAndSort {
         for((key,value) in sortentries.entries){
             // deadline and complete is 0 then it will show otherwise it wont show
             saveIDs[index] = key.toInt()
+
             //saving in the string
             for(i in value){
-                if(i.trim().length != 0 && i != "0" && i != "1"){
-                    if(addwhitespace == 0){
-                        stringvalues += i
+                if(i.trim().isNotEmpty() && i != "0" && i != "1"){
+                    if(addwhitespace == 0 && value[0].trim().isNotEmpty()){
+                        stringvalues += "$i "
+                    }
+                    else if (addwhitespace == 0 && value[0].trim().isEmpty()){
+                        stringvalues += "$i\n\n"
                     }
                     else{
-                        stringvalues += i + "\n\n"
+                        stringvalues += "$i\n\n"
                     }
                     addwhitespace++
                 }
@@ -185,13 +189,11 @@ class showInListViewAndSort {
         MutableMap: MutableMap<String, java.util.ArrayList<String>>,
         classname: String
     ): Map<String, java.util.ArrayList<String>> {
-        for (i in entries) {
-            println(i.value[3])
-
-            if (i.value[3].trim().isNotEmpty()){
-                i.value[3] = i.value[3].replace(",","  ")
+        for ((key,value) in entries) {
+            if (value[3].trim().isNotEmpty()){
+                value[3] = value[3].replace(",","/")
                 // string date to Date
-                val getdateFromString = i.value[3].substring(0,i.value[3].indexOf("  "))
+                val getdateFromString = value[3].substring(0,value[3].indexOf("/"))
                 val date = LocalDate.parse(getdateFromString, DateTimeFormatter.ISO_DATE)
 
                 //current Date
@@ -199,45 +201,90 @@ class showInListViewAndSort {
                 val currentDateFormated = LocalDate.parse(currentDate , DateTimeFormatter.ISO_DATE)
 
                 // string time to time
-                val gettimeFromString = i.value[3].substring(i.value[3].indexOf(",")+1,i.value[3].length)
-                val currentTime = LocalTime.now().format(DateTimeFormatter.ofPattern("hh:mm:ss"))
+                val gettimeFromString = value[3].substring(value[3].indexOf("/") + 1, value[3].length)
+                val convertinTime = LocalTime.parse(gettimeFromString,DateTimeFormatter.ISO_LOCAL_TIME)
+                val currentTime = LocalTime.parse(LocalTime.now().toString(),DateTimeFormatter.ISO_LOCAL_TIME)
 
                 when (classname) {
                     "CompletedPage" -> {
-                        if (i.value[8].toInt() == 0 && i.value[9].toInt() == 1) {
+                        if (value[8].toInt() == 0 && value[9].toInt() == 1) {
                             /**
                              * “How to compare current date and time with another date and time in Android Code example,” how to compare current date and time with another date and time in android Code Example. [Online]. Available: https://www.codegrepper.com/code-examples/java/how+to+compare+current+date+and+time+with+another+date+and+time++in+android. [Accessed: 26-Mar-2022].
                              *
                              * */
-                            if(date.isBefore(currentDateFormated)){
-                                MutableMap[i.key] = i.value
+                            if (value[5].isNotEmpty()){
+                                var imp = 0
+                                when (value[0]) {
+                                    "!!!" -> {
+                                        imp = 3
+                                    }
+                                    "!!" -> {
+                                        imp = 2
+                                    }
+                                    "!" -> {
+                                        imp = 1
+                                    }
+                                    else ->{
+                                        imp = 0
+                                    }
+                                }
+                                database.updateReminder(key.toInt(), value[1], value[2], value[3], value[4], imp , value[5], value[6], value[7], 0, 0)
                             }
-                            else if (date.isEqual(currentDateFormated)){
-                                if (gettimeFromString.compareTo(currentTime) > 0){
-                                    MutableMap[i.key] = i.value
+                            else{
+                                if(date.isBefore(currentDateFormated)){
+                                    MutableMap[key] = value
+                                }
+                                else if (date.isEqual(currentDateFormated)){
+                                    if (convertinTime.isBefore(currentTime)){
+                                        MutableMap[key] = value
+                                    }
                                 }
                             }
                         }
                     }
                     "DeadlinePage" -> {
-                        if (i.value[8].toInt() == 1 && i.value[9].toInt() == 0) {
+                        if (value[8].toInt() == 1 && value[9].toInt() == 0) {
                             /**
                              * “How to compare current date and time with another date and time in Android Code example,” how to compare current date and time with another date and time in android Code Example. [Online]. Available: https://www.codegrepper.com/code-examples/java/how+to+compare+current+date+and+time+with+another+date+and+time++in+android. [Accessed: 26-Mar-2022].
                              *
                              * */
-                            if(date.isBefore(currentDateFormated)){
-                                MutableMap[i.key] = i.value
+                            /**
+                             * “How to compare current date and time with another date and time in Android Code example,” how to compare current date and time with another date and time in android Code Example. [Online]. Available: https://www.codegrepper.com/code-examples/java/how+to+compare+current+date+and+time+with+another+date+and+time++in+android. [Accessed: 26-Mar-2022].
+                             *
+                             * */
+                            if (value[5].isNotEmpty()){
+                                var imp = 0
+                                when (value[0]) {
+                                    "!!!" -> {
+                                        imp = 3
+                                    }
+                                    "!!" -> {
+                                        imp = 2
+                                    }
+                                    "!" -> {
+                                        imp = 1
+                                    }
+                                    else ->{
+                                        imp = 0
+                                    }
+                                }
+                                database.updateReminder(key.toInt(), value[1], value[2], value[3], value[4], imp , value[5], value[6], value[7], 0, 0)
                             }
-                            else if (date.isEqual(currentDateFormated)){
-                                if (gettimeFromString.compareTo(currentTime) > 0){
-                                    MutableMap[i.key] = i.value
+                            else{
+                                if(date.isBefore(currentDateFormated)){
+                                    MutableMap[key] = value
+                                }
+                                else if (date.isEqual(currentDateFormated)){
+                                    if (convertinTime.isBefore(currentTime)){
+                                        MutableMap[key] = value
+                                    }
                                 }
                             }
                         }
                     }
                     "AllReminderPage" -> {
-                        if (i.value[8].toInt() == 0 && i.value[9].toInt() == 0) {
-                            MutableMap[i.key] = i.value
+                        if (value[8].toInt() == 0 && value[9].toInt() == 0) {
+                            MutableMap[key] = value
                         }
                     }
                 }
@@ -245,18 +292,18 @@ class showInListViewAndSort {
             else{
                 when (classname) {
                     "CompletedPage" -> {
-                        if (i.value[8].toInt() == 0 && i.value[9].toInt() == 0) {
-                            MutableMap[i.key] = i.value
+                        if (value[8].toInt() == 0 && value[9].toInt() == 1) {
+                            MutableMap[key] = value
                         }
                     }
                     "DeadlinePage" -> {
-                        if (i.value[8].toInt() == 0 && i.value[9].toInt() == 0) {
-                            MutableMap[i.key] = i.value
+                        if (value[8].toInt() == 1 && value[9].toInt() == 0) {
+                            MutableMap[key] = value
                         }
                     }
                     "AllReminderPage" -> {
-                        if (i.value[8].toInt() == 0 && i.value[9].toInt() == 0) {
-                            MutableMap[i.key] = i.value
+                        if (value[8].toInt() == 0 && value[9].toInt() == 0) {
+                            MutableMap[key] = value
                         }
                     }
                 }
@@ -265,9 +312,10 @@ class showInListViewAndSort {
         return MutableMap.toMap()
     }
 
+    //calender view
     @RequiresApi(Build.VERSION_CODES.O)
     fun getfromCalenderView(view: View, calenderView: CalendarView, s: String) {
-        val database = DBSupport(view.context)
+        database = DBSupport(view.context)
         val getallReminderFromDatabase: Map<String,ArrayList<String>> = database.getAllReminders()
         for((i,value) in getallReminderFromDatabase.entries){
             when (value[4]) {
@@ -292,15 +340,13 @@ class showInListViewAndSort {
         }
 
         /**
-         * taken date format from the given link
+         * taken date and time format from the given link
          * JUNSJUNS 7766 bronze badges, aminographyaminography 20.3k1313 gold badges6262 silver badges7070 bronze badges, Shalu T DShalu T D                    3, and Vishal PawarVishal Pawar                    4, “Android studio Kotlin - how to display 2 digit number in text?,” Stack Overflow, 01-May-1968. [Online]. Available: https://stackoverflow.com/questions/63010209/android-studio-kotlin-how-to-display-2-digit-number-in-text. [Accessed: 27-Mar-2022].
          * */
         calenderView.setOnDateChangeListener(CalendarView.OnDateChangeListener {
                 calendarView, year, month, day ->
-            val f: NumberFormat = DecimalFormat("00")
-                showallReminderInCalenderPage(view, getallReminderFromDatabase,"${f.format(year)}-${f.format(month+1)}-${f.format(day)}")
-            Toast.makeText(view.context,"$year ------------------ $month --------------------------- $day",Toast.LENGTH_LONG).show()
-
+                val formatTime: NumberFormat = DecimalFormat("00")
+                showallReminderInCalenderPage(view, getallReminderFromDatabase,"${formatTime.format(year)}-${formatTime.format(month+1)}-${formatTime.format(day)}")
         })
     }
 
@@ -313,9 +359,9 @@ class showInListViewAndSort {
         val MutableMap = mutableMapOf<String, java.util.ArrayList<String>>()
 
         for (i in allreeminders) {
-            i.value[3] = i.value[3].replace(",", "  ")
+            i.value[3] = i.value[3].replace(",", "/")
             //database date
-            val getdateFromString = i.value[3].substring(0, i.value[3].indexOf("  "))
+            val getdateFromString = i.value[3].substring(0, i.value[3].indexOf("/"))
             val date = LocalDate.parse(getdateFromString, DateTimeFormatter.ISO_DATE)
 
             //current date
@@ -373,5 +419,4 @@ class showInListViewAndSort {
         val customadapter =  CustomAdapterReminder(view.context, saveInArray, saveIDs)
         listview.adapter = customadapter
     }
-
 }
