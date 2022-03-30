@@ -196,7 +196,7 @@ class CreateReminderFragment : Fragment() {
                 }
 
                 if (saveDate_Time.trim().isNotEmpty()){
-                    val userdate = saveDate_Time.replace(",","/")
+                    val userdate = saveDate_Time.replace("  ","/").replace(",","/")
 
                     // string date to Date
                     val getdateFromString = userdate.substring(0,userdate.indexOf("/"))
@@ -263,37 +263,8 @@ class CreateReminderFragment : Fragment() {
          * taken date and time format from the given link
          * JUNSJUNS 7766 bronze badges, aminographyaminography 20.3k1313 gold badges6262 silver badges7070 bronze badges, Shalu T DShalu T D                    3, and Vishal PawarVishal Pawar                    4, “Android studio Kotlin - how to display 2 digit number in text?,” Stack Overflow, 01-May-1968. [Online]. Available: https://stackoverflow.com/questions/63010209/android-studio-kotlin-how-to-display-2-digit-number-in-text. [Accessed: 27-Mar-2022].
          * */
-        var formattime: NumberFormat = DecimalFormat("00")
-        val formatedTime: String =
-            when {
-                hours == 0 ->{
-                    if (minutes < 10){
-                        "${formattime.format(hours + 12)}:${formattime.format(minutes)}:00"
-                    }
-                    else{
-                        "${formattime.format(hours + 12)}:${formattime.format(minutes)}:00"
-                    }
-                }
-                hours == 12 -> {
-                    if (minutes < 10){
-                        "${formattime.format(hours)}:${formattime.format(minutes)}:00"
-                    }
-                    else{
-                        "${formattime.format(hours + 12)}:${formattime.format(minutes)}:00"
-                    }
-                }
-                hours > 12 ->{
-                    if (minutes < 10){
-                        "${formattime.format(hours - 12)}:${formattime.format(minutes)}:00"
-                    }
-                    else{
-                        "${formattime.format(hours - 12)}:${formattime.format(minutes)}:00"
-                    }
-                }
-                else ->{
-                    "${formattime.format(hours)}:${formattime.format(minutes)}:00"
-                }
-            }
+        val formattime: NumberFormat = DecimalFormat("00")
+        val formatedTime = "${formattime.format(hours)}:${formattime.format(minutes)}:00"
         addTime = formatedTime
     }
 

@@ -16,6 +16,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import org.w3c.dom.Text
+import java.text.DecimalFormat
+import java.text.NumberFormat
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -233,10 +235,10 @@ class editReminder : Fragment() {
                     updateValues[2] = ""
                 }
                 else{
-                    updateValues[2] = updateValues[2].replace(",","  ")
+                    updateValues[2] = updateValues[2].replace("  ","/").replace(",","/")
 
                     // string date to Date
-                    val getdateFromString = updateValues[2].substring(0,updateValues[2].indexOf("  "))
+                    val getdateFromString = updateValues[2].substring(0,updateValues[2].indexOf("/"))
                     val date = LocalDate.parse(getdateFromString, DateTimeFormatter.ISO_DATE)
 
                     //current date
@@ -244,7 +246,7 @@ class editReminder : Fragment() {
                     val currentDateFormated = LocalDate.parse(currentDate , DateTimeFormatter.ISO_DATE)
 
                     // string time to time
-                    val gettimeFromString = updateValues[2].substring(updateValues[2].indexOf(",")+1,updateValues[2].length)
+                    val gettimeFromString = updateValues[2].substring(updateValues[2].indexOf("/") + 1,updateValues[2].length)
                     val currentTime = LocalTime.now().format(DateTimeFormatter.ofPattern("hh:mm:ss"))
 
                     if(deadlinenum == 1 && completenum == 0){
@@ -320,36 +322,12 @@ class editReminder : Fragment() {
      */
     private val timerpick: TimePickerDialog.OnTimeSetListener =
         TimePickerDialog.OnTimeSetListener { p0, hours, minutes ->
-        val formatedTime: String =
-            when {
-                hours == 0 ->{
-                    if (minutes < 10){
-                        "${hours + 12}:0${minutes}:00"
-                    }
-                    else{
-                        "${hours+12}:${minutes}:00"
-                    }
-                }
-                hours == 12 -> {
-                    if (minutes < 10){
-                        "${hours}:0${minutes}:00"
-                    }
-                    else{
-                        "${hours}:${minutes}:00"
-                    }
-                }
-                hours > 12 ->{
-                    if (minutes < 10){
-                        "${hours - 12}:0${minutes}:00"
-                    }
-                    else{
-                        "${hours - 12}:${minutes}:00"
-                    }
-                }
-                else ->{
-                    "${hours}:${minutes}:00"
-                }
-            }
+        /**
+         * taken date and time format from the given link
+         * JUNSJUNS 7766 bronze badges, aminographyaminography 20.3k1313 gold badges6262 silver badges7070 bronze badges, Shalu T DShalu T D                    3, and Vishal PawarVishal Pawar                    4, “Android studio Kotlin - how to display 2 digit number in text?,” Stack Overflow, 01-May-1968. [Online]. Available: https://stackoverflow.com/questions/63010209/android-studio-kotlin-how-to-display-2-digit-number-in-text. [Accessed: 27-Mar-2022].
+         * */
+        val formattime: NumberFormat = DecimalFormat("00")
+        val formatedTime = "${formattime.format(hours)}:${formattime.format(minutes)}:00"
         addTime = formatedTime
     }
 

@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity(){
     /**
      * FOR the navigation Drawer (Navigation)
      *
-     * 1. “Navigation drawer with Fragments Part 2 - youtube.” [Online]. Available: https://www.youtube.com/watch?v=zYVEMCiDcmY.[Accessed: 11-Mar-2022].
+     * “Navigation drawer with Fragments Part 2 - youtube.” [Online]. Available: https://www.youtube.com/watch?v=zYVEMCiDcmY.[Accessed: 11-Mar-2022].
      *
      * E. Vaati, “How to code a navigation drawer for an Android app,” Code Envato Tuts+, 17-Jun-2021. [Online]. Available: https://code.tutsplus.com/tutorials/how-to-code-a-navigation-drawer-in-an-android-app--cms-30263. [Accessed: 29-Mar-2022].
      *

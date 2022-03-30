@@ -26,14 +26,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/teal_200"
-            tools:ignore="MissingConstraints"
-            >
+            tools:ignore="MissingConstraints">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/titleInAppBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:titleCentered="true"
+                app:titleTextColor="@color/black"
                 app:navigationIcon="@drawable/app_navigation_button"
                 android:layoutDirection="rtl">
             </com.google.android.material.appbar.MaterialToolbar>

@@ -9,7 +9,6 @@ android {
     defaultConfig {
         applicationId "com.example.streamlinelife"
         minSdk 21
-        targetSdk 32
         versionCode 1
         versionName "1.0"
 

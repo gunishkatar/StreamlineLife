@@ -191,7 +191,8 @@ class showInListViewAndSort {
     ): Map<String, java.util.ArrayList<String>> {
         for ((key,value) in entries) {
             if (value[3].trim().isNotEmpty()){
-                value[3] = value[3].replace(",","/")
+                value[3] = value[3].replace("  ", "/").replace(",", "/")
+
                 // string date to Date
                 val getdateFromString = value[3].substring(0,value[3].indexOf("/"))
                 val date = LocalDate.parse(getdateFromString, DateTimeFormatter.ISO_DATE)
@@ -208,78 +209,28 @@ class showInListViewAndSort {
                 when (classname) {
                     "CompletedPage" -> {
                         if (value[8].toInt() == 0 && value[9].toInt() == 1) {
-                            /**
-                             * “How to compare current date and time with another date and time in Android Code example,” how to compare current date and time with another date and time in android Code Example. [Online]. Available: https://www.codegrepper.com/code-examples/java/how+to+compare+current+date+and+time+with+another+date+and+time++in+android. [Accessed: 26-Mar-2022].
-                             *
-                             * */
-                            if (value[5].isNotEmpty()){
-                                var imp = 0
-                                when (value[0]) {
-                                    "!!!" -> {
-                                        imp = 3
-                                    }
-                                    "!!" -> {
-                                        imp = 2
-                                    }
-                                    "!" -> {
-                                        imp = 1
-                                    }
-                                    else ->{
-                                        imp = 0
-                                    }
-                                }
-                                database.updateReminder(key.toInt(), value[1], value[2], value[3], value[4], imp , value[5], value[6], value[7], 0, 0)
-                            }
-                            else{
-                                if(date.isBefore(currentDateFormated)){
-                                    MutableMap[key] = value
-                                }
-                                else if (date.isEqual(currentDateFormated)){
-                                    if (convertinTime.isBefore(currentTime)){
-                                        MutableMap[key] = value
-                                    }
-                                }
-                            }
+                            getMutableMap(
+                                value,
+                                key,
+                                date,
+                                currentDateFormated,
+                                MutableMap,
+                                convertinTime,
+                                currentTime
+                            )
                         }
                     }
                     "DeadlinePage" -> {
                         if (value[8].toInt() == 1 && value[9].toInt() == 0) {
-                            /**
-                             * “How to compare current date and time with another date and time in Android Code example,” how to compare current date and time with another date and time in android Code Example. [Online]. Available: https://www.codegrepper.com/code-examples/java/how+to+compare+current+date+and+time+with+another+date+and+time++in+android. [Accessed: 26-Mar-2022].
-                             *
-                             * */
-                            /**
-                             * “How to compare current date and time with another date and time in Android Code example,” how to compare current date and time with another date and time in android Code Example. [Online]. Available: https://www.codegrepper.com/code-examples/java/how+to+compare+current+date+and+time+with+another+date+and+time++in+android. [Accessed: 26-Mar-2022].
-                             *
-                             * */
-                            if (value[5].isNotEmpty()){
-                                var imp = 0
-                                when (value[0]) {
-                                    "!!!" -> {
-                                        imp = 3
-                                    }
-                                    "!!" -> {
-                                        imp = 2
-                                    }
-                                    "!" -> {
-                                        imp = 1
-                                    }
-                                    else ->{
-                                        imp = 0
-                                    }
-                                }
-                                database.updateReminder(key.toInt(), value[1], value[2], value[3], value[4], imp , value[5], value[6], value[7], 0, 0)
-                            }
-                            else{
-                                if(date.isBefore(currentDateFormated)){
-                                    MutableMap[key] = value
-                                }
-                                else if (date.isEqual(currentDateFormated)){
-                                    if (convertinTime.isBefore(currentTime)){
-                                        MutableMap[key] = value
-                                    }
-                                }
-                            }
+                            getMutableMap(
+                                value,
+                                key,
+                                date,
+                                currentDateFormated,
+                                MutableMap,
+                                convertinTime,
+                                currentTime
+                            )
                         }
                     }
                     "AllReminderPage" -> {
@@ -312,6 +263,60 @@ class showInListViewAndSort {
         return MutableMap.toMap()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun getMutableMap(
+        value: ArrayList<String>,
+        key: String,
+        date: LocalDate,
+        currentDateFormated: LocalDate?,
+        MutableMap: MutableMap<String, java.util.ArrayList<String>>,
+        convertinTime: LocalTime,
+        currentTime: LocalTime?
+    ) {
+        /**
+         * “How to compare current date and time with another date and time in Android Code example,” how to compare current date and time with another date and time in android Code Example. [Online]. Available: https://www.codegrepper.com/code-examples/java/how+to+compare+current+date+and+time+with+another+date+and+time++in+android. [Accessed: 26-Mar-2022].
+         *
+         * */
+        if (value[5].isNotEmpty()) {
+            var imp = 0
+            when (value[0]) {
+                "!!!" -> {
+                    imp = 3
+                }
+                "!!" -> {
+                    imp = 2
+                }
+                "!" -> {
+                    imp = 1
+                }
+                else -> {
+                    imp = 0
+                }
+            }
+            database.updateReminder(
+                key.toInt(),
+                value[1],
+                value[2],
+                value[3],
+                value[4],
+                imp,
+                value[5],
+                value[6],
+                value[7],
+                0,
+                0
+            )
+        } else {
+            if (date.isBefore(currentDateFormated)) {
+                MutableMap[key] = value
+            } else if (date.isEqual(currentDateFormated)) {
+                if (convertinTime.isBefore(currentTime)) {
+                    MutableMap[key] = value
+                }
+            }
+        }
+    }
+
     //calender view
     @RequiresApi(Build.VERSION_CODES.O)
     fun getfromCalenderView(view: View, calenderView: CalendarView, s: String) {
@@ -339,6 +344,7 @@ class showInListViewAndSort {
             value.add(0,imp)
         }
 
+
         /**
          * taken date and time format from the given link
          * JUNSJUNS 7766 bronze badges, aminographyaminography 20.3k1313 gold badges6262 silver badges7070 bronze badges, Shalu T DShalu T D                    3, and Vishal PawarVishal Pawar                    4, “Android studio Kotlin - how to display 2 digit number in text?,” Stack Overflow, 01-May-1968. [Online]. Available: https://stackoverflow.com/questions/63010209/android-studio-kotlin-how-to-display-2-digit-number-in-text. [Accessed: 27-Mar-2022].
@@ -348,6 +354,10 @@ class showInListViewAndSort {
                 val formatTime: NumberFormat = DecimalFormat("00")
                 showallReminderInCalenderPage(view, getallReminderFromDatabase,"${formatTime.format(year)}-${formatTime.format(month+1)}-${formatTime.format(day)}")
         })
+
+        //current Date
+        val currentDate = LocalDate.now().format(DateTimeFormatter.ISO_DATE)
+        showallReminderInCalenderPage(view, getallReminderFromDatabase,currentDate)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -359,24 +369,28 @@ class showInListViewAndSort {
         val MutableMap = mutableMapOf<String, java.util.ArrayList<String>>()
 
         for (i in allreeminders) {
-            i.value[3] = i.value[3].replace(",", "/")
+            i.value[3] = i.value[3].replace("  ", "/").replace(",", "/")
+
             //database date
             val getdateFromString = i.value[3].substring(0, i.value[3].indexOf("/"))
             val date = LocalDate.parse(getdateFromString, DateTimeFormatter.ISO_DATE)
+
+            //user chose date in calender
+            val userdate = LocalDate.parse(datechosebyUser, DateTimeFormatter.ISO_DATE)
 
             //current date
             val currentDate = LocalDate.now().format(DateTimeFormatter.ISO_DATE)
             val currentDateFormated = LocalDate.parse(currentDate, DateTimeFormatter.ISO_DATE)
 
-            //user chose date in calender
-            val userdate = LocalDate.parse(datechosebyUser, DateTimeFormatter.ISO_DATE)
+            println("$date -----------------  $userdate ------------------  $currentDateFormated")
 
-            if (date.compareTo(userdate) == 0){
+            if (date.isEqual(userdate)){
                 MutableMap[i.key] = i.value
             }
-            else if(date.compareTo(currentDateFormated) == 0){
-                MutableMap[i.key] = i.value
-            }
+//            else if (){
+//            else if(date.compareTo(currentDateFormated) == 0){
+//                MutableMap[i.key] = i.value
+//            }
         }
 
         val newMapsortedDate = MutableMap

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">StreamlineLife</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -26,6 +25,41 @@
     <string name="low">Low</string>
     <string name="medium">Medium</string>
     <string name="remind_me">Reminde me every</string>
+    <string name="sort_by">sort by</string>
+    <string name="add_reminder">add reminder</string>
+    <string name="delete">delete</string>
+    <string name="save_reminder">save</string>
+    <string name="cancel" tools:ignore="ButtonCase">cancel</string>
+    <string name="group_name_field_hint">Add name</string>
+    <string name="repeat_days">Repeat Days</string>
+    <string name="add_group_name">Add Group Name</string>
+    <string name="notification">Notification</string>
+    <string name="add_location">Add Location</string>
+    <string name="edit">Edit</string>
+    <string name="sound">Sound</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="hide_calender_view">Hide Calender View</string>
+    <string name="submit">Submit</string>
+    <string name="feedback">FeedBack\nMakes App More Nice</string>
+    <string name="pick_color_gor_group">Pick Color gor group</string>
+    <string name="your_group_color_is">Your group color is:</string>
+    <string name="pick_icon_for_group">Pick Icon for Group</string>
+    <string name="pick_icon_for_color">Pick Icon for Color</string>
+    <string name="back">back</string>
+    <string name="Reminders">Reminders</string>
+    <string name="reminder_image">Reminder Image</string>
+    <string name="Ascending">Ascending</string>
+    <string name="Descending">Descending</string>
+    <string name="Low">Low</string>
+    <string name="high">High</string>
+    <string name="Earliest">Earliest</string>
+    <string name="Lastest">Lastest</string>
+    <string name="Oldest">Oldest</string>
+    <string name="Newest">Newest</string>
+    <string name="title">Title</string>
+    <string name="Priorities">Priorities</string>
+    <string name="DueDate">Due Date</string>
+    <string name="CreatedDate">Created Date</string>
 
     <string-array name="reminder_importance">
         <item>High</item>
@@ -52,21 +86,6 @@
         <item>Sunday</item>
     </string-array>
 
-    <string name="Reminders">Reminders</string>
-    <string name="reminder_image">Reminder Image</string>
-    <string name="Ascending">Ascending</string>
-    <string name="Descending">Descending</string>
-    <string name="Low">Low</string>
-    <string name="high">High</string>
-    <string name="Earliest">Earliest</string>
-    <string name="Lastest">Lastest</string>
-    <string name="Oldest">Oldest</string>
-    <string name="Newest">Newest</string>
-    <string name="title">Title</string>
-    <string name="Priorities">Priorities</string>
-    <string name="DueDate">Due Date</string>
-    <string name="CreatedDate">Created Date</string>
-
     <string-array name="sortby">
         <item>Title Ascending</item>
         <item>Title Descending</item>
@@ -77,14 +96,5 @@
         <item>Default</item>
     </string-array>
 
-    <string name="sort_by">sort by</string>
-    <string name="add_reminder">add reminder</string>
-    <string name="delete">delete</string>
-    <string name="save_reminder">save</string>
-    <string name="cancel">cancel</string>
-    <string name="group_name_field_hint">Add name</string>
-    <string name="repeat_days">Repeat Days</string>
-    <string name="add_group_name">Add Group Name</string>
-    <string name="notification">Notification</string>
-    <string name="add_location">Add Location</string>
+    <item name="GroupDefaultcolor" type="color">#CFA1A1 </item>
 </resources>
