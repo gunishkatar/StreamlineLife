@@ -87,7 +87,9 @@ class CreateGroupFragment : Fragment(), IconDialog.Callback{
                 .enableBrightness(true)
                 .enableAlpha(true)
                 .okTitle("Choose Any Color")
-                .cancelTitle("Cancel").showIndicator(true)
+                .cancelTitle("Cancel")
+                .onlyUpdateOnTouchEventUp(true)
+                .showIndicator(true)
                 .showValue(true)
                 .build()
                 .show(this.requireView(), object: ColorPickerPopup.ColorPickerObserver(){
@@ -98,13 +100,12 @@ class CreateGroupFragment : Fragment(), IconDialog.Callback{
                 })
         }
 
+        // icon loader
         val loader = IconPackLoader(requireContext())
         val iconPack = createDefaultIconPack(loader)
         iconPack.loadDrawables(loader.drawableLoader)
         this.iconPack = iconPack
-
         val pickingicons = view.findViewById<Button>(R.id.pickingicons)
-
         //getting the icon dialog
         val iconDialog = activity?.supportFragmentManager?.findFragmentByTag("icon-dialog") as IconDialog?
             ?: IconDialog.newInstance(IconDialogSettings())

@@ -32,6 +32,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="22dp"
                 android:padding="8dp"
+                android:theme="@style/textcolorInDarkMode"
                 android:text="@string/notification"
                 android:textSize="23sp" />
 
@@ -40,6 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="45dp"
+                android:theme="@style/textcolorInDarkMode"
                 android:padding="8dp"
                 android:text="@string/sound"
                 android:textSize="23sp" />
@@ -49,6 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="45dp"
+                android:theme="@style/textcolorInDarkMode"
                 android:padding="8dp"
                 android:text="@string/dark_mode"
                 android:textSize="23sp" />
@@ -56,6 +59,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:theme="@style/textcolorInDarkMode"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="45dp"
                 android:text="@string/hide_calender_view"
@@ -118,6 +122,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
+            android:theme="@style/textcolorInDarkMode"
             android:text="@string/feedback"
             android:textAlignment="center"
             android:textSize="18sp" />

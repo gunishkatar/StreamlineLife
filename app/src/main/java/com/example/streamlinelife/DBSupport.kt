@@ -235,6 +235,53 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
         return numberOfReminders.toInt()
     }
 
+    // use in the edit page
+    fun updateReminder(id: Int, title: String, desc: String, datetime: String, loc: String, imp: Int, repeat: String, remind: String, groupName: String, deadline: Int, completed: Int): Boolean{
+
+        val db = this.writableDatabase
+
+        val valueToUpdate = ContentValues().apply {
+            put(TITLE_COL, title)
+            put(DESCRIPTION_COL, desc)
+            put(LOCATION_COL, loc)
+            put(DATETIME_COL, datetime)
+            put(IMPORTANCE_COL, imp)
+            put(REPEAT_COL, repeat)
+            put(GROUP_COL, groupName)
+            put(REMIND_COL, remind)
+            put(DEADLINE_COL, deadline)
+            put(COMPLETED_COL, completed)
+        }
+
+        val selection = "${ID_COL} = ?"
+        val selectionValue = arrayOf(id.toString())
+
+        val count = db.update(REMINDER_TABLE, valueToUpdate,selection,selectionValue)
+
+        if(count == 0){
+            return false
+        }
+
+        return true
+    }
+
+    //delete reminder from the table
+    fun deleteReminder(title: String, desc: String, datetime: String, loc: String, imp: Int, repeat: String, group: String, remind: String, deadline: Int, completed: Int): Boolean{
+
+        val db = this.writableDatabase
+
+        val selection = "${TITLE_COL} = ? AND ${DESCRIPTION_COL} = ? AND ${DATETIME_COL} = ? AND ${LOCATION_COL} = ? AND ${IMPORTANCE_COL} = ? AND ${REPEAT_COL} = ? AND ${GROUP_COL} = ? AND ${REMIND_COL} = ? AND ${DEADLINE_COL} = ? AND ${COMPLETED_COL} = ?"
+        val selectionArgs = arrayOf(title, desc, datetime, loc, imp.toString(), repeat, group, remind, deadline.toString(), completed.toString())
+
+        val deletedRow = db.delete(REMINDER_TABLE, selection, selectionArgs)
+
+        if(deletedRow == 0){
+            return false
+        }
+
+        return true
+    }
+
     fun updateNumberofRemindersInGroup(name: String): Boolean{
 
         var number_of_reminders: Int = getNumberofRemindersInGroup(name)
@@ -348,53 +395,6 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
 
         val selection = "${COMPLETED_COL} = ?"
         val selectionArgs = arrayOf("1")
-
-        val deletedRow = db.delete(REMINDER_TABLE, selection, selectionArgs)
-
-        if(deletedRow == 0){
-            return false
-        }
-
-        return true
-    }
-
-    // use in the edit page
-    fun updateReminder(id: Int, title: String, desc: String, datetime: String, loc: String, imp: Int, repeat: String, remind: String, groupName: String, deadline: Int, completed: Int): Boolean{
-
-        val db = this.writableDatabase
-
-        val valueToUpdate = ContentValues().apply {
-            put(TITLE_COL, title)
-            put(DESCRIPTION_COL, desc)
-            put(LOCATION_COL, loc)
-            put(DATETIME_COL, datetime)
-            put(IMPORTANCE_COL, imp)
-            put(REPEAT_COL, repeat)
-            put(GROUP_COL, groupName)
-            put(REMIND_COL, remind)
-            put(DEADLINE_COL, deadline)
-            put(COMPLETED_COL, completed)
-        }
-
-        val selection = "${ID_COL} = ?"
-        val selectionValue = arrayOf(id.toString())
-
-        val count = db.update(REMINDER_TABLE, valueToUpdate,selection,selectionValue)
-
-        if(count == 0){
-            return false
-        }
-
-        return true
-    }
-
-    //delete reminder from the table
-    fun deleteReminder(title: String, desc: String, datetime: String, loc: String, imp: Int, repeat: String, group: String, remind: String, deadline: Int, completed: Int): Boolean{
-
-        val db = this.writableDatabase
-
-        val selection = "${TITLE_COL} = ? AND ${DESCRIPTION_COL} = ? AND ${DATETIME_COL} = ? AND ${LOCATION_COL} = ? AND ${IMPORTANCE_COL} = ? AND ${REPEAT_COL} = ? AND ${GROUP_COL} = ? AND ${REMIND_COL} = ? AND ${DEADLINE_COL} = ? AND ${COMPLETED_COL} = ?"
-        val selectionArgs = arrayOf(title, desc, datetime, loc, imp.toString(), repeat, group, remind, deadline.toString(), completed.toString())
 
         val deletedRow = db.delete(REMINDER_TABLE, selection, selectionArgs)
 

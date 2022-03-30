@@ -83,6 +83,7 @@
         android:layout_marginTop="25dp"
         android:text="@string/groups"
         android:textSize="24sp"
+        android:theme="@style/textcolorInDarkMode"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/deadlineReminderInHomePage"
         tools:ignore="MissingConstraints" />

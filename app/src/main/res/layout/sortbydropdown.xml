@@ -8,4 +8,5 @@
     android:padding="14dp"
     android:textStyle="bold"
     android:text="@string/sort_by"
+    android:theme="@style/textcolorInDarkMode"
     tools:ignore="MissingConstraints" />

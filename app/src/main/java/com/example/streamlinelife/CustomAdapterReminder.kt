@@ -59,6 +59,7 @@ class CustomAdapterReminder(
         deletebutton.setOnClickListener {
             alertfunction(view, saveIDsForDelete)
         }
+
         return view
     }
 
