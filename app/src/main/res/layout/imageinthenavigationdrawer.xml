@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Image scale type is taken from the
+juljul 34.9k6464 gold badges182182 silver badges308308 bronze badges, Display NameDisplay Name  7, Jarno ArgillanderJarno Argillander  5, dieseldiesel   3, Naresh SharmaNaresh Sharma  4, DeeFourDeeFour  38433 silver badges1515 bronze badges, ThunderstickThunderstick  1, Nikita VishwakarmaNikita Vishwakarma 10511 silver badge33 bronze badges, MikeyBMikeyB  12822 silver badges77 bronze badges, Volodymyr KulykVolodymyr Kulyk 6, Harvinder SinghHarvinder Singh 1, Abhay AnandAbhay Anand 56244 silver badges1212 bronze badges, Ronny KRonny K 3, alekshandrualekshandru 15911 silver badge33 bronze badges, the_dude_abidesthe_dude_abides 54344 silver badges1010 bronze badges, Bilal DemirBilal Demir  44344 silver badges1414 bronze badges, Ritesh NamdevRitesh Namdev  1133 bronze badges, and myworldboxmyworldbox 15522 silver badges1111 bronze badges, “Fit image into ImageView, keep aspect ratio and then resize ImageView to image dimensions?,” Stack Overflow, 01-Sep-1959.
+[Online]. Available: https://stackoverflow.com/questions/8232608/fit-image-into-imageview-keep-aspect-ratio-and-then-resize-imageview-to-image-d.
+[Accessed: 30-Mar-2022].
+
+Image is taken from the given link
+“Close-up photo of glowing blue butterflies - pexels.”
+[Online]. Available: https://www.pexels.com/photo/close-up-photo-of-glowing-blue-butterflies-326055/.
+[Accessed: 30-Mar-2022].
+
+-->
+
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:scaleType="centerCrop"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:src="@mipmap/navigation"
+    tools:ignore="ContentDescription" />

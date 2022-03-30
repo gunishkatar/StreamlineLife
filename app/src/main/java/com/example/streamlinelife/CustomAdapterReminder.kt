@@ -67,6 +67,7 @@ class CustomAdapterReminder(
      * “Android Alert Dialog using Kotlin,” JournalDev, 12-Jun-2020. [Online]. Available: https://www.journaldev.com/309/android-alert-dialog-using-kotlin. [Accessed: 25-Mar-2022].
      * */
     private fun alertfunction(view: View, saveIDsForDelete: Int) {
+        println("-----------------------------------------------------  " + view.context::class.qualifiedName)
         val alertDialog = AlertDialog.Builder(view.context)
         alertDialog.setTitle("Delete this Reminder?")
         alertDialog.setMessage("Do you want to Delete Reminder")

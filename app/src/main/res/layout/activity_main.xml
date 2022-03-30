@@ -52,6 +52,10 @@
     </LinearLayout>
 
     <!--  navigation view  -->
+    <!--
+        https://stackoverflow.com/questions/34289834/add-header-with-user-image-to-navigation-drawerrefer to this link that how can i add image in the navigation drawer
+        Eman87, Eman87Eman87 2, Chintan SoniChintan Soni 23.6k2525 gold badges101101 silver badges167167 bronze badges, and mesmes 3, “Add header with user image to Navigation Drawer,” Stack Overflow, 01-Oct-1963. [Online]. Available: https://stackoverflow.com/questions/34289834/add-header-with-user-image-to-navigation-drawer. [Accessed: 30-Mar-2022].
+     -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationbar"
         android:layout_width="wrap_content"
@@ -60,5 +64,6 @@
         android:fitsSystemWindows="true"
         android:layout_gravity="start"
         android:layoutDirection="ltr"
+        app:headerLayout="@layout/imageinthenavigationdrawer"
         app:menu="@menu/draw_navigation_menu"/>
 </androidx.drawerlayout.widget.DrawerLayout>

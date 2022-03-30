@@ -9,6 +9,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -18,8 +19,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity(){
-
-    //, NavigationView.OnNavigationItemSelectedListener
     /**
      * FOR the navigation Drawer (Navigation)
      *
@@ -48,13 +47,14 @@ class MainActivity : AppCompatActivity(){
         navigation_menu = findViewById(R.id.navigationbar)
 
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.homePage, R.id.createReminderFragment, R.id.allReminderPage, R.id.completedPage, R.id.deadlinePage, R.id.calenderPage, R.id.grouplist, R.id.settingPage),
+            setOf(R.id.HomePage, R.id.createReminderFragment, R.id.allReminderPage, R.id.completedPage, R.id.deadlinePage, R.id.calenderPage, R.id.HomePage, R.id.settingPage),
             drawerlayout
         )
 
         navcontroller = findNavController(R.id.fragment_container_view)
         setupActionBarWithNavController(navcontroller,appBarConfiguration)
         navigation_menu.setupWithNavController(navcontroller)
+
 
         /**
          *
