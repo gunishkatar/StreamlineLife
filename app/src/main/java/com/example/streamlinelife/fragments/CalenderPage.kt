@@ -1,4 +1,4 @@
-package com.example.streamlinelife
+package com.example.streamlinelife.fragments
 
 import android.os.Build
 import android.os.Bundle
@@ -10,6 +10,8 @@ import android.widget.Button
 import android.widget.CalendarView
 import androidx.annotation.RequiresApi
 import androidx.navigation.fragment.findNavController
+import com.example.streamlinelife.R
+import com.example.streamlinelife.adapters.ListView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,7 +38,7 @@ class CalenderPage : Fragment() {
 
         val calenderView = view.findViewById<CalendarView>(R.id.calenderInCalenderView)
 
-        showInListViewAndSort().getfromCalenderView(view, calenderView, "CalenderPage")
+        ListView().getfromCalenderView(view, calenderView, "CalenderPage")
 
         view.findViewById<Button>(R.id.addReminderInCalenderView).setOnClickListener {
             findNavController().navigate(R.id.action_calenderPage_to_createReminderFragment)

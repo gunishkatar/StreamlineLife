@@ -1,9 +1,12 @@
-package com.example.streamlinelife
+package com.example.streamlinelife.adapters
 
 import android.os.Build
 import android.view.View
 import android.widget.*
+import android.widget.ListView
 import androidx.annotation.RequiresApi
+import com.example.streamlinelife.R
+import com.example.streamlinelife.persistence.DBSupport
 import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.time.LocalDate
@@ -12,7 +15,7 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
-class showInListViewAndSort {
+class ListView {
     /**
      *
      * calling this class in the deadline and complete and all reminder pages and calender view
@@ -136,7 +139,9 @@ class showInListViewAndSort {
         for((key,value) in sortentries.entries){
             // deadline and complete is 0 then it will show otherwise it wont show
             saveIDs[index] = key.toInt()
-
+            if (value[3].trim().isNotEmpty()) {
+                value[3] = value[3].replace("/", "  ").replace(",", "  ")
+            }
             //saving in the string
             for(i in value){
                 if(i.trim().isNotEmpty() && i != "0" && i != "1"){
@@ -166,17 +171,20 @@ class showInListViewAndSort {
          *
          * */
         val listview: ListView
-        val customadapter =  CustomAdapterReminder(view.context, saveInArray, saveIDs)
+        val customadapter: Adapter
         when (classname) {
             "CompletedPage" -> {
+                customadapter =  CustomAdapterReminder(view.context, saveInArray, saveIDs, "CompletedPage")
                 listview = view.findViewById(R.id.showallreminderInCompletedPage)
                 listview.adapter = customadapter
             }
             "DeadlinePage" -> {
+                customadapter =  CustomAdapterReminder(view.context, saveInArray, saveIDs, "DeadlinePage")
                 listview = view.findViewById(R.id.listViewDeadlinesInDeadlinePage)
                 listview.adapter = customadapter
             }
             "AllReminderPage" -> {
+                customadapter =  CustomAdapterReminder(view.context, saveInArray, saveIDs, "AllReminderPage")
                 listview = view.findViewById(R.id.showallreminderInAllReminderPage)
                 listview.adapter = customadapter
             }
@@ -206,31 +214,142 @@ class showInListViewAndSort {
                 val convertinTime = LocalTime.parse(gettimeFromString,DateTimeFormatter.ISO_LOCAL_TIME)
                 val currentTime = LocalTime.parse(LocalTime.now().toString(),DateTimeFormatter.ISO_LOCAL_TIME)
 
+                /**
+                 * “How to compare current date and time with another date and time in Android Code example,” how to compare current date and time with another date and time in android Code Example. [Online]. Available: https://www.codegrepper.com/code-examples/java/how+to+compare+current+date+and+time+with+another+date+and+time++in+android. [Accessed: 26-Mar-2022].
+                 *
+                 * */
+                // repeat is not empty then it will show in the all reminder
+                if (value[5].isNotEmpty()) {
+                    var imp = 0
+                    when (value[0]) {
+                        "!!!" -> {
+                            imp = 3
+                        }
+                        "!!" -> {
+                            imp = 2
+                        }
+                        "!" -> {
+                            imp = 1
+                        }
+                        else -> {
+                            imp = 0
+                        }
+                    }
+                    database.updateReminder(
+                        key.toInt(),
+                        value[1],
+                        value[2],
+                        value[3],
+                        value[4],
+                        imp,
+                        value[5],
+                        value[6],
+                        value[7],
+                        0,
+                        0
+                    )
+                    value[8] = "0"
+                    value[9] = "0"
+                }
+                //it repeat is not empty then
+                else{
+                    when (classname) {
+                        "AllReminderPage" -> {
+                            if(value[8].toInt() == 0 && value[9].toInt() == 0){
+                                if (date.isBefore(currentDateFormated)) {
+                                    var imp = 0
+                                    when (value[0]) {
+                                        "!!!" -> {
+                                            imp = 3
+                                        }
+                                        "!!" -> {
+                                            imp = 2
+                                        }
+                                        "!" -> {
+                                            imp = 1
+                                        }
+                                        else -> {
+                                            imp = 0
+                                        }
+                                    }
+                                    database.updateReminder(
+                                        key.toInt(),
+                                        value[1],
+                                        value[2],
+                                        value[3],
+                                        value[4],
+                                        imp,
+                                        value[5],
+                                        value[6],
+                                        value[7],
+                                        1,
+                                        0
+                                    )
+                                    value[8] = "1"
+                                    value[9] = "0"
+                                }
+                                else if (date.isEqual(currentDateFormated)) {
+                                    if (convertinTime.isBefore(currentTime)) {
+                                        var imp = 0
+                                        when (value[0]) {
+                                            "!!!" -> {
+                                                imp = 3
+                                            }
+                                            "!!" -> {
+                                                imp = 2
+                                            }
+                                            "!" -> {
+                                                imp = 1
+                                            }
+                                            else -> {
+                                                imp = 0
+                                            }
+                                        }
+                                        database.updateReminder(
+                                            key.toInt(),
+                                            value[1],
+                                            value[2],
+                                            value[3],
+                                            value[4],
+                                            imp,
+                                            value[5],
+                                            value[6],
+                                            value[7],
+                                            1,
+                                            0
+                                        )
+                                        value[8] = "1"
+                                        value[9] = "0"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
                 when (classname) {
                     "CompletedPage" -> {
                         if (value[8].toInt() == 0 && value[9].toInt() == 1) {
-                            getMutableMap(
-                                value,
-                                key,
-                                date,
-                                currentDateFormated,
-                                MutableMap,
-                                convertinTime,
-                                currentTime
-                            )
+                            if (date.isBefore(currentDateFormated)) {
+                                MutableMap[key] = value
+                            }
+                            else if (date.isEqual(currentDateFormated)) {
+                                if (convertinTime.isBefore(currentTime)) {
+                                    MutableMap[key] = value
+                                }
+                            }
                         }
                     }
                     "DeadlinePage" -> {
                         if (value[8].toInt() == 1 && value[9].toInt() == 0) {
-                            getMutableMap(
-                                value,
-                                key,
-                                date,
-                                currentDateFormated,
-                                MutableMap,
-                                convertinTime,
-                                currentTime
-                            )
+                            if (date.isBefore(currentDateFormated)) {
+                                MutableMap[key] = value
+                            }
+                            else if (date.isEqual(currentDateFormated)) {
+                                if (convertinTime.isBefore(currentTime)) {
+                                    MutableMap[key] = value
+                                }
+                            }
                         }
                     }
                     "AllReminderPage" -> {
@@ -242,16 +361,6 @@ class showInListViewAndSort {
             }
             else{
                 when (classname) {
-                    "CompletedPage" -> {
-                        if (value[8].toInt() == 0 && value[9].toInt() == 1) {
-                            MutableMap[key] = value
-                        }
-                    }
-                    "DeadlinePage" -> {
-                        if (value[8].toInt() == 1 && value[9].toInt() == 0) {
-                            MutableMap[key] = value
-                        }
-                    }
                     "AllReminderPage" -> {
                         if (value[8].toInt() == 0 && value[9].toInt() == 0) {
                             MutableMap[key] = value
@@ -263,61 +372,7 @@ class showInListViewAndSort {
         return MutableMap.toMap()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun getMutableMap(
-        value: ArrayList<String>,
-        key: String,
-        date: LocalDate,
-        currentDateFormated: LocalDate?,
-        MutableMap: MutableMap<String, java.util.ArrayList<String>>,
-        convertinTime: LocalTime,
-        currentTime: LocalTime?
-    ) {
-        /**
-         * “How to compare current date and time with another date and time in Android Code example,” how to compare current date and time with another date and time in android Code Example. [Online]. Available: https://www.codegrepper.com/code-examples/java/how+to+compare+current+date+and+time+with+another+date+and+time++in+android. [Accessed: 26-Mar-2022].
-         *
-         * */
-        if (value[5].isNotEmpty()) {
-            var imp = 0
-            when (value[0]) {
-                "!!!" -> {
-                    imp = 3
-                }
-                "!!" -> {
-                    imp = 2
-                }
-                "!" -> {
-                    imp = 1
-                }
-                else -> {
-                    imp = 0
-                }
-            }
-            database.updateReminder(
-                key.toInt(),
-                value[1],
-                value[2],
-                value[3],
-                value[4],
-                imp,
-                value[5],
-                value[6],
-                value[7],
-                0,
-                0
-            )
-        } else {
-            if (date.isBefore(currentDateFormated)) {
-                MutableMap[key] = value
-            } else if (date.isEqual(currentDateFormated)) {
-                if (convertinTime.isBefore(currentTime)) {
-                    MutableMap[key] = value
-                }
-            }
-        }
-    }
-
-    //calender view
+    //---------------------------------------------------------calender view----------------------------------
     @RequiresApi(Build.VERSION_CODES.O)
     fun getfromCalenderView(view: View, calenderView: CalendarView, s: String) {
         database = DBSupport(view.context)
@@ -344,7 +399,6 @@ class showInListViewAndSort {
             value.add(0,imp)
         }
 
-
         /**
          * taken date and time format from the given link
          * JUNSJUNS 7766 bronze badges, aminographyaminography 20.3k1313 gold badges6262 silver badges7070 bronze badges, Shalu T DShalu T D                    3, and Vishal PawarVishal Pawar                    4, “Android studio Kotlin - how to display 2 digit number in text?,” Stack Overflow, 01-May-1968. [Online]. Available: https://stackoverflow.com/questions/63010209/android-studio-kotlin-how-to-display-2-digit-number-in-text. [Accessed: 27-Mar-2022].
@@ -367,30 +421,24 @@ class showInListViewAndSort {
         datechosebyUser: String
     ) {
         val MutableMap = mutableMapOf<String, java.util.ArrayList<String>>()
-
         for (i in allreeminders) {
-            i.value[3] = i.value[3].replace("  ", "/").replace(",", "/")
+            if (i.value[3].trim().isNotEmpty()){
+                i.value[3] = i.value[3].replace("  ", "/").replace(",", "/")
 
-            //database date
-            val getdateFromString = i.value[3].substring(0, i.value[3].indexOf("/"))
-            val date = LocalDate.parse(getdateFromString, DateTimeFormatter.ISO_DATE)
+                //database date
+                val getdateFromString = i.value[3].substring(0, i.value[3].indexOf("/"))
+                val date = LocalDate.parse(getdateFromString, DateTimeFormatter.ISO_DATE)
 
-            //user chose date in calender
-            val userdate = LocalDate.parse(datechosebyUser, DateTimeFormatter.ISO_DATE)
+                //user chose date in calender
+                val userdate = LocalDate.parse(datechosebyUser, DateTimeFormatter.ISO_DATE)
 
-            //current date
-            val currentDate = LocalDate.now().format(DateTimeFormatter.ISO_DATE)
-            val currentDateFormated = LocalDate.parse(currentDate, DateTimeFormatter.ISO_DATE)
-
-            println("$date -----------------  $userdate ------------------  $currentDateFormated")
-
-            if (date.isEqual(userdate)){
+                if (date.isEqual(userdate)){
+                    MutableMap[i.key] = i.value
+                }
+            }
+            else{
                 MutableMap[i.key] = i.value
             }
-//            else if (){
-//            else if(date.compareTo(currentDateFormated) == 0){
-//                MutableMap[i.key] = i.value
-//            }
         }
 
         val newMapsortedDate = MutableMap
@@ -403,7 +451,9 @@ class showInListViewAndSort {
         for((key,value) in newMapsortedDate.entries){
             // deadline and complete is 0 then it will show otherwise it wont show
             saveIDs[index] = key.toInt()
-
+            if (value[3].trim().isNotEmpty()) {
+                value[3] = value[3].replace("/", "  ").replace(",", "  ")
+            }
             //saving in the string
             for(i in value){
                 if(i.trim().length != 0 && i != "0" && i != "1"){
@@ -430,7 +480,7 @@ class showInListViewAndSort {
          *
          * */
         val listview = view.findViewById<ListView>(R.id.showallreminderInCalenderView)
-        val customadapter =  CustomAdapterReminder(view.context, saveInArray, saveIDs)
+        val customadapter =  CustomAdapterReminder(view.context, saveInArray, saveIDs, "CalenderPage")
         listview.adapter = customadapter
     }
 }

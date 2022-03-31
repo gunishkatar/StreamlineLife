@@ -1,4 +1,4 @@
-package com.example.streamlinelife
+package com.example.streamlinelife.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -9,6 +9,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ListView
 import androidx.navigation.fragment.findNavController
+import com.example.streamlinelife.R
+import com.example.streamlinelife.adapters.CustomAdapterGroups
+import com.example.streamlinelife.persistence.DBSupport
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.*
 

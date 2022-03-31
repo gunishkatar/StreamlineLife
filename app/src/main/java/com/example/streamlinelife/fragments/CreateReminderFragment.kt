@@ -1,4 +1,4 @@
-package com.example.streamlinelife
+package com.example.streamlinelife.fragments
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
@@ -11,6 +11,8 @@ import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.streamlinelife.R
+import com.example.streamlinelife.persistence.DBSupport
 import com.google.android.material.snackbar.Snackbar
 import java.text.DecimalFormat
 import java.text.NumberFormat
@@ -141,7 +143,7 @@ class CreateReminderFragment : Fragment() {
         }
         // create button
         view.findViewById<Button>(R.id.saveReminderInCreateReminder).setOnClickListener {
-            var savetitle = reminderTitleInputField.text.toString()
+            val savetitle = reminderTitleInputField.text.toString()
             var savedescription = reminderDescriptionInputField.text.toString()
             var saveDate_Time =  reminderDateInputField.text.toString()
             var savelocation = locationInputField.text.toString()

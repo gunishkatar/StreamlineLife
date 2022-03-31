@@ -29,7 +29,6 @@
     <string name="add_reminder">add reminder</string>
     <string name="delete">delete</string>
     <string name="save_reminder">save</string>
-    <string name="cancel" tools:ignore="ButtonCase">cancel</string>
     <string name="group_name_field_hint">Add name</string>
     <string name="repeat_days">Repeat Days</string>
     <string name="add_group_name">Add Group Name</string>
@@ -40,7 +39,7 @@
     <string name="dark_mode">Dark Mode</string>
     <string name="hide_calender_view">Hide Calender View</string>
     <string name="submit">Submit</string>
-    <string name="feedback">FeedBack\nMakes App More Nice</string>
+    <string name="feedback">FeedBack\nMakes the App More Efficient</string>
     <string name="pick_color_gor_group">Pick Color for group</string>
     <string name="your_group_color_is">Your group color is:</string>
     <string name="pick_icon_for_group">Pick Icon for Group</string>
@@ -63,24 +62,24 @@
 
     <string-array name="reminder_importance">
         <item>High</item>
-        <item>Low</item>
         <item>Medium</item>
+        <item>Low</item>
     </string-array>
 
     <string-array name="reminder_occurrence">
-        <item>5 Mins</item>
-        <item>10 Mins</item>
-        <item>15 Mins</item>
-        <item>30 Mins</item>
-        <item>45 Mins</item>
-        <item>1 Hourr</item>
+        <item>5 Min</item>
+        <item>10 Min</item>
+        <item>15 Min</item>
+        <item>30 Min</item>
+        <item>45 Min</item>
+        <item>1 Hour</item>
     </string-array>
 
     <string-array name="reminder_repeat">
         <item>Monday</item>
         <item>Tuesday</item>
         <item>Wednesday</item>
-        <item>Thrusday</item>
+        <item>Thursday</item>
         <item>Friday</item>
         <item>Saturday</item>
         <item>Sunday</item>

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".CreateReminderFragment">
+    tools:context=".fragments.CreateReminderFragment">
 
     <!--
       “How to create a color picker tool in android using color wheel and slider?,” GeeksforGeeks, 22-Oct-2020.

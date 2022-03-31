@@ -35,9 +35,6 @@
         android:icon="@drawable/navigation_calendar_page"
         android:title="@string/calender_view"/>
     <item
-        android:icon="@drawable/navigation_group_page"
-        android:title="@string/groups" />
-    <item
         android:id="@+id/settingPage"
         android:icon="@drawable/navigation_setting_page"
         android:title="@string/setting"/>

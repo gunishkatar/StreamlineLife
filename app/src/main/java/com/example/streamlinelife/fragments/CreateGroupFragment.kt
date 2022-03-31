@@ -1,4 +1,4 @@
-package com.example.streamlinelife
+package com.example.streamlinelife.fragments
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -20,6 +20,8 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import androidx.navigation.fragment.findNavController
+import com.example.streamlinelife.R
+import com.example.streamlinelife.persistence.DBSupport
 import com.maltaisn.icondialog.IconDialog
 import com.maltaisn.icondialog.IconDialogSettings
 import com.maltaisn.icondialog.data.Icon
@@ -134,10 +136,6 @@ class CreateGroupFragment : Fragment(), IconDialog.Callback{
                     val stream = ByteArrayOutputStream()
                     savedrawble.compress(Bitmap.CompressFormat.PNG,90, stream)
                     imageicon = stream.toByteArray()
-                }
-                else{
-                    println(Arrays.toString(imageicon))
-
                 }
 
                 addgrp.addGroup(grptitle.text.toString(), 0, defaultcolor.toString(), imageicon)

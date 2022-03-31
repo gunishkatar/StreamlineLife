@@ -1,21 +1,21 @@
 package com.example.streamlinelife
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
+import androidx.appcompat.app.AppCompatDelegate
+
 //for navigation bar
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.streamlinelife.persistence.DBSupport
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity(){
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity(){
         navigation_menu = findViewById(R.id.navigationbar)
 
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.HomePage, R.id.createReminderFragment, R.id.allReminderPage, R.id.completedPage, R.id.deadlinePage, R.id.calenderPage, R.id.HomePage, R.id.settingPage),
+            setOf(R.id.HomePage, R.id.createReminderFragment, R.id.allReminderPage, R.id.completedPage, R.id.deadlinePage, R.id.calenderPage, R.id.settingPage),
             drawerlayout
         )
 
@@ -55,6 +55,17 @@ class MainActivity : AppCompatActivity(){
         setupActionBarWithNavController(navcontroller,appBarConfiguration)
         navigation_menu.setupWithNavController(navcontroller)
 
+        /**
+         * get values from the  SharedPreferences
+         * user1812111, user1812111user1812111 8311 gold badge11 silver badge1111 bronze badges, Pradip TilalaPradip Tilala 1, Rishabh JainRishabh Jain 1581111 bronze badges, and rgaraisayevrgaraisayev 36833 silver badges1212 bronze badges, “How to get value from shared preference in fragment?,” Stack Overflow, 01-Nov-1966. [Online]. Available: https://stackoverflow.com/questions/54360299/how-to-get-value-from-shared-preference-in-fragment. [Accessed: 31-Mar-2022].
+         * */
+        val sharedPreferences: SharedPreferences = getSharedPreferences("NightMode", Context.MODE_PRIVATE)
+        if (sharedPreferences.getBoolean("NightMode",true)){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }
+        else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
 
         /**
          *
@@ -66,21 +77,21 @@ class MainActivity : AppCompatActivity(){
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return navcontroller.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+        return navcontroller.navigateUp(appBarConfiguration)
     }
 
     private fun dummyData() {
-//        DBSupport(this).addReminder("workout","","2022-03-28,06:45:00","",3,"Friday, Wednesday, Tuesday","","15 Mins, 45 Mins,",0,0)
-//        DBSupport(this).addReminder("work","assignments",	"2022-03-27,06:20:00",	"",1,	"Thrusday, Tuesday, Tuesday,","","15 Mins,",0,	0)
-//        DBSupport(this).addReminder("work","assignments","2022-03-29,06:45:00","",1,"Tuesday, Friday, Saturday","","30 Mins, 30 Mins, 10 Mins,",0,0)
-//        DBSupport(this).addReminder("dance","with my friend","2022-03-31,07:10:00","",2,"Saturday, Wednesday,","","15 Mins,",0,0)
-//        DBSupport(this).addReminder("dinner","with family","2022-04-01,06:10:00","halifax",2,"Friday, Wednesday, Tuesday","","15 Mins, 45 Mins,",0,0)
-//        DBSupport(this).addReminder("workout","","2022-03-25,05:45:00","",3,"","","45 Mins",1,0)
-//        DBSupport(this).addReminder("study","","2022-03-10,06:45:00","",3,"","", "10 Mins, 45 Mins",0,1)
-//        DBSupport(this).addReminder("meeting","with co-worker","2022-03-26,09:59:50","",3,"","","15 Mins, 45 Mins",1,0)
-//        DBSupport(this).addReminder("interview","with COVE","2022-03-20,06:45:00","",3,"","", "10 Mins, 45 Mins",0,1)
-//        DBSupport(this).addReminder("trynottoshowindeadline","assignments","2022-03-29,06:45:00","",1,"Tuesday, Friday, Saturday","","30 Mins, 30 Mins, 10 Mins,",1,0)
-//        DBSupport(this).addReminder("trynottoshowincomplete","assignments","2022-03-29,06:45:00","",1,"Tuesday, Friday, Saturday","","30 Mins, 30 Mins, 10 Mins,",0,1)
+        DBSupport(this).addReminder("workout","","2022-03-28,06:45:00","",3,"Friday, Wednesday, Tuesday","","15 Mins, 45 Mins,",0,0)
+        DBSupport(this).addReminder("work","assignments",	"2022-03-27,06:20:00",	"",1,	"Thrusday, Tuesday, Tuesday,","","15 Mins,",0,	0)
+        DBSupport(this).addReminder("work","assignments","2022-03-29,06:45:00","",1,"Tuesday, Friday, Saturday","","30 Mins, 30 Mins, 10 Mins,",0,0)
+        DBSupport(this).addReminder("dance","with my friend","2022-03-31,07:10:00","",2,"Saturday, Wednesday,","","15 Mins,",0,0)
+        DBSupport(this).addReminder("dinner","with family","2022-04-01,06:10:00","halifax",2,"Friday, Wednesday, Tuesday","","15 Mins, 45 Mins,",0,0)
+        DBSupport(this).addReminder("workout","","2022-03-25,05:45:00","",3,"","","45 Mins",1,0)
+        DBSupport(this).addReminder("study","","2022-03-10,06:45:00","",3,"","", "10 Mins, 45 Mins",0,1)
+        DBSupport(this).addReminder("meeting","with co-worker","2022-03-26,09:59:50","",3,"","","15 Mins, 45 Mins",1,0)
+        DBSupport(this).addReminder("interview","with COVE","2022-03-20,06:45:00","",3,"","", "10 Mins, 45 Mins",0,1)
+        DBSupport(this).addReminder("trynottoshowindeadline","assignments","2022-03-29,06:45:00","",1,"Tuesday, Friday, Saturday","","30 Mins, 30 Mins, 10 Mins,",1,0)
+        DBSupport(this).addReminder("trynottoshowincomplete","assignments","2022-03-29,06:45:00","",1,"Tuesday, Friday, Saturday","","30 Mins, 30 Mins, 10 Mins,",0,1)
     }
 
 }

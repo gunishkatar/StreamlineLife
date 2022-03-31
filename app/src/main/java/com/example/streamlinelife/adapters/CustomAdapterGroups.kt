@@ -1,13 +1,13 @@
-package com.example.streamlinelife
+package com.example.streamlinelife.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.BitmapFactory
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import com.example.streamlinelife.R
 import java.io.ByteArrayOutputStream
 
 class CustomAdapterGroups(
@@ -25,8 +25,8 @@ class CustomAdapterGroups(
     var saveInArraydrawbal: Array<String>
     var saveIDs: Array<Int>
     var saveInArraynumberofreminder: Array<String>
-
     var inflater: LayoutInflater
+
     override fun getCount(): Int {
         return saveInArrayname.size
     }
@@ -45,7 +45,7 @@ class CustomAdapterGroups(
         view = inflater.inflate(R.layout.showgroupswithlogocolorandcountreminders, null)
 
         //all ids
-        val saveIDs = saveIDs[index]
+//        val saveIDs = saveIDs[index]
 
         //set data in the listview
         val imageView = view.findViewById<ImageView>(R.id.showcolorandlogo)
@@ -67,6 +67,7 @@ class CustomAdapterGroups(
         if(saveInArraydrawbal[index].isNotEmpty()){
             // Converting string into bitmap
             val stream = ByteArrayOutputStream()
+
             // this string array that was split by commas
             val byte = saveInArraydrawbal[index].split(",")
             for (stringtobyte in byte){

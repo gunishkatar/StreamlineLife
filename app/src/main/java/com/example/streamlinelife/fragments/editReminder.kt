@@ -1,4 +1,4 @@
-package com.example.streamlinelife
+package com.example.streamlinelife.fragments
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
@@ -14,6 +14,8 @@ import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.streamlinelife.R
+import com.example.streamlinelife.persistence.DBSupport
 import com.google.android.material.snackbar.Snackbar
 import org.w3c.dom.Text
 import java.text.DecimalFormat
@@ -187,7 +189,7 @@ class editReminder : Fragment() {
 
         // button back and update
         backbutton.setOnClickListener{
-            activity?.onBackPressed()
+            findNavController().navigate(R.id.action_editPage_to_allReminderPage)
         }
         updatebutton.setOnClickListener {
             val updateValues = ArrayList<String>()
@@ -247,14 +249,17 @@ class editReminder : Fragment() {
 
                     // string time to time
                     val gettimeFromString = updateValues[2].substring(updateValues[2].indexOf("/") + 1,updateValues[2].length)
-                    val currentTime = LocalTime.now().format(DateTimeFormatter.ofPattern("hh:mm:ss"))
+                    val convertinTime = LocalTime.parse(gettimeFromString,DateTimeFormatter.ISO_LOCAL_TIME)
+
+                    val currentTime = LocalTime.parse(LocalTime.now().toString(),DateTimeFormatter.ISO_LOCAL_TIME)
 
                     if(deadlinenum == 1 && completenum == 0){
                         if(date.isBefore(currentDateFormated)){
                             deadlinenum = 1
                         }
                         else if (date.isEqual(currentDateFormated)){
-                            if (gettimeFromString.compareTo(currentTime) > 0){
+                            if (convertinTime.isBefore(currentTime)){
+                                Snackbar.make(view,"Time Cant be in Past or Add Repeat Days",Snackbar.LENGTH_SHORT).show()
                                 deadlinenum = 1
                             }
                         }
@@ -267,7 +272,8 @@ class editReminder : Fragment() {
                             completenum = 1
                         }
                         else if (date.isEqual(currentDateFormated)){
-                            if (gettimeFromString.compareTo(currentTime) > 0){
+                            if (currentTime.isBefore(currentTime)){
+                                Snackbar.make(view,"Time Cant be in Past or Add Repeat Days",Snackbar.LENGTH_SHORT).show()
                                 completenum = 1
                             }
                         }
@@ -275,9 +281,20 @@ class editReminder : Fragment() {
                             completenum = 0
                         }
                     }
-                    else{
-                        completenum = 0
-                        deadlinenum = 0
+                    else if(deadlinenum == 0 && completenum == 0){
+                        if (date.isEqual(currentDateFormated)){
+                            if (currentTime.isBefore(currentTime)){
+                                Snackbar.make(view,"Time Cant be in Past or Add Repeat Days",Snackbar.LENGTH_SHORT).show()
+                            }
+                            else{
+                                completenum = 0
+                                deadlinenum = 0
+                            }
+                        }
+                        else{
+                            completenum = 0
+                            deadlinenum = 0
+                        }
                     }
                 }
                 if(updateValues[3].isEmpty()){

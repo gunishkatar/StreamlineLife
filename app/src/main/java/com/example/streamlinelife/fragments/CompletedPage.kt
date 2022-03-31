@@ -1,6 +1,5 @@
-package com.example.streamlinelife
+package com.example.streamlinelife.fragments
 
-import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,8 +9,8 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.navigation.fragment.findNavController
-import java.text.SimpleDateFormat
-import java.util.*
+import com.example.streamlinelife.R
+import com.example.streamlinelife.adapters.ListView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,41 +19,44 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [AllReminderPage.newInstance] factory method to
+ * Use the [CompletedPage.newInstance] factory method to
  * create an instance of this fragment.
  */
-class AllReminderPage : Fragment() {
+class CompletedPage : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_all_reminder_page, container, false)
+        return inflater.inflate(R.layout.fragment_completed_page, container, false)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    @SuppressLint("SetTextI18n", "SimpleDateFormat")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        //current date show
-        val simpleDateFormat = SimpleDateFormat("EEEE, MMMM dd, yyy").format(Date())
-        view.findViewById<TextView>(R.id.CurrentDateInAllReminderPage).text = simpleDateFormat
 
         //  “Exposed drop-down menu in Android,” GeeksforGeeks, 23-Jun-2021.
         //  [Online]. Available: https://www.geeksforgeeks.org/exposed-drop-down-menu-in-android/.
         //  [Accessed: 23-Mar-2022].
         val sortby = resources.getStringArray(R.array.sortby)
-        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, sortby)
-        val autocompleteSortBy = view.findViewById<AutoCompleteTextView>(R.id.sortbytextview)
+        val arrayAdapter = ArrayAdapter(requireContext(),R.layout.dropdown_item,sortby)
+        val autocompleteSortBy = view.findViewById<AutoCompleteTextView>(R.id.sortbytextviewInCompletedPage)
         autocompleteSortBy.setAdapter(arrayAdapter)
 
-        // it will go in this class and go in the function getfromAutocompleteSortBy
-        showInListViewAndSort().getfromAutocompleteSortBy(requireView(), autocompleteSortBy, "AllReminderPage")
+        // here i am getting the view of the list and if the user want to they can
+        ListView().getfromAutocompleteSortBy(requireView(), autocompleteSortBy, "CompletedPage")
 
-        //button to redirect user to create reminder
-        view.findViewById<Button>(R.id.addbuttonInAllReminderPage).setOnClickListener {
-            findNavController().navigate(R.id.action_allReminderPage_to_createReminderFragment)
+        view.findViewById<Button>(R.id.deadlineReminderInCompletedPage).setOnClickListener {
+            findNavController().navigate(R.id.action_completedPage_to_deadlinePage)
+        }
+        view.findViewById<Button>(R.id.allReminderInCompletedPage).setOnClickListener {
+            findNavController().navigate(R.id.action_completedPage_to_allReminderPage)
+        }
+        view.findViewById<Button>(R.id.groupsReminderInCompletedPage).setOnClickListener {
+            findNavController().navigate(R.id.action_completedPage_to_homePage)
+        }
+        view.findViewById<Button>(R.id.addReminderInCompletedPage).setOnClickListener {
+            findNavController().navigate(R.id.action_completedPage_to_createReminderFragment)
         }
     }
 
@@ -65,12 +67,12 @@ class AllReminderPage : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment AllReminderPage.
+         * @return A new instance of fragment CompletedPage.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            AllReminderPage().apply {
+            CompletedPage().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

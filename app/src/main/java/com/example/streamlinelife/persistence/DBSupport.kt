@@ -1,13 +1,11 @@
-package com.example.streamlinelife
+package com.example.streamlinelife.persistence
 
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import java.nio.charset.Charset
 import java.util.*
-
 
 /**
  * References SQLITE
@@ -219,7 +217,7 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
 
         val columns = arrayOf(NUMBER_OF_REMINDERS)
 
-        val selection = "${NAME_COL} = ?"
+        val selection = "$NAME_COL = ?"
         val selectionValue = arrayOf(name)
 
         val cursor = db.query(GROUP_TABLE, columns,selection,selectionValue,null,null,null,null)
@@ -253,7 +251,7 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
             put(COMPLETED_COL, completed)
         }
 
-        val selection = "${ID_COL} = ?"
+        val selection = "$ID_COL = ?"
         val selectionValue = arrayOf(id.toString())
 
         val count = db.update(REMINDER_TABLE, valueToUpdate,selection,selectionValue)
@@ -270,7 +268,7 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
 
         val db = this.writableDatabase
 
-        val selection = "${TITLE_COL} = ? AND ${DESCRIPTION_COL} = ? AND ${DATETIME_COL} = ? AND ${LOCATION_COL} = ? AND ${IMPORTANCE_COL} = ? AND ${REPEAT_COL} = ? AND ${GROUP_COL} = ? AND ${REMIND_COL} = ? AND ${DEADLINE_COL} = ? AND ${COMPLETED_COL} = ?"
+        val selection = "$TITLE_COL = ? AND $DESCRIPTION_COL = ? AND $DATETIME_COL = ? AND $LOCATION_COL = ? AND $IMPORTANCE_COL = ? AND $REPEAT_COL = ? AND $GROUP_COL = ? AND $REMIND_COL = ? AND $DEADLINE_COL = ? AND $COMPLETED_COL = ?"
         val selectionArgs = arrayOf(title, desc, datetime, loc, imp.toString(), repeat, group, remind, deadline.toString(), completed.toString())
 
         val deletedRow = db.delete(REMINDER_TABLE, selection, selectionArgs)
@@ -294,7 +292,7 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
             put(NUMBER_OF_REMINDERS, number_of_reminders)
         }
 
-        val selection = "${NAME_COL} = ?"
+        val selection = "$NAME_COL = ?"
         val selectionValue = arrayOf(name)
 
         val count = db.update(GROUP_TABLE, valueToUpdate,selection,selectionValue)
@@ -314,7 +312,7 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
 
         val db = readableDatabase
 
-        val selection = "${GROUP_COL} = ?"
+        val selection = "$GROUP_COL = ?"
         val selectionValue = arrayOf(groupName)
 
         val cursor = db.query(REMINDER_TABLE, null,selection,selectionValue,null,null,null,null)
@@ -361,7 +359,7 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
             put(NAME_COL, newGroupName)
         }
 
-        val selection = "${NAME_COL} = ?"
+        val selection = "$NAME_COL = ?"
         val selectionValue = arrayOf(oldGroupName)
 
         val count = db.update(GROUP_TABLE, valueToUpdate,selection,selectionValue)
@@ -377,7 +375,7 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
 
         val db = this.writableDatabase
 
-        val selection = "${NAME_COL} = ?"
+        val selection = "$NAME_COL = ?"
         val selectionArgs = arrayOf(groupName)
 
         val deletedRow = db.delete(GROUP_TABLE, selection, selectionArgs)
@@ -393,7 +391,7 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
 
         val db = this.writableDatabase
 
-        val selection = "${COMPLETED_COL} = ?"
+        val selection = "$COMPLETED_COL = ?"
         val selectionArgs = arrayOf("1")
 
         val deletedRow = db.delete(REMINDER_TABLE, selection, selectionArgs)
@@ -409,7 +407,7 @@ class DBSupport(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
 
         val db = this.writableDatabase
 
-        val selection = "${GROUP_COL} = ?"
+        val selection = "$GROUP_COL = ?"
         val selectionArgs = arrayOf(groupName)
 
         val deletedRow = db.delete(REMINDER_TABLE, selection, selectionArgs)

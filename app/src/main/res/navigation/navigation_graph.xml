@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/HomePage"
-        android:name="com.example.streamlinelife.HomePage"
+        android:name="com.example.streamlinelife.fragments.HomePage"
         android:label="StreamLine Life">
         <action
             android:id="@+id/action_homePage_to_createReminderFragment"
@@ -28,7 +28,7 @@
 
     <fragment
         android:id="@+id/createReminderFragment"
-        android:name="com.example.streamlinelife.CreateReminderFragment"
+        android:name="com.example.streamlinelife.fragments.CreateReminderFragment"
         android:label="Create Reminder">
         <action
             android:id="@+id/action_createReminderFragment_to_homePage"
@@ -40,7 +40,7 @@
 
     <fragment
         android:id="@+id/completedPage"
-        android:name="com.example.streamlinelife.CompletedPage"
+        android:name="com.example.streamlinelife.fragments.CompletedPage"
         android:label="Complete Reminders"
         tools:layout="@layout/fragment_completed_page" >
         <action
@@ -59,7 +59,7 @@
 
     <fragment
         android:id="@+id/allReminderPage"
-        android:name="com.example.streamlinelife.AllReminderPage"
+        android:name="com.example.streamlinelife.fragments.AllReminderPage"
         android:label="All Reminders"
         tools:layout="@layout/fragment_all_reminder_page" >
         <action
@@ -69,7 +69,7 @@
 
     <fragment
         android:id="@+id/deadlinePage"
-        android:name="com.example.streamlinelife.DeadlinePage"
+        android:name="com.example.streamlinelife.fragments.DeadlinePage"
         android:label="Deadline Reminders"
         tools:layout="@layout/fragment_deadline_page" >
         <action
@@ -88,7 +88,7 @@
 
     <fragment
         android:id="@+id/createGroupFragment"
-        android:name="com.example.streamlinelife.CreateGroupFragment"
+        android:name="com.example.streamlinelife.fragments.CreateGroupFragment"
         android:label="Create Group">
         <action
             android:id="@+id/action_createGroupFragment_to_homePage"
@@ -97,7 +97,7 @@
 
     <fragment
         android:id="@+id/calenderPage"
-        android:name="com.example.streamlinelife.CalenderPage"
+        android:name="com.example.streamlinelife.fragments.CalenderPage"
         android:label="Calender View"
         tools:layout="@layout/fragment_calender_view" >
         <action
@@ -107,7 +107,7 @@
 
     <fragment
         android:id="@+id/editPage"
-        android:name="com.example.streamlinelife.editReminder"
+        android:name="com.example.streamlinelife.fragments.editReminder"
         android:label="Edit Reminders">
         <action
             android:id="@+id/action_editPage_to_allReminderPage"
@@ -115,7 +115,11 @@
     </fragment>
     <fragment
         android:id="@+id/settingPage"
-        android:name="com.example.streamlinelife.SettingPage"
+        android:name="com.example.streamlinelife.fragments.SettingPage"
         android:label="Setting"
-        tools:layout="@layout/fragment_setting_page" />
+        tools:layout="@layout/fragment_setting_page" >
+        <action
+            android:id="@+id/action_settingPage_to_HomePage"
+            app:destination="@id/HomePage" />
+    </fragment>
 </navigation>

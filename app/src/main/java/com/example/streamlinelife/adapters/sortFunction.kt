@@ -1,4 +1,4 @@
-package com.example.streamlinelife
+package com.example.streamlinelife.adapters
 
 import java.util.Comparator
 
