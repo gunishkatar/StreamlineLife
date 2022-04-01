@@ -174,17 +174,17 @@ class ListView {
         val customadapter: Adapter
         when (classname) {
             "CompletedPage" -> {
-                customadapter =  CustomAdapterReminder(view.context, saveInArray, saveIDs, "CompletedPage")
+                customadapter =  CustomAdapterReminder(view.context, saveInArray, saveIDs, classname)
                 listview = view.findViewById(R.id.showallreminderInCompletedPage)
                 listview.adapter = customadapter
             }
             "DeadlinePage" -> {
-                customadapter =  CustomAdapterReminder(view.context, saveInArray, saveIDs, "DeadlinePage")
+                customadapter =  CustomAdapterReminder(view.context, saveInArray, saveIDs, classname)
                 listview = view.findViewById(R.id.listViewDeadlinesInDeadlinePage)
                 listview.adapter = customadapter
             }
             "AllReminderPage" -> {
-                customadapter =  CustomAdapterReminder(view.context, saveInArray, saveIDs, "AllReminderPage")
+                customadapter =  CustomAdapterReminder(view.context, saveInArray, saveIDs, classname)
                 listview = view.findViewById(R.id.showallreminderInAllReminderPage)
                 listview.adapter = customadapter
             }
