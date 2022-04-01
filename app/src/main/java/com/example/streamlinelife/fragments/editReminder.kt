@@ -123,7 +123,7 @@ class editReminder : Fragment() {
                         value[4] = "Low"
                     }
                     else ->{
-                        value[4] = ""
+                        value[4] = " "
                     }
                 }
                 reminderTitleInputField.text = value[0]

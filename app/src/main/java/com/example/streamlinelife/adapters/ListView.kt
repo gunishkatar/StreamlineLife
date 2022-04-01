@@ -43,7 +43,7 @@ class ListView {
                     value[4] = "!"
                 }
                 "0" ->{
-                    value[4] = ""
+                    value[4] = " "
                 }
             }
             //making importance at the first position
@@ -145,11 +145,11 @@ class ListView {
             //saving in the string
             for(i in value){
                 if(i.trim().isNotEmpty() && i != "0" && i != "1"){
-                    if(addwhitespace == 0 && value[0].trim().isNotEmpty()){
-                        stringvalues += "$i "
-                    }
-                    else if (addwhitespace == 0 && value[0].trim().isEmpty()){
+                    if(addwhitespace == 0 && value[0].trim().isEmpty()){
                         stringvalues += "$i\n\n"
+                    }
+                    else if (addwhitespace == 0 && value[0].trim().isNotEmpty()){
+                        stringvalues += "$i "
                     }
                     else{
                         stringvalues += "$i\n\n"
@@ -198,7 +198,7 @@ class ListView {
         classname: String
     ): Map<String, java.util.ArrayList<String>> {
         for ((key,value) in entries) {
-            if (value[3].trim().isNotEmpty()){
+            if (value[3].trim().length != 0){
                 value[3] = value[3].replace("  ", "/").replace(",", "/")
 
                 // string date to Date
@@ -219,7 +219,7 @@ class ListView {
                  *
                  * */
                 // repeat is not empty then it will show in the all reminder
-                if (value[5].isNotEmpty()) {
+                if (value[5].trim().length != 0) {
                     var imp = 0
                     when (value[0]) {
                         "!!!" -> {
@@ -256,22 +256,22 @@ class ListView {
                     when (classname) {
                         "AllReminderPage" -> {
                             if(value[8].toInt() == 0 && value[9].toInt() == 0){
-                                if (date.isBefore(currentDateFormated)) {
-                                    var imp = 0
-                                    when (value[0]) {
-                                        "!!!" -> {
-                                            imp = 3
-                                        }
-                                        "!!" -> {
-                                            imp = 2
-                                        }
-                                        "!" -> {
-                                            imp = 1
-                                        }
-                                        else -> {
-                                            imp = 0
-                                        }
+                                var imp = 0
+                                when (value[0]) {
+                                    "!!!" -> {
+                                        imp = 3
                                     }
+                                    "!!" -> {
+                                        imp = 2
+                                    }
+                                    "!" -> {
+                                        imp = 1
+                                    }
+                                    else -> {
+                                        imp = 0
+                                    }
+                                }
+                                if (date.isBefore(currentDateFormated)) {
                                     database.updateReminder(
                                         key.toInt(),
                                         value[1],
@@ -290,21 +290,7 @@ class ListView {
                                 }
                                 else if (date.isEqual(currentDateFormated)) {
                                     if (convertinTime.isBefore(currentTime)) {
-                                        var imp = 0
-                                        when (value[0]) {
-                                            "!!!" -> {
-                                                imp = 3
-                                            }
-                                            "!!" -> {
-                                                imp = 2
-                                            }
-                                            "!" -> {
-                                                imp = 1
-                                            }
-                                            else -> {
-                                                imp = 0
-                                            }
-                                        }
+                                        println("------------------- I AM HERE I SHOULD BE HEREERRE" + key.toInt())
                                         database.updateReminder(
                                             key.toInt(),
                                             value[1],
@@ -389,7 +375,7 @@ class ListView {
                     value[4] = "!"
                 }
                 "0" ->{
-                    value[4] = ""
+                    value[4] = " "
                 }
             }
             //making importance at the first position
@@ -456,12 +442,15 @@ class ListView {
             }
             //saving in the string
             for(i in value){
-                if(i.trim().length != 0 && i != "0" && i != "1"){
-                    if(addwhitespace == 0){
-                        stringvalues += i
+                if(i.trim().isNotEmpty() && i != "0" && i != "1"){
+                    if(addwhitespace == 0 && value[0].trim().isEmpty()){
+                        stringvalues += "$i\n\n"
+                    }
+                    else if (addwhitespace == 0 && value[0].trim().isNotEmpty()){
+                        stringvalues += "$i "
                     }
                     else{
-                        stringvalues += i + "\n\n"
+                        stringvalues += "$i\n\n"
                     }
                     addwhitespace++
                 }

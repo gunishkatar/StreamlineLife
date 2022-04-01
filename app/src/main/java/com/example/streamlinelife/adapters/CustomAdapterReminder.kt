@@ -78,7 +78,7 @@ class CustomAdapterReminder(
          *  Date accessed  March 31, 2022
          *  Date published March 01, 1959
          */
-        if (pageName.equals("CompletedPage")){
+        if (pageName == "CompletedPage"){
            completebutton.visibility = View.GONE
         }
         completebutton.setOnClickListener {
