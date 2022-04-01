@@ -4,7 +4,7 @@ import java.util.Comparator
 
 /**
  *
- * i am using this class to call all function in other pages
+ * i am using this class to sort the list
  *
  * */
 class sortFunction {

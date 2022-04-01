@@ -38,7 +38,6 @@ class CalenderPage : Fragment() {
 
         val calenderView = view.findViewById<CalendarView>(R.id.calenderInCalenderView)
 
-
         ListView().getfromCalenderView(view, calenderView, "CalenderPage")
 
         view.findViewById<Button>(R.id.addReminderInCalenderView).setOnClickListener {
