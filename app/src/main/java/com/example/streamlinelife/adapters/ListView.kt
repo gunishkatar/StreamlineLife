@@ -290,7 +290,6 @@ class ListView {
                                 }
                                 else if (date.isEqual(currentDateFormated)) {
                                     if (convertinTime.isBefore(currentTime)) {
-                                        println("------------------- I AM HERE I SHOULD BE HEREERRE" + key.toInt())
                                         database.updateReminder(
                                             key.toInt(),
                                             value[1],
