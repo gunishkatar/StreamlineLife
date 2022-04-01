@@ -81,6 +81,14 @@ class SettingPage : Fragment() {
             }
         }
 
+        view.findViewById<ToggleButton>(R.id.hidecalenderbuttonInSettingPage).setOnCheckedChangeListener { _, boolean ->
+            when (boolean){
+                true -> {
+                    Snackbar.make(view,"This is not working", Snackbar.LENGTH_SHORT).show()
+                }
+            }
+        }
+
         view.findViewById<Button>(R.id.submitFeedbackInthesettingpage).setOnClickListener {
             val text = view.findViewById<TextView>(R.id.feedbackinputinthesettingpage).text
             if(text.isEmpty()){

@@ -56,6 +56,7 @@ class CustomAdapterReminder(
         //button in the list view
         val editbutton = view.findViewById<ImageButton>(R.id.editReminderInAllPages)
         val deletebutton = view.findViewById<ImageButton>(R.id.deleteReminderInAllPages)
+        val completebutton = view.findViewById<ImageButton>(R.id.comletebuttonReminderInAllPages)
 
         editbutton.setOnClickListener {
             /**
@@ -70,7 +71,6 @@ class CustomAdapterReminder(
             alertfunction(view, saveIDs)
         }
 
-        val completebutton = view.findViewById<ImageButton>(R.id.comletebuttonReminderInAllPages)
         /**
          *  Article title How to hide a button programmatically?
          *   URL: https://stackoverflow.com/questions/6173400/how-to-hide-a-button-programmatically

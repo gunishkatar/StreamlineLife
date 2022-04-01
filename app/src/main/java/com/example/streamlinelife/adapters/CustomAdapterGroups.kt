@@ -44,9 +44,6 @@ class CustomAdapterGroups(
         var view = view
         view = inflater.inflate(R.layout.showgroupswithlogocolorandcountreminders, null)
 
-        //all ids
-//        val saveIDs = saveIDs[index]
-
         //set data in the listview
         val imageView = view.findViewById<ImageView>(R.id.showcolorandlogo)
         imageView.setBackgroundColor(saveInArraycolor[index].toInt())

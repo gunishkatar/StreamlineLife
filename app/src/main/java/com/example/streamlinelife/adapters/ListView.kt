@@ -434,6 +434,7 @@ class ListView {
         var stringvalues = ""
         var index = 0
         var addwhitespace = 0
+
         for((key,value) in newMapsortedDate.entries){
             // deadline and complete is 0 then it will show otherwise it wont show
             saveIDs[index] = key.toInt()
