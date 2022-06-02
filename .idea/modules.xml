@@ -4,6 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/StreamlineLife.iml" filepath="$PROJECT_DIR$/.idea/modules/StreamlineLife.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/StreamlineLife.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/StreamlineLife.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/StreamlineLife.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/StreamlineLife.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/StreamlineLife.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/StreamlineLife.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/StreamlineLife.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/StreamlineLife.app.unitTest.iml" />
     </modules>
   </component>
 </project>

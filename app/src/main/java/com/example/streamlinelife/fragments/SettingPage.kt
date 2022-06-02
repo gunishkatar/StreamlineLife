@@ -61,7 +61,7 @@ class SettingPage : Fragment() {
          * MarkMark 1, Jug6ernautJug6ernaut 8, LeonLeon  3, ed209ed209  79822 gold badges1212 silver badges2929 bronze badges, misbahm3misbahm3 8155 bronze badges, Abdeljabar TaoufikallahAbdeljabar Taoufikallah  5955 bronze badges, KirguduckKirguduck 65911 gold badge88 silver badges1818 bronze badges, user11809346user11809346 1111 bronze badge, StanojkovicStanojkovic  1, Akash VeerappanAkash Veerappan 6611 gold badge11 silver badge66 bronze badges, davejoemdavejoem 4, reza rahmadreza rahmad 96099 silver badges1616 bronze badges, and jayeejayee 911 bronze badge, “Android sharedpreferences in fragment,” Stack Overflow, 01-May-1960. [Online]. Available: https://stackoverflow.com/questions/11741270/android-sharedpreferences-in-fragment. [Accessed: 31-Mar-2022].
          *
          * */
-        val sharedPreferences: SharedPreferences = activity!!.getSharedPreferences("NightMode", Context.MODE_PRIVATE)
+        val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences("NightMode", Context.MODE_PRIVATE)
         if (sharedPreferences.getBoolean("NightMode",true)){
             view.findViewById<ToggleButton>(R.id.darkmodebuttonInSettingPage).text = "ON"
         }
@@ -81,13 +81,27 @@ class SettingPage : Fragment() {
             }
         }
 
-        view.findViewById<ToggleButton>(R.id.hidecalenderbuttonInSettingPage).setOnCheckedChangeListener { _, boolean ->
-            when (boolean){
-                true -> {
-                    Snackbar.make(view,"This is not working", Snackbar.LENGTH_SHORT).show()
-                }
-            }
-        }
+        // hide calender
+//        val hide_calender: SharedPreferences = requireActivity().getSharedPreferences("HideCalender", Context.MODE_PRIVATE)
+//        if (hide_calender.getBoolean("HideCalender",true)){
+//            view.findViewById<ToggleButton>(R.id.hidecalenderbuttonInSettingPage).text = "ON"
+//        }
+//        else{
+//            view.findViewById<ToggleButton>(R.id.hidecalenderbuttonInSettingPage).text = "OFF"
+//        }
+//        view.findViewById<ToggleButton>(R.id.hidecalenderbuttonInSettingPage).setOnCheckedChangeListener { _, boolean ->
+//            when (boolean){
+////                true -> {
+////                    Snackbar.make(view,"This is not working", Snackbar.LENGTH_SHORT).show()
+////                }
+//                true -> {
+//                    hide_calender.edit().putBoolean("HideCalender",true).apply()
+//                }
+//                false ->{
+//                    hide_calender.edit().putBoolean("HideCalender",false).apply()
+//                }
+//            }
+//        }
 
         view.findViewById<Button>(R.id.submitFeedbackInthesettingpage).setOnClickListener {
             val text = view.findViewById<TextView>(R.id.feedbackinputinthesettingpage).text

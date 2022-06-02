@@ -14,16 +14,4 @@
         <!-- Customize your theme here. -->
         <item name="android:textColor"> @color/black </item>
     </style>
-
-    <!--
-        https://medium.com/geekculture/implementing-the-perfect-splash-screen-in-android-295de045a8dc
-        https://developer.android.com/guide/topics/ui/splash-screen
-     -->
-    <style name="SplashTheme" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/tealgradient</item>
-        <item name="windowSplashScreenAnimatedIcon">@mipmap/app_logo</item>
-        <item name="windowSplashScreenAnimationDuration">500</item>
-        <item name="android:statusBarColor" tools:targetApi="l">@color/black</item>
-        <item name="android:navigationBarColor">@color/black</item>
-    </style>
 </resources>
